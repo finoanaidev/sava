@@ -14,7 +14,7 @@
 		<div class="col-lg-3 mx-auto">
 			<div class="list-group">
 
-				<a href="/" class="list-group-item list-group-item-action btn btn-outline-warning">All Products</a>
+				<a href="/" class="list-group-item list-group-item-action btn btn-outline-warning">Tous les produits</a>
 
 				{% for category in categories %}
 				<a href="/?category={{category.id}}"
@@ -25,6 +25,8 @@
 
 		<!-- all products -->
 		<div id='products' class="col-lg-9 mx-auto">
+
+			<p style = "text-align: center; font-size: 150%;"><b>Site e-commerce de HOAG Target</b></p>
 			<div class="row mx-auto">
 				{% for product in products %}
 				<div class="card mx-auto mb-3" id={{product.id}} style="width: 18rem;">
@@ -45,7 +47,7 @@
 								<input hidden type="text" name='remove' value='True'>
 								<input type="submit" value=" - " class="btn btn-block btn-warning border-right">
 							</form>
-							<div class="text-center col btn btn-warning">{{product|cart_quantity:request.session.cart}} in Cart</div>
+							<div class="text-center col btn btn-warning">{{product|cart_quantity:request.session.cart}} dans le chariot</div>
 							<form action="/#{{product.id}}" class="col-2 " method="post">
 								{% csrf_token %}
 								<input hidden type="text" name='product' value='{{product.id}}'>
@@ -57,7 +59,7 @@
 							{% csrf_token %}
 							<input hidden type="text" name='product' value='{{product.id}}'>
 							<input type="submit" class="float-right btn btn-warning form-control"
-								value="Add To Cart">
+								value="Ajouter au chariot">
 						</form>
 						{% endif %}
 
