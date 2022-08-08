@@ -17,7 +17,7 @@
             <!-- <hr> -->
             <hr>
             </div>
-            <h3 class="alert alert-warning rounded-pill" style="text-align:center">Create an Account</h3>
+            <h3 class="alert alert-warning rounded-pill" style="text-align:center">Créer un compte</h3>
             <form action="/signup" method="POST">
                 
                 {% csrf_token %}
@@ -29,7 +29,7 @@
                 {% endif %}
                 <!-- firstname -->
                 <div class="form-group">
-                    <label for="">First Name</label>
+                    <label for="">Nom</label>
                     <input type="text" name="firstname"
                      id="" value="{{values.first_name}}" class="form-control form-control-sm" 
                      placeholder="">
@@ -37,7 +37,7 @@
 
                 <!-- last name -->
                 <div class="form-group">
-                    <label for="">Last Name</label>
+                    <label for="">Prénom</label>
                     <input type="text" name="lastname" 
                     id="" value="{{values.last_name}}" class="form-control form-control-sm"
                     >
@@ -63,7 +63,7 @@
 
                 <!-- password -->
                 <div class="form-group">
-                    <label for="">Password</label>
+                    <label for="">Mot de passe</label>
                     <input type="password" 
                     name="password" 
                     id=""
@@ -73,10 +73,10 @@
                 <!--Checkme button-->
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label d-grid gap-2" for="exampleCheck1">Check me out</label>
+                    <label class="form-check-label d-grid gap-2" for="exampleCheck1">Cochez ici</label>
                 </div>
                 <hr>
-                <button type="submit" class="btn btn-sm btn-warning col-lg-12">Create an account</button>
+                <button type="submit" class="btn btn-sm btn-warning col-lg-12">Créer un compte</button>
 
             </form>
         </div>

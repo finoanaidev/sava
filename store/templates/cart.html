@@ -6,16 +6,16 @@
 {% load custom_filter %}
 <div class="container">
    <div class="border rounded p-4 m-4">
-        <p class="display-4 pl-4 ml-4 btn btn-warning rounded-pill">Your Cart</p>
+        <p class="display-4 pl-4 ml-4 btn btn-warning rounded-pill">Votre chariot</p>
         <hr>
         <table class="table">
             <thead>
                 <tr>
                     <th>Sno.</th>
                     <th>Image</th>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
                     <th>Total</th>
                 </tr>
             </thead>
@@ -45,7 +45,7 @@
         </table>
         <hr>
         <div class="m-3 p-3">
-            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-warning border rounded  col-lg-3 float-right">Check out</a>
+            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-warning border rounded  col-lg-3 float-right">Commander</a>
         </div>
    </div>
 </div>
@@ -59,7 +59,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-              Check Out Form
+            Formulaire d'enregistrement
           </h5>
           <hr>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -71,7 +71,7 @@
             <form action="/check-out" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
-                  <label for="">Address</label>
+                  <label for="">Adresse</label>
                   <input type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId">
                   
                 </div>
@@ -80,7 +80,7 @@
                     <input type="text" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
                   </div>
 
-                  <input type="submit" class="btn float-right btn-outline-warning col-lg-6" value="Check out">
+                  <input type="submit" class="btn float-right btn-outline-warning col-lg-6" value="Enregistrer">
             </form>
           </div>
         </div>
