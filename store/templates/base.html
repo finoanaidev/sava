@@ -152,6 +152,14 @@
 
       <ul class=" navbar-nav my-2 my-lg-0">
 
+
+        <form id="searchform" >
+          <button class="searchbutton" type="submit">
+              <i class="fa fa-search"></i>
+          </button>
+          <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+        </form>
+
         <li class="nav-item active">
           <a class="nav-link text-white" href="/cart">Chariot 
             <span class="badge badge-warning">{{request.session.cart.keys|length}}</span>
