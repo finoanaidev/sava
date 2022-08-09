@@ -12,282 +12,139 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <style>
-    .text-secondary {
-    color: #3d5d6f;
-  }
-  
-  .h4,
-  h4 {
-    font-size: 1.2rem;
-  }
+       @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
 
-  h2 {
-    color: #333;
-  }
-  
-  .fa,
-  .fas {
-    font-family: 'FontAwesome';
-    font-weight: 400;
-    font-size: 1.2rem;
-    font-style: normal;
-  }
-  
-  .right-0 {
-    right: 0;
-  }
-  
-  .top-0 {
-    top: 0;
-  }
-  
-  .h-100 {
-    height: 100%;
-  }
-  
-  a.text-secondary:focus,
-  a.text-secondary:hover {
-    text-decoration: none;
-    color: #22343e;
-  }
-  
-  #accordion .fa-plus {
-    transition: -webkit-transform 0.25s ease-in-out;
-    transition: transform 0.25s ease-in-out;
-    transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  }
-  
-  #accordion a[aria-expanded=true] .fa-plus {
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-        </style>
+body{
+   background: #f6f6f6;
+}
+
+.box{
+   width: 920px;
+   margin: 10px auto;
+   background: #fff;
+   border-radius: 7px;
+   box-shadow: 1px 2px 4px rgba(0,0,0,.3);
+}
+
+.box .heading{
+   background: #0a3055;
+   border-radius: 7px 7px 0px 0px;
+   padding: 10px;
+   color: #fff;
+   text-align: center;
+   font-family: "Rubik";
+}
+
+.faqs{
+   padding: 0px 20px 20px;
+}
+
+::-webkit-details-marker{
+   float: right;
+   margin-top: 3px;
+}
+
+details{
+   background: #f6f6f6;
+   padding: 10px 20px;
+   border-radius: 7px;
+   margin-top: 20px;
+   font-family: "Rubik";
+   font-size: 14px;
+   letter-spacing: 1px;
+   cursor: pointer;
+}
+
+details summary{
+   outline: none;
+   font-weight: bold;
+}
+
+details p{
+  font-weight: lighter;
+  margin-top: 2%;
+}
+
+    </style>
 </head>
 
     <body>
-        <div class="text-center">
-            <h2 class="mt-5 mb-5">FAQ</h2>
-          </div>
-          <section class="container my-5" id="maincontent">
-            <section id="accordion">
-              <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary border-top" aria-controls="faq-17" aria-expanded="false" data-toggle="collapse" href="#faq-17" role="button">
-                <div class="position-relative">
-                  <h2 class="h4 m-0 pr-3">
-                    Quelle est la durée de livraison ?
-                  </h2>
-                  <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
-                    <i class="fa fa-plus"></i>
-                  </div>
-                </div>
-              </a>
-              <div class="collapse" id="faq-17" style="">
-                <div class="card card-body border-0 p-0">
-                  <p>La durée de livraison est un des nombreux aspects de la négociation discutée directement entre
-                    vendeur et acheteur. La plateforme, en sa qualité de facilitateur, ne peut imposer ou définir de
-                    durée standard de livraison. Ce sujet étant en outre tributaire de nombreux facteurs
-                    (éloignement, niveau d’accès de la zone de livraison, nature des produits transportés, délai
-                    convenu entre les parties, etc.).</p>
-        
-                </div>
-              </div>
-        
-              <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary border-top" aria-controls="faq-18" aria-expanded="false" data-toggle="collapse" href="#faq-18" role="button">
-                <div class="position-relative">
-                  <h2 class="h4 m-0 pr-3">
-                    Les livraisons se font-elles uniquement dans la capitale et les grandes villes?
-                  </h2>
-                  <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
-                    <i class="fa fa-plus"></i>
-                  </div>
-                </div>
-              </a>
-              <div class="collapse" id="faq-18" style="">
-                <div class="card card-body border-0 p-0">
-                  <p>Cet aspect dépend de l’organisation logistique de chaque annonceur. Vous pouvez néanmoins
-                    demander la possibilité de livraisons en dehors des grandes villes et vous organiser avec votre
-                    vendeur si celui-ci est d’accord.</p>
-                  <p>
-                  </p>
-                </div>
-              </div>
-        
-              <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary border-top" aria-controls="faq-19" aria-expanded="false" data-toggle="collapse" href="#faq-19" role="button">
-                <div class="position-relative">
-                  <h2 class="h4 m-0 pr-3">
-                    Quelle garantie pour les produits ?
-                  </h2>
-                  <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
-                    <i class="fa fa-plus"></i>
-                  </div>
-                </div>
-              </a>
-              <div class="collapse" id="faq-19">
-                <div class="card card-body border-0 p-0">
-                  <p>La plateforme ne peut se porter garante de toutes les transactions effectuées sur le site.
-                    Néanmoins, nous avons établi une Charte de qualité à laquelle s’est engagé chaque annonceur
-                    du site. A côté de cela, un travail de vérification et d’encadrement est effectué en back-up pour
-                    veiller à ce que chaque aspect de la charte soit correctement appliqué par les annonceurs. Et
-                    cela inclut le respect du service après-vente.</p>
-                  <p>
-                  </p>
-                </div>
-              </div>
-        
-              <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top" aria-controls="faq-20" aria-expanded="false" data-toggle="collapse" href="#faq-20" role="button">
-                <div class="position-relative">
-                  <h2 class="h4 m-0 pr-3">
-                    Quels sont les recours en cas de défaut de produits, de malfaçons, de casse ou de défaut de
-livraison ?
-                  </h2>
-                  <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
-                    <i class="fa fa-plus"></i>
-                  </div>
-                </div>
-              </a>
-              <div class="collapse" id="faq-20">
-                <div class="card card-body border-0 p-0">
-                  <p>La plateforme ne peut se porter garante de toutes les transactions effectuées sur le site.
-                    Néanmoins, nous avons établi une Charte de qualité à laquelle s’est engagé chaque annonceur
-                    du site. A côté de cela, un travail de vérification et d’encadrement est effectué en back-up pour
-                    veiller à ce que chaque aspect de la charte soit correctement appliqué et respecté par les
-                    annonceurs. Et cela inclut le respect du service après-vente.</p>
-                  <p>
-                  </p>
-                </div>
-              </div>
-        
-              <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top" aria-controls="faq-21" aria-expanded="false" data-toggle="collapse" href="#faq-21" role="button">
-                <div class="position-relative">
-                  <h2 class="h4 m-0 pr-3">
-                    Mon payement en ligne est refusé ou impossible, comment faire ?
-                  </h2>
-                  <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
-                    <i class="fa fa-plus"></i>
-                  </div>
-                </div>
-              </a>
-              <div class="collapse" id="faq-21">
-                <div class="card card-body border-0 p-0">
-                  <p>En cas de problème technque lié à l’utilisation des services de payment en ligne, merci de nous
-                    contacter ICI (lien pour contacter les responsables du site) et nous indiquer la nature du
-                    problème. Nous nous efforçons de vous répondre dans les plus brefs délais.</p>
-                  <p>
-                  </p>
-                </div>
-              </div>
-        
-              <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top" aria-controls="faq-22" aria-expanded="false" data-toggle="collapse" href="#faq-22" role="button">
-                <div class="position-relative">
-                  <h2 class="h4 m-0 pr-3">
-                    Les frais de transports sont-ils inclus ou hors coûts d’achat ?
-                  </h2>
-                  <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
-                    <i class="fa fa-plus"></i>
-                  </div>
-                </div>
-              </a>
-              <div class="collapse" id="faq-22">
-                <div class="card card-body border-0 p-0">
-                  <p>L’inclusion ou l’exclusion des frais de transport est un des nombreux aspects de la négociation
-                    discutée directement entre vendeur et acheteur.</p>
-                  <p>
-                  </p>
-                </div>
-              </div>
+      <div class="box">
+        <p class="heading">FAQs</p>
+        <div class="faqs">
+           <details>
+              <summary>Quelle est la durée de livraison ?</summary>
+              <p class="text">La durée de livraison est un des nombreux aspects de la négociation discutée directement entre
+                vendeur et acheteur. La plateforme, en sa qualité de facilitateur, ne peut imposer ou définir de
+                durée standard de livraison. Ce sujet étant en outre tributaire de nombreux facteurs
+                (éloignement, niveau d’accès de la zone de livraison, nature des produits transportés, délai
+                convenu entre les parties, etc.).</p>
+           </details>
+           <details>
+              <summary>Les livraisons se font-elles uniquement dans la capitale et les grandes villes?</summary>
+              <p class="text">Cet aspect dépend de l’organisation logistique de chaque annonceur. Vous pouvez néanmoins
+                demander la possibilité de livraisons en dehors des grandes villes et vous organiser avec votre
+                vendeur si celui-ci est d’accord.</p>
+           </details>
+           <details>
+              <summary>Quelle garantie pour les produits ?</summary>
+              <p class="text">La plateforme ne peut se porter garante de toutes les transactions effectuées sur le site.
+                Néanmoins, nous avons établi une Charte de qualité à laquelle s’est engagé chaque annonceur
+                du site. A côté de cela, un travail de vérification et d’encadrement est effectué en back-up pour
+                veiller à ce que chaque aspect de la charte soit correctement appliqué par les annonceurs. Et
+                cela inclut le respect du service après-vente.</p>
+           </details>
+           <details>
+              <summary>Quels sont les recours en cas de défaut de produits, de malfaçons, de casse ou de défaut de
+                livraison ?</summary>
+              <p class="text">
+                La plateforme ne peut se porter garante de toutes les transactions effectuées sur le site. Néanmoins, nous avons établi une Charte de qualité à laquelle s’est engagé chaque annonceur du site. Chaque produit ou article présenté sur la  plateforme devrait être complètement assuré par une compagnie d’assurance sinon l’annonceur sera engagé à mettre en place une politique rigoureuse de retour de leur marchandise ou de leur produit, en cas de non conformité ou de tout autre défaut de livraison.
+              </p>
+          </details>
 
-              <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top" aria-controls="faq-23" aria-expanded="false" data-toggle="collapse" href="#faq-23" role="button">
-                <div class="position-relative">
-                  <h2 class="h4 m-0 pr-3">
-                    J’ai contacté l’annonceur qui ne donne pas de retour depuis plusieurs jours, comment faire ?
-                  </h2>
-                  <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
-                    <i class="fa fa-plus"></i>
-                  </div>
-                </div>
-              </a>
-              <div class="collapse" id="faq-23">
-                <div class="card card-body border-0 p-0">
-                  <p>La plateforme ne peut se porter garante de toutes les transactions effectuées sur le site.
-                    Néanmoins, nous avons établi une Charte de qualité à laquelle s’est engagé chaque annonceur
-                    du site. A côté de cela, un travail de vérification et d’encadrement est effectué en back-up pour
-                    veiller à ce que chaque aspect de la charte soit correctement appliqué et respecté par les
-                    annonceurs. Et cela inclus le délai de réactivité aux Clients.</p>
-                  <p>
-                  </p>
-                </div>
-              </div>
+         <details>
+            <summary>Mon payement en ligne est refusé ou impossible, comment faire ?</summary>
+            <p class="text">
+              En cas de problème, nous vous mettrons en lien avec nos partenaires responsables de ces transferts financiers. 
+            </p>
+        </details>
 
-              <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top" aria-controls="faq-24" aria-expanded="false" data-toggle="collapse" href="#faq-24" role="button">
-                <div class="position-relative">
-                  <h2 class="h4 m-0 pr-3">
-                    Quel est le rôle de la plateforme en cas de différents entre acheteur et annonceur ?
-                  </h2>
-                  <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
-                    <i class="fa fa-plus"></i>
-                  </div>
-                </div>
-              </a>
-              <div class="collapse" id="faq-24">
-                <div class="card card-body border-0 p-0">
-                  <p>La plateforme ne peut se porter garante de toutes les transactions effectuées sur le site.
-                    Néanmoins, nous avons établi une Charte de qualité à laquelle s’est engagé chaque annonceur
-                    du site. A côté de cela, un travail de vérification et d’encadrement est effectué en back-up pour
-                    veiller à ce que chaque aspect de la charte soit correctement appliqué et respecté par les
-                    annonceurs. Pour les cas de différents, nous suggérons fortement que l’aspect d’arbitrage par
-                    un organisme de médiation ou un tribunal fasse l’objet d’une clause spécifique dans les
-                    contrats.</p>
-                  <p>
-                  </p>
-                </div>
-              </div>
+            <details>
+              <summary>Les frais de transports sont-ils inclus ou hors coûts d’achat ?</summary>
+              <p class="text">
+                Normalement, l’inclusion ou l’exclusion des frais de transport dépend des conditions de vente des annonceurs, toutefois des nombreux aspects  de vente  peuvent être négociés et discutés directement entre vendeur et acheteur en cas de vente en gros ou à l’usine. 
+              </p>
+          </details>
 
-              <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top" aria-controls="faq-25" aria-expanded="false" data-toggle="collapse" href="#faq-25" role="button">
-                <div class="position-relative">
-                  <h2 class="h4 m-0 pr-3">
-                    Comment m’assurer de l’origine et de la qualité des produits et services proposés sur la
-plateforme ?
-                  </h2>
-                  <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
-                    <i class="fa fa-plus"></i>
-                  </div>
-                </div>
-              </a>
-              <div class="collapse" id="faq-25">
-                <div class="card card-body border-0 p-0">
-                  <p>La plateforme ne peut se porter garante de toutes les transactions effectuées sur le site.
-                    Néanmoins, nous avons établi une Charte de qualité à laquelle s’est engagé chaque annonceur
-                    du site. A côté de cela, un travail de vérification et d’encadrement est effectué en back-up pour
-                    veiller à ce que chaque aspect de la charte soit correctement appliqué et respecté par les
-                    annonceurs.</p>
-                  <p>
-                  </p>
-                </div>
-              </div>
+          <details>
+              <summary>J’ai contacté l’annonceur qui ne donne pas de retour depuis plusieurs jours, comment faire ?</summary>
+              <p class="text">
+                Au sein de la plateforme, nous avons établi un système permettant à chaque client de donner son avis sur la performance pour chacun  de ses fournisseurs. Ainsi, un indicateur de performance est affiché à chaque page de vendeur et libre à chaque acheteur de choisir avant leur achat les meilleurs fournisseurs qui lui conviennent le plus.  
+              </p>
+          </details>
 
-              <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top" aria-controls="faq-26" aria-expanded="false" data-toggle="collapse" href="#faq-26" role="button">
-                <div class="position-relative">
-                  <h2 class="h4 m-0 pr-3">
-                    Comment m’assurer de la crédibilité de l’annonceur ?
-                  </h2>
-                  <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
-                    <i class="fa fa-plus"></i>
-                  </div>
-                </div>
-              </a>
-              <div class="collapse" id="faq-26">
-                <div class="card card-body border-0 p-0">
-                  <p>La plateforme ne peut se porter garante de toutes les transactions effectuées sur le site.
-                    Néanmoins, nous avons établi une Charte de qualité à laquelle s’est engagé chaque annonceur
-                    du site. A côté de cela, un travail de vérification et d’encadrement est effectué en back-up pour
-                    veiller à ce que chaque aspect de la charte soit correctement appliqué et respecté par les
-                    annonceurs.</p>
-                  <p>
-                  </p>
-                </div>
-              </div>
+          <details>
+              <summary>Quel est le rôle de la plateforme en cas de différends entre acheteur et annonceur ?</summary>
+              <p class="text">
+                Pour un cas de différends,  nous suggérons fortement une négociation à l’amiable entre les deux parties acheteur et annonceur, avant que l’arbitrage soit réalisé par un organisme de médiation.   
+              </p>
+          </details>
 
-            </section>
-          </section>
+          <details>
+            <summary>Comment m’assurer de l’origine et de la qualité des produits et services proposés sur la plateforme ?</summary>
+            <p class="text">
+              La plateforme ne peut se porter garante de toutes les transactions effectuées sur le site. Néanmoins, nous avons établi un système permettant de retrouver l’origine et la traçabilité des produits et services proposés par chaque annonceur. Envoyez- nous un message pour demander beaucoup plus d’informations.    
+            </p>
+          </details>
+
+          <details>
+            <summary>Comment m’assurer de la crédibilité de l’annonceur ?</summary>
+            <p class="text">
+              Au sein de la plateforme, nous avons établi un système permettant à chaque client de donner son avis sur la performance pour chacun  de ses fournisseurs. Ainsi, un indicateur de performance est affiché à chaque page de vendeur. Cet indicateur, informera à chaque client une partie de la crédibilité de l’annonceur. Envoyez-nous un message  pour avoir des informations plus ou moins approfondies.    
+            </p>
+          </details>
+        </div>
+     </div>
     </body>
 </html>
 {% endblock %}
