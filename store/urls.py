@@ -8,6 +8,7 @@ from .views.checkout import CheckOut
 from .views.orders import OrderView
 from .views.accueil import Accueil
 from .views.faq import Faq
+from .views.register import Register
 from .middlewares.auth import  auth_middleware
 
 
@@ -23,5 +24,6 @@ urlpatterns = [
     path('orders', auth_middleware(OrderView.as_view()), name='orders'),
     path('accueil', Accueil, name='accueil'),
     path('faq', Faq, name='Faq'),
+    path('register', Register, name='Register'),
 
 ]
