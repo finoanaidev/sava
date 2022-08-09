@@ -366,19 +366,18 @@
   <form id="msform"> 
     <!-- Tittle -->
     <div class="tittle">
-      <h2>Inscription pour acheteur potentiel</h2>
-      <p>Inscrivez-vous pour pouvoir acheter nos produit en gros</p>
+      <h2>Inscription pour le profil d'un vendeur</h2>
+      <p>Inscrivez-vous ici pour être membre des vendeurs de HOAG Target</p>
     </div>
     <!-- progressbar -->
     <ul id="progressbar">
-      <li class="active">Choix</li>  
-      <li>Inscription</li> 
-      <li>Charte de qualité</li>
+      <li class="active">Etape 1</li>  
+      <li>Etape 2</li> 
+      <li>Etape 3</li>
     </ul>
     <!-- fieldsets -->
     <fieldset>
-      <h3>Choisissez une ou les deux</h3>
-      
+    <h3>Choisissez une ou les deux</h3>
       <div class="form-row"> 
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="c1" id="ck1">
@@ -390,102 +389,211 @@
             </div>
       </div>
 
+            <div class="form-row"> 
+            <h3>Veuillez remplir ses informations </h3>
+                <div class="row mb-3">
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Nom ou raison sociale">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Nom commercial">
+                    </div>
+                </div>
+        
+                <div class="row mb-3">
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Liste marques déposées">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Liste marques représentées">
+                    </div>
+                </div>
+        
+                <div class="row mb-3">
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Adresse siège">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Téléphone Siège">
+                    </div>
+                </div>
+        
+                <div class="row mb-3">
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Email professionnelles">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="N° d'identité fiscale">
+                    </div>
+                </div>
+        
+                <div class="row mb-3">
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="N° Statistique">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="N° CIN">
+                    </div>
+                </div>
+        
+                <div class="row mb-3">
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Nom représentant">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Télephone direct ou portable du responsable">
+                    </div>
+                </div>
+        
+                <div class="row mb-3">
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Email du représentant">
+                    </div>
+                    <div class="col">               
+                      <select id="selection" class="form-control">
+                        <option value="">Service d'activité</option>
+                        <optgroup label="">
+                          <option value="">Vente au détail</option>
+                          <option value="">Vente en semi-gros/Gros</option>
+                          <option value="">Production Indust/Manufacure</option>
+                          <option value="">Production Agricole</option>
+                          <option value="">Production Artisanale</option>
+                          <option value="">Production en service</option>
+                          <option value="">Autres</option>
+                        </optgroup>
+                      </select>
+                </div>
+                  
+              </div>
+              </div>
+
       <button type="button" class="action-button previous_button">Back</button>
       <button type="button" class="next action-button">Continue</button>  
     </fieldset>
     <fieldset>
-      <h3>Veuillez entrer vos informations ici</h3>
-      <h6>Veuillez remplir ses informations pour être parmis nos clients potentiels</h6>
+      <h3>Origine et traçabilité de vos articles/matériels de production</h3>
+      <h6>En tenant compte de nos valeurs (Ethique, Crédibilité et respect de qualité)), nous vous invitons de compléter ou répondre avec rigueur les formulaires suivants:</h6>
       <div class="form-row"> 
-        <div class="row mb-3">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Nom ou raison sociale">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Nom commercial">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Liste marques déposées">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Liste marques représentées">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Adresse siège">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Téléphone Siège">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Email professionnelles">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="N° d'identité fiscale">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="N° Statistique">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="N° CIN">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Nom représentant">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Télephone direct ou portable du responsable">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Email du représentant">
-            </div>
-            <div class="col">               
-              <select id="selection" class="form-control">
-                <option value="">Service d'activité</option>
-                <optgroup label="">
-                  <option value="">Vente au détail</option>
-                  <option value="">Vente en semi-gros/Gros</option>
-                  <option value="">Production Indust/Manufacure</option>
-                  <option value="">Production Agricole</option>
-                  <option value="">Production Artisanale</option>
-                  <option value="">Production en service</option>
-                  <option value="">Autres</option>
-                </optgroup>
-              </select>
-        </div>
-          
+        <h3>Choisissez et completez une ou plusieurs</h3>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="c1" id="ck1">
+            <label class="form-check-label" for="ck1">Nous importons ... % de nos matières premières</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+            <label class="form-check-label" for="ck2">Nous importons ... % de nos marchandises</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+            <label class="form-check-label" for="ck2">Nous importons ... % de nos matériels de productions</label>
+          </div>
       </div>
+
+      <div class="form-row"> 
+        <h3>Pour vos achats importés</h3>
+        <div class="form-group">
+            <label for="pays">Listes des pays d'origines de vos aticles / matériels importés</label>
+            <textarea class="form-control" id="pays" rows="2"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="fournisseur">Listes de vos prinipaux fournisseurs</label>
+            <textarea class="form-control" id="fournisseur" ></textarea>
+        </div>
       </div>
+
+
+      <h3>Transport et logistique</h3>
+      <div class="form-row"> 
+        <div class="form-group">
+            <label for="livraison">Avez-vous votre propre système de livraison?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+                <label class="form-check-label" for="ck2">OUI</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+                <label class="form-check-label" for="ck2">NON</label>
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            <label for="livraison">Avez-vous votre système de traçabilité de vos produits finis / marchandises?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+                <label class="form-check-label" for="ck2">OUI</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+                <label class="form-check-label" for="ck2">NON</label>
+            </div>
+        </div>
+      </div>
+
       <button type="button" class="action-button previous previous_button">Back</button>
       <button type="button" class="next action-button">Continue</button>  
     </fieldset>  
     <fieldset>
-      <h3>Charte de qualité</h3>
-      <h6>Charte de qualité et engagement à la charte</h6> 
+      <h3>Echantillon de vos articles phares : produits finis ou marchandises</h3>
+      <h6>Pour chacun de vos articles phares, nous vous invitons à fournir scrupueusement les éléments suivants:</h6> 
       <div class="form-group"> 
-        <h6><a href="/../../CHARTE-DE-QUALITE-site-ecommerceHOAG-T.docx" download="CHARTE-DE-QUALITE-site-ecommerceHOAG-T.docx">Cliquez ici pour lire la charte de qualité</a></h6>
+        <div class="row mb-3">
+
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Article phare">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Secteur / Filière d'activité">
+            </div>
+        </div>
+
+        <h3>Photos</h3>
+        <div class="form-group">
+            <label for="fichier">Photo devant (photo avec fondblanc et sans ombre(High key photo))</label>
+            <input type="file" class="form-control-file" id="fichier">
+        </div>
+
+        <div class="form-group">
+            <label for="fichier">Photo derrière (photo avec fondblanc et sans ombre(High key photo))</label>
+            <input type="file" class="form-control-file" id="fichier">
+        </div>
+
+        <div class="form-group">
+            <label for="fichier">Photo haut (photo avec fondblanc et sans ombre(High key photo))</label>
+            <input type="file" class="form-control-file" id="fichier">
+        </div>
+
+        <div class="form-group">
+            <label for="fichier">Photo bas (photo avec fondblanc et sans ombre(High key photo))</label>
+            <input type="file" class="form-control-file" id="fichier">
+        </div>
+
+        <div class="form-group">
+            <label for="fichier">Photo 45° (photo avec fondblanc et sans ombre(High key photo))</label>
+            <input type="file" class="form-control-file" id="fichier">
+        </div>
+
+        <h3>Video</h3>
+        <div class="form-group">
+            <label for="fichier">Video (video de presentation de l'article à vendre, en format mp4 et d'une durée maximale d'une minute)</label>
+            <input type="file" class="form-control-file" id="fichier">
+        </div>
+
+        <h3>Fiche technique</h3>
+        <div class="form-group">
+            <label for="fichier">Fiche technique (résumer et détail de l'article en format word (Maximum 1000mots))</label>
+            <input type="file" class="form-control-file" id="fichier">
+        </div>
+
+        <h6>Je confirme que les informations fournies ci-dessus sont réelles et vérifiables</h6>
+
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="cgu" required>
             <label class="form-check-label" for="cgu">Engagement à la charte de qualité</label>
-          </div>
+        </div>
+        <h6>Après avoir coché la case correspondante, j'affirme avoir pris connaissance, compris et accepté les dispositions de la présente charte de qualité. Je m'engage à cet effet, par l'intemédiaire de la strucure queje représente, à en faire respecter les dispositions</h6>
+        <h6><a href="/../../CHARTE-DE-QUALITE-site-ecommerceHOAG-T.docx" download="CHARTE-DE-QUALITE-site-ecommerceHOAG-T.docx">Cliquez ici pour lire la charte de qualité</a></h6>
       </div>
-      <h6>Après avoir coché la case correspondante, j'affirme avoir pris connaissance, compris et accepté les dispositions de la présente charte de qualité. Je m'engage à cet effet, par l'intemédiaire de la strucure queje représente, à en faire respecter les dispositions</h6>
       <button type="button" class="action-button previous previous_button">Back</button> 
       <a href="#" class="action-button">Finish</a> 
     </fieldset>  
