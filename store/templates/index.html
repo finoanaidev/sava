@@ -34,7 +34,7 @@
 					<div class="card-body">
 						<p class="card-title">{{product.name}}</p>
 						<p style="font-size: 68%"><a href="http://localhost:8000/register">Cliquez ici pour acheter les produits en gros ou semi-gros</a> </p>
-						<p class="card-text"><b>{{product.price|currency}}</b></p>
+						<p class="card-text">Prix en détail : <b>{{product.price|currency}}</b></p>
 						<!-- {{product | is_in_cart:request.session.cart }} -->
 					</div>
 
