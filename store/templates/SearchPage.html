@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>E-commerce Madagascar</title>
+    </head>
+
+    <body>
+        
+        
+        {% for p in product %}
+        <div class="card mx-auto mb-3" id={{p.id}} style="width: 18rem;">
+            <img class="card-img-top" src="{{p.image.url}}" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-title">{{p.name}}</p>
+                <p class="card-text"><b>{{p.price}}</b></p>
+                <input type="submit" class="float-right btn btn-warning form-control"
+								value="Ajouter au chariot">
+            </div>
+        </div>
+
+        {% empty %}
+
+        <div class="card text-center">
+            <div class="card-header">
+              OUPS! 😱
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Voilà qui n'était pas prévu ! </h5>
+              <p class="card-text">😱 Nous n'avons pas pu trouver le produit correspondant à votre recherche 🥺 
+              </br> 🤔 Mais nous vous invitons à voir nos autres produits! ☺️ 
+              
+              </p>
+              <a href="/" class="btn btn-primary">Retour à la page d'accueil</a>
+            </div>
+          </div>
+
+                  
+    {% endfor %}
+    </body>
+</html>
+{% endblock %}

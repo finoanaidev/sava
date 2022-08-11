@@ -10,6 +10,7 @@ from .views.accueil import Accueil
 from .views.faq import Faq
 from .views.register import Register
 from .views.registerVendeur import RegisterVendeur
+from .views.searchPage import SearchPage
 from .middlewares.auth import  auth_middleware
 
 
@@ -27,4 +28,5 @@ urlpatterns = [
     path('faq', Faq, name='Faq'),
     path('register', Register, name='Register'),
     path('registerVendeur', RegisterVendeur, name='RegisterVendeur'),
+    path('search', SearchPage, name='SearchPage'),
 ]
