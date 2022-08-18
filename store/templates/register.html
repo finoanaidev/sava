@@ -363,7 +363,9 @@
 
       <!-- Start Multiform HTML -->
   <section class="multi_step_form">  
-  <form id="msform"> 
+  <form id="msform" action="/register" method="POST"> 
+
+
     <!-- Tittle -->
     <div class="tittle">
       <h2>Inscription pour acheteur potentiel</h2>
@@ -399,61 +401,52 @@
       <div class="form-row"> 
         <div class="row mb-3">
             <div class="col">
-              <input type="text" class="form-control" placeholder="Nom ou raison sociale">
+              <input type="text" class="form-control" placeholder="Nom ou raison sociale" value="{{values.name}}">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Nom commercial">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Liste marques déposées">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Liste marques représentées">
+              <input type="text" class="form-control" placeholder="Nom commercial" value="{{values.commercial_name}}">
             </div>
         </div>
 
         <div class="row mb-3">
             <div class="col">
-              <input type="text" class="form-control" placeholder="Adresse siège">
+              <input type="text" class="form-control" placeholder="Adresse siège" value="{{values.address}}">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Téléphone Siège">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Email professionnelles">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="N° d'identité fiscale">
+              <input type="text" class="form-control" placeholder="Téléphone Siège" value="{{values.phone_siege}}">
             </div>
         </div>
 
         <div class="row mb-3">
             <div class="col">
-              <input type="text" class="form-control" placeholder="N° Statistique">
+              <input type="text" class="form-control" placeholder="Email professionnelles" value="{{values.email}}">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="N° CIN">
+              <input type="text" class="form-control" placeholder="N° d'identité fiscale" value="{{values.num_fiscal}}">
             </div>
         </div>
 
         <div class="row mb-3">
             <div class="col">
-              <input type="text" class="form-control" placeholder="Nom représentant">
+              <input type="text" class="form-control" placeholder="N° Statistique" value="{{values.num_stat}}">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Télephone direct ou portable du responsable">
+              <input type="text" class="form-control" placeholder="N° CIN" value="{{values.num_cin}">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Nom représentant" value="{{values.name_pers}}">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Télephone direct ou portable du responsable" value="{{values.phone_pers}}">
             </div>
         </div>
 
         <div class="row mb-3">
             <div class="col-lg-6">
-              <input type="text" class="form-control" placeholder="Email du représentant">
+              <input type="text" class="form-control" placeholder="Email du représentant" value="{{values.email_pers}}">
             </div>
 
             <div class="col-lg-6">
