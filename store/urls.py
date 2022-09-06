@@ -26,7 +26,7 @@ urlpatterns = [
     path('orders', auth_middleware(OrderView.as_view()), name='orders'),
     path('accueil', Accueil, name='accueil'),
     path('faq', Faq, name='Faq'),
-    path('register', Register, name='Register'),
-    path('registerVendeur', RegisterVendeur, name='RegisterVendeur'),
+    path('register', Register.as_view() , name='Register'),
+    path('registerVendeur', RegisterVendeur.as_view() , name='RegisterVendeur'),
     path('search', SearchPage, name='SearchPage'),
 ]

@@ -363,7 +363,8 @@
 
       <!-- Start Multiform HTML -->
   <section class="multi_step_form">  
-  <form id="msform"> 
+    <form action = "" method = "POST" id = "msform">
+      {% csrf_token %}
     <!-- Tittle -->
     <div class="tittle">
       <h2>Inscription pour le profil d'un vendeur</h2>
@@ -380,11 +381,11 @@
     <h3>Choisissez une ou les deux</h3>
       <div class="form-row"> 
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="c1" id="ck1">
+              <input class="form-check-input" type="checkbox" value="personne_morale" id="ck1" name="p">
               <label class="form-check-label" for="ck1">Je représente au moins une personne morale</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+              <input class="form-check-input" type="checkbox" value="individu" id="ck2" name = "p">
               <label class="form-check-label" for="ck2">J'exerce des activités professionnelles en tant qu'individu</label>
             </div>
       </div>
@@ -393,73 +394,73 @@
             <h3>Veuillez remplir ses informations </h3>
                 <div class="row mb-3">
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Nom ou raison sociale">
+                      <input id= "name" type="text" class="form-control" placeholder="Nom ou raison sociale" value="{{values.name}}">
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Nom commercial">
-                    </div>
-                </div>
-        
-                <div class="row mb-3">
-                    <div class="col">
-                      <input type="text" class="form-control" placeholder="Liste marques déposées">
-                    </div>
-                    <div class="col">
-                      <input type="text" class="form-control" placeholder="Liste marques représentées">
+                      <input  id="commercial_name" type="text" class="form-control" placeholder="Nom commercial" value="{{values.commmercial_name}}">
                     </div>
                 </div>
         
                 <div class="row mb-3">
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Adresse siège">
+                      <input id="marque_deposer" type="text" class="form-control" placeholder="Liste marques déposées">
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Téléphone Siège">
-                    </div>
-                </div>
-        
-                <div class="row mb-3">
-                    <div class="col">
-                      <input type="text" class="form-control" placeholder="Email professionnelles">
-                    </div>
-                    <div class="col">
-                      <input type="text" class="form-control" placeholder="N° d'identité fiscale">
+                      <input id = "marque_representer" type="text" class="form-control" placeholder="Liste marques représentées">
                     </div>
                 </div>
         
                 <div class="row mb-3">
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="N° Statistique">
+                      <input id = "address" type="text" class="form-control" placeholder="Adresse siège" value="{{values.address}}">
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="N° CIN">
+                      <input id = "tel" type="text" class="form-control" placeholder="Téléphone Siège" value="{{values.phone_siege}}">
                     </div>
                 </div>
         
                 <div class="row mb-3">
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Nom représentant">
+                      <input id="email" type="text" class="form-control" placeholder="Email professionnelles" value="{{values.email}}">
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Télephone direct ou portable du responsable">
+                      <input id="num_fiscal" type="text" class="form-control" placeholder="N° d'identité fiscale" value="{{values.num_fiscal}}">
+                    </div>
+                </div>
+        
+                <div class="row mb-3">
+                    <div class="col">
+                      <input id="num_stat" type="text" class="form-control" placeholder="N° Statistique" value="{{values.num_stat}}">
+                    </div>
+                    <div class="col">
+                      <input id="num_cin" type="text" class="form-control" placeholder="N° CIN" value="{{values.num_cin}}">
+                    </div>
+                </div>
+        
+                <div class="row mb-3">
+                    <div class="col">
+                      <input id="representant" type="text" class="form-control" placeholder="Nom représentant" value="{{values.nom_pers}}">
+                    </div>
+                    <div class="col">
+                      <input id="tel_pers" type="text" class="form-control" placeholder="Télephone direct ou portable du responsable" value="{{values.phone_pers}}">
                     </div>
                 </div>
         
                 <div class="row mb-3">
                     <div class="col ">
-                      <input type="text" class="form-control" placeholder="Email du représentant">
+                      <input id="email_pers" type="text" class="form-control" placeholder="Email du représentant" value="{{values.phone_pers}}">
                     </div>
 
                     <div class="col">               
-                      <select id="selection" class="form-control">
+                      <select id="selection" type="select" class="form-control" name="activite">
                         <option value="">Service d'activité</option>
-                          <option value="">Vente au détail</option>
-                          <option value="">Vente en semi-gros/Gros</option>
-                          <option value="">Production Indust/Manufacure</option>
-                          <option value="">Production Agricole</option>
-                          <option value="">Production Artisanale</option>
-                          <option value="">Production en service</option>
-                          <option value="">Autres</option>
+                          <option value="detail">Vente au détail</option>
+                          <option value="gros">Vente en semi-gros/Gros</option>
+                          <option value="manufacture">Production Indust/Manufacure</option>
+                          <option value="agricole">Production Agricole</option>
+                          <option value="artisanale">Production Artisanale</option>
+                          <option value="service">Production en service</option>
+                          <option value="autres">Autres</option>
                       </select>
                     </div>
                 </div>
@@ -474,15 +475,15 @@
       <div class="form-row"> 
         <h3>Choisissez et completez une ou plusieurs</h3>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="c1" id="ck1">
+            <input class="form-check-input" type="checkbox" value="c1" id="ck1" name="importation">
             <label class="form-check-label" for="ck1">Nous importons ... % de nos matières premières</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+            <input class="form-check-input" type="checkbox" value="c2" id="ck2" name="importation">
             <label class="form-check-label" for="ck2">Nous importons ... % de nos marchandises</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+            <input class="form-check-input" type="checkbox" value="c3" id="ck3" name="importation">
             <label class="form-check-label" for="ck2">Nous importons ... % de nos matériels de productions</label>
           </div>
       </div>
@@ -491,11 +492,11 @@
         <h3>Pour vos achats importés</h3>
         <div class="form-group">
             <label for="pays">Listes des pays d'origines de vos aticles / matériels importés</label>
-            <textarea class="form-control" id="pays" rows="2"></textarea>
+            <textarea class="form-control" id="pays" rows="2" value="{{values.pays}}"></textarea>
         </div>
         <div class="form-group">
             <label for="fournisseur">Listes de vos prinipaux fournisseurs</label>
-            <textarea class="form-control" id="fournisseur" ></textarea>
+            <textarea class="form-control" id="fournisseur" value="{{values.fournisseur}}"></textarea>
         </div>
       </div>
 
@@ -505,11 +506,11 @@
         <div class="form-group">
             <label for="livraison">Avez-vous votre propre système de livraison?</label>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+                <input class="form-check-input" type="checkbox" value="oui" id="ck2" name="livraison">
                 <label class="form-check-label" for="ck2">OUI</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+                <input class="form-check-input" type="checkbox" value="non" id="ck2" name="livraison">
                 <label class="form-check-label" for="ck2">NON</label>
             </div>
         </div>
@@ -518,11 +519,11 @@
         <div class="form-group">
             <label for="livraison">Avez-vous votre système de traçabilité de vos produits finis / marchandises?</label>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+                <input class="form-check-input" type="checkbox" value="oui" id="ck2" name="tracabilite">
                 <label class="form-check-label" for="ck2">OUI</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+                <input class="form-check-input" type="checkbox" value="non" id="ck2" name="tracabilite">
                 <label class="form-check-label" for="ck2">NON</label>
             </div>
         </div>
@@ -538,49 +539,49 @@
         <div class="row mb-3">
 
             <div class="col">
-              <input type="text" class="form-control" placeholder="Article phare">
+              <input id="article_phare" type="text" class="form-control" placeholder="Article phare" value="{{values.article_phare}}">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Secteur / Filière d'activité">
+              <input id="secteur_activite" type="text" class="form-control" placeholder="Secteur / Filière d'activité" value="{{values.secteur_activite}}">
             </div>
         </div>
 
         <h3>Photos</h3>
         <div class="form-group">
             <label for="fichier">Photo devant (photo avec fondblanc et sans ombre(High key photo))</label>
-            <input type="file" class="form-control-file" id="fichier">
+            <input type="file" class="form-control-file" id="fichier1" value="{{values.file1}}">
         </div>
 
         <div class="form-group">
             <label for="fichier">Photo derrière (photo avec fondblanc et sans ombre(High key photo))</label>
-            <input type="file" class="form-control-file" id="fichier">
+            <input type="file" class="form-control-file" id="fichier2" value="{{values.file2}}">
         </div>
 
         <div class="form-group">
             <label for="fichier">Photo haut (photo avec fondblanc et sans ombre(High key photo))</label>
-            <input type="file" class="form-control-file" id="fichier">
+            <input type="file" class="form-control-file" id="fichier3" value="{{values.file3}}">
         </div>
 
         <div class="form-group">
             <label for="fichier">Photo bas (photo avec fondblanc et sans ombre(High key photo))</label>
-            <input type="file" class="form-control-file" id="fichier">
+            <input type="file" class="form-control-file" id="fichier4" value="{{values.file4}}">
         </div>
 
         <div class="form-group">
             <label for="fichier">Photo 45° (photo avec fondblanc et sans ombre(High key photo))</label>
-            <input type="file" class="form-control-file" id="fichier">
+            <input type="file" class="form-control-file" id="fichier5" value="{{values.file5}}">
         </div>
 
         <h3>Video</h3>
         <div class="form-group">
             <label for="fichier">Video (video de presentation de l'article à vendre, en format mp4 et d'une durée maximale d'une minute)</label>
-            <input type="file" class="form-control-file" id="fichier">
+            <input type="file" class="form-control-file" id="fichier6" value="{{values.file6}}">
         </div>
 
         <h3>Fiche technique</h3>
         <div class="form-group">
             <label for="fichier">Fiche technique (résumer et détail de l'article en format word (Maximum 1000mots))</label>
-            <input type="file" class="form-control-file" id="fichier">
+            <input type="file" class="form-control-file" id="fichier7" value="{{values.file7}}">
         </div>
 
         <h6>Je confirme que les informations fournies ci-dessus sont réelles et vérifiables</h6>
@@ -593,7 +594,8 @@
         <h6><a href="/../../CHARTE-DE-QUALITE-site-ecommerceHOAG-T.docx" download="CHARTE-DE-QUALITE-site-ecommerceHOAG-T.docx">Cliquez ici pour lire la charte de qualité</a></h6>
       </div>
       <button type="button" class="action-button previous previous_button">Back</button> 
-      <a href="#" class="action-button">Finish</a> 
+      <button id = "get" type="submit" class="action-button submit submit_button">Finish</button> 
+      
     </fieldset>  
   </form>  
 </section> 
@@ -610,6 +612,42 @@
     <script >
     (function($) {
         "use strict";  
+
+        $(document).ready(function(){
+             $("#get").click(function () {
+                      console.log(
+                    $("input:checkbox[name=p]:checked").val() + "<br/>"+
+                    $("#name").val() + "<br/>" +
+                    $("#commercial_name").val() + "<br/>" +
+                    $("#marque_deposer").val() + "<br/>" +
+                    $("#marque_representer").val() + "<br/>" +
+                    $("#address").val() + "<br/>" +
+                    $("#tel").val() + "<br/>" +
+                    $("#email").val() + "<br/>" +
+                    $("#num_fiscal").val() + "<br/>" +  
+                    $("#num_stat").val() + "<br/>" +      
+                    $("#num_cin").val() + "<br/>" +   
+                    $("#representant").val() + "<br/>" + 
+                    $("#tel_pers").val() + "<br/>" +    
+                    $("#email_pers").val() + "<br/>" +   
+                    $("#selection").val() + "<br/>" +
+                    $("input:checkbox[name=importation]:checked").val() + "<br/>"+
+                    $("#pays").val() + "<br/>" +
+                    $("#fournisseur").val() + "<br/>" +
+                    $("input:checkbox[name=livraison]:checked").val() + "<br/>"+
+                    $("input:checkbox[name=tracabilite]:checked").val() + "<br/>"+
+                    $("#article_phare").val() + "<br/>" +
+                    $("#secteur_activite").val() + "<br/>" +
+                    $("#fichier1").val() + "<br/>" +
+                    $("#fichier2").val() + "<br/>" +
+                    $("#fichier3").val() + "<br/>" +
+                    $("#fichier4").val() + "<br/>" +
+                    $("#fichier5").val() + "<br/>" +
+                    $("#fichier6").val() + "<br/>" +
+                    $("#fichier7").val() 
+                );
+            });
+         });
         
         //* Form js
         function verificationForm(){
@@ -704,6 +742,7 @@
             });
     
             $(".submit").click(function () {
+              console.log("submit")
                 return false;
             })
         }; 
@@ -726,6 +765,8 @@
         phoneNoselect ();
         nice_Select ();
     })(jQuery);
+
+    
     </script>
   
   </body>

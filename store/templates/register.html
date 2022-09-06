@@ -364,7 +364,13 @@
       <!-- Start Multiform HTML -->
   <section class="multi_step_form">  
   <form id="msform" action="/register" method="POST"> 
+    {% csrf_token %}
 
+    {% if error%}
+    <div class="alert alert-danger" role="alert">
+        {{error}}
+    </div>
+    {% endif %}
 
     <!-- Tittle -->
     <div class="tittle">
@@ -393,7 +399,7 @@
       </div>
 
       <button type="button" class="action-button previous_button">Back</button>
-      <button type="button" class="next action-button">Continue</button>  
+      <button type="submit" class="next action-button">Continue</button>  
     </fieldset>
     <fieldset>
       <h3>Veuillez entrer vos informations ici</h3>
@@ -431,7 +437,7 @@
               <input type="text" class="form-control" placeholder="N° Statistique" value="{{values.num_stat}}">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="N° CIN" value="{{values.num_cin}">
+              <input type="text" class="form-control" placeholder="N° CIN" value="{{values.num_cin}}">
             </div>
         </div>
 
@@ -468,7 +474,7 @@
         </div>
       </div>
       <button type="button" class="action-button previous previous_button">Back</button>
-      <button type="button" class="next action-button">Continue</button>  
+      <button type="submit" class="next action-button">Continue</button>  
     </fieldset>  
     <fieldset>
       <h3>Charte de qualité</h3>
@@ -482,7 +488,7 @@
       </div>
       <h6>Après avoir coché la case correspondante, j'affirme avoir pris connaissance, compris et accepté les dispositions de la présente charte de qualité. Je m'engage à cet effet, par l'intemédiaire de la strucure queje représente, à en faire respecter les dispositions</h6>
       <button type="button" class="action-button previous previous_button">Back</button> 
-      <a href="/" class="action-button">Finish</a> 
+      <button type="submit" class="action-button"><a href="" class="action-button">Finish</a> </button>
     </fieldset>  
   </form>  
 </section> 

@@ -58,7 +58,7 @@ class Register (View):
             print (name, commercial_name, address, phone_siege, email, num_fiscal, num_stat, num_cin, nom_pers, phone_pers, email_pers, password)
             person.password = make_password (person.password)
             person.register ()
-            return redirect ('homepage')
+            return redirect ('acceuil.html')
         else:
             data = {
                 'error': error_message,
@@ -66,6 +66,31 @@ class Register (View):
             }
             return render (request, 'register.html', data)
 
-   
+    def validatePerson(self, person):
+        error_message = None
+        if (not person.name):
+            error_message = "Please Enter your Name !!"
+        elif len (person.name) < 3:
+            error_message = 'Name must be 3 char long or more'
+        elif not person.commercial_name:
+            error_message = 'Please Enter your Commercial Name'
+        elif len (person.commercial_name) < 3:
+            error_message = 'Commercial Name must be 3 char long or more'
+        elif not person.address:
+            error_message = 'Enter your Address'
+        elif len (person.address) < 10:
+            error_message = 'Address must be 10 char Long'
+        elif not person.phone_siege:
+            error_message = 'Enter your Phone siege'
+        elif len (person.phone_siege) < 10:
+            error_message = 'Phone siege must be 10 char Long'
+        elif len (person.password) < 5:
+            error_message = 'Password must be 5 char long'
+        elif len (person.email) < 5:
+            error_message = 'Email must be 5 char long'
+        elif Person.isExists ():
+            error_message = 'Email Address Already Registered..'
+        # saving
+
         error_message = None
       
