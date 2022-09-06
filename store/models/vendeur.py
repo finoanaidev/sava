@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Vendeur(models.Model):
     name = models.CharField(max_length=100)
     commercial_name = models.CharField(max_length=100)
@@ -17,6 +18,3 @@ class Vendeur(models.Model):
     article_phare = models.CharField(max_length=100)
     secteur_activite = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
-
-
-   

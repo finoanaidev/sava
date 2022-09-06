@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Person(models.Model):
     name = models.CharField(max_length=100)
     commercial_name = models.CharField(max_length=100)
@@ -13,6 +14,3 @@ class Person(models.Model):
     phone_pers = models.CharField(max_length=10)
     email_pers = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
-
-
-   
