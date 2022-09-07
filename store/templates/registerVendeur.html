@@ -363,8 +363,24 @@
 
       <!-- Start Multiform HTML -->
   <section class="multi_step_form">  
-    <form action = "/registerVendeur" method = "POST" id = "msform">
+  <form id="msform" action="{% url 'RegisterVendeur_save' %}" method="POST"> 
       {% csrf_token %}
+
+      <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == 'success' %}
+                                <div class="alert alert-success">{{ message }}</div>
+                            {% elif message.tags == 'error' %}
+                                <div class="alert alert-danger">{{ message }}</div>
+                            {% endif %}
+                        {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+      </div>
     <!-- Tittle -->
     <div class="tittle">
       <h2>Inscription pour le profil d'un vendeur</h2>
@@ -394,61 +410,61 @@
             <h3>Veuillez remplir ses informations </h3>
                 <div class="row mb-3">
                     <div class="col">
-                      <input id= "name" type="text" class="form-control" placeholder="Nom ou raison sociale" value="{{values.name}}">
+                      <input id= "name" name="name" type="text" class="form-control" placeholder="Nom ou raison sociale" value="{{values.name}}">
                     </div>
                     <div class="col">
-                      <input  id="commercial_name" type="text" class="form-control" placeholder="Nom commercial" value="{{values.commmercial_name}}">
-                    </div>
-                </div>
-        
-                <div class="row mb-3">
-                    <div class="col">
-                      <input id="marque_deposer" type="text" class="form-control" placeholder="Liste marques déposées">
-                    </div>
-                    <div class="col">
-                      <input id = "marque_representer" type="text" class="form-control" placeholder="Liste marques représentées">
+                      <input  id="commercial_name" name="commercial_name" type="text" class="form-control" placeholder="Nom commercial" value="{{values.commmercial_name}}">
                     </div>
                 </div>
         
                 <div class="row mb-3">
                     <div class="col">
-                      <input id = "address" type="text" class="form-control" placeholder="Adresse siège" value="{{values.address}}">
+                      <input id="marque_deposer" name="marque_deposer" type="text" class="form-control" placeholder="Liste marques déposées">
                     </div>
                     <div class="col">
-                      <input id = "tel" type="text" class="form-control" placeholder="Téléphone Siège" value="{{values.phone_siege}}">
-                    </div>
-                </div>
-        
-                <div class="row mb-3">
-                    <div class="col">
-                      <input id="email" type="text" class="form-control" placeholder="Email professionnelles" value="{{values.email}}">
-                    </div>
-                    <div class="col">
-                      <input id="num_fiscal" type="text" class="form-control" placeholder="N° d'identité fiscale" value="{{values.num_fiscal}}">
+                      <input id = "marque_representer" name="marque_representer" type="text" class="form-control" placeholder="Liste marques représentées">
                     </div>
                 </div>
         
                 <div class="row mb-3">
                     <div class="col">
-                      <input id="num_stat" type="text" class="form-control" placeholder="N° Statistique" value="{{values.num_stat}}">
+                      <input id = "address" name="address" type="text" class="form-control" placeholder="Adresse siège" value="{{values.address}}">
                     </div>
                     <div class="col">
-                      <input id="num_cin" type="text" class="form-control" placeholder="N° CIN" value="{{values.num_cin}}">
+                      <input id = "tel" name="phone_siege" type="text" class="form-control" placeholder="Téléphone Siège" value="{{values.phone_siege}}">
                     </div>
                 </div>
         
                 <div class="row mb-3">
                     <div class="col">
-                      <input id="representant" type="text" class="form-control" placeholder="Nom représentant" value="{{values.nom_pers}}">
+                      <input id="email" name="email" type="text" class="form-control" placeholder="Email professionnelles" value="{{values.email}}">
                     </div>
                     <div class="col">
-                      <input id="tel_pers" type="text" class="form-control" placeholder="Télephone direct ou portable du responsable" value="{{values.phone_pers}}">
+                      <input id="num_fiscal" name="num_fiscal" type="text" class="form-control" placeholder="N° d'identité fiscale" value="{{values.num_fiscal}}">
+                    </div>
+                </div>
+        
+                <div class="row mb-3">
+                    <div class="col">
+                      <input id="num_stat" name="num_stat" type="text" class="form-control" placeholder="N° Statistique" value="{{values.num_stat}}">
+                    </div>
+                    <div class="col">
+                      <input id="num_cin" name="num_cin" type="text" class="form-control" placeholder="N° CIN" value="{{values.num_cin}}">
+                    </div>
+                </div>
+        
+                <div class="row mb-3">
+                    <div class="col">
+                      <input id="representant" name="nom_pers" type="text" class="form-control" placeholder="Nom représentant" value="{{values.nom_pers}}">
+                    </div>
+                    <div class="col">
+                      <input id="tel_pers" name="phone_pers" type="text" class="form-control" placeholder="Télephone direct ou portable du responsable" value="{{values.phone_pers}}">
                     </div>
                 </div>
         
                 <div class="row mb-3">
                     <div class="col ">
-                      <input id="email_pers" type="text" class="form-control" placeholder="Email du représentant" value="{{values.phone_pers}}">
+                      <input id="email_pers" name="email_pers" type="text" class="form-control" placeholder="Email du représentant" value="{{values.phone_pers}}">
                     </div>
 
                     <div class="col">               
@@ -492,11 +508,11 @@
         <h3>Pour vos achats importés</h3>
         <div class="form-group">
             <label for="pays">Listes des pays d'origines de vos aticles / matériels importés</label>
-            <textarea class="form-control" id="pays" rows="2" value="{{values.pays}}"></textarea>
+            <textarea class="form-control" name="liste_pays" id="pays" rows="2" value="{{values.pays}}"></textarea>
         </div>
         <div class="form-group">
             <label for="fournisseur">Listes de vos prinipaux fournisseurs</label>
-            <textarea class="form-control" id="fournisseur" value="{{values.fournisseur}}"></textarea>
+            <textarea class="form-control" name="liste_fournisseur" id="fournisseur" value="{{values.fournisseur}}"></textarea>
         </div>
       </div>
 
@@ -539,10 +555,10 @@
         <div class="row mb-3">
 
             <div class="col">
-              <input id="article_phare" type="text" class="form-control" placeholder="Article phare" value="{{values.article_phare}}">
+              <input id="article_phare" name="article_phare" type="text" class="form-control" placeholder="Article phare" value="{{values.article_phare}}">
             </div>
             <div class="col">
-              <input id="secteur_activite" type="text" class="form-control" placeholder="Secteur / Filière d'activité" value="{{values.secteur_activite}}">
+              <input id="secteur_activite" name="secteur_activite" type="text" class="form-control" placeholder="Secteur / Filière d'activité" value="{{values.secteur_activite}}">
             </div>
         </div>
 
@@ -584,6 +600,14 @@
             <input type="file" class="form-control-file" id="fichier7" value="{{values.file7}}">
         </div>
 
+        <div col-lg-6>
+          <input type="password" name="password" class="form-control" placeholder="Mot de passe">
+        </div>
+        <div col-lg-6>
+          <input type="password" name="cpass" class="form-control" placeholder="Mot de passe confirm">
+        </div>
+      </div>
+
         <h6>Je confirme que les informations fournies ci-dessus sont réelles et vérifiables</h6>
 
         <div class="form-check">
@@ -594,7 +618,7 @@
         <h6><a href="/../../CHARTE-DE-QUALITE-site-ecommerceHOAG-T.docx" download="CHARTE-DE-QUALITE-site-ecommerceHOAG-T.docx">Cliquez ici pour lire la charte de qualité</a></h6>
       </div>
       <button type="button" class="action-button previous previous_button">Back</button> 
-      <button id = "get" type="submit" class="action-button submit submit_button">Finish</button> 
+      <input type="submit" class="action-button submit submit_button" value="submit">
       
     </fieldset>  
   </form>  
@@ -613,41 +637,41 @@
     (function($) {
         "use strict";  
 
-        $(document).ready(function(){
-             $("#get").click(function () {
-                      console.log(
-                    $("input:checkbox[name=p]:checked").val() + "<br/>"+
-                    $("#name").val() + "<br/>" +
-                    $("#commercial_name").val() + "<br/>" +
-                    $("#marque_deposer").val() + "<br/>" +
-                    $("#marque_representer").val() + "<br/>" +
-                    $("#address").val() + "<br/>" +
-                    $("#tel").val() + "<br/>" +
-                    $("#email").val() + "<br/>" +
-                    $("#num_fiscal").val() + "<br/>" +  
-                    $("#num_stat").val() + "<br/>" +      
-                    $("#num_cin").val() + "<br/>" +   
-                    $("#representant").val() + "<br/>" + 
-                    $("#tel_pers").val() + "<br/>" +    
-                    $("#email_pers").val() + "<br/>" +   
-                    $("#selection").val() + "<br/>" +
-                    $("input:checkbox[name=importation]:checked").val() + "<br/>"+
-                    $("#pays").val() + "<br/>" +
-                    $("#fournisseur").val() + "<br/>" +
-                    $("input:checkbox[name=livraison]:checked").val() + "<br/>"+
-                    $("input:checkbox[name=tracabilite]:checked").val() + "<br/>"+
-                    $("#article_phare").val() + "<br/>" +
-                    $("#secteur_activite").val() + "<br/>" +
-                    $("#fichier1").val() + "<br/>" +
-                    $("#fichier2").val() + "<br/>" +
-                    $("#fichier3").val() + "<br/>" +
-                    $("#fichier4").val() + "<br/>" +
-                    $("#fichier5").val() + "<br/>" +
-                    $("#fichier6").val() + "<br/>" +
-                    $("#fichier7").val() 
-                );
-            });
-         });
+        // $(document).ready(function(){
+        //      $("#get").click(function () {
+        //               console.log(
+        //             $("input:checkbox[name=p]:checked").val() + "<br/>"+
+        //             $("#name").val() + "<br/>" +
+        //             $("#commercial_name").val() + "<br/>" +
+        //             $("#marque_deposer").val() + "<br/>" +
+        //             $("#marque_representer").val() + "<br/>" +
+        //             $("#address").val() + "<br/>" +
+        //             $("#tel").val() + "<br/>" +
+        //             $("#email").val() + "<br/>" +
+        //             $("#num_fiscal").val() + "<br/>" +  
+        //             $("#num_stat").val() + "<br/>" +      
+        //             $("#num_cin").val() + "<br/>" +   
+        //             $("#representant").val() + "<br/>" + 
+        //             $("#tel_pers").val() + "<br/>" +    
+        //             $("#email_pers").val() + "<br/>" +   
+        //             $("#selection").val() + "<br/>" +
+        //             $("input:checkbox[name=importation]:checked").val() + "<br/>"+
+        //             $("#pays").val() + "<br/>" +
+        //             $("#fournisseur").val() + "<br/>" +
+        //             $("input:checkbox[name=livraison]:checked").val() + "<br/>"+
+        //             $("input:checkbox[name=tracabilite]:checked").val() + "<br/>"+
+        //             $("#article_phare").val() + "<br/>" +
+        //             $("#secteur_activite").val() + "<br/>" +
+        //             $("#fichier1").val() + "<br/>" +
+        //             $("#fichier2").val() + "<br/>" +
+        //             $("#fichier3").val() + "<br/>" +
+        //             $("#fichier4").val() + "<br/>" +
+        //             $("#fichier5").val() + "<br/>" +
+        //             $("#fichier6").val() + "<br/>" +
+        //             $("#fichier7").val() 
+        //         );
+        //     });
+        //  });
         
         //* Form js
         function verificationForm(){
@@ -741,10 +765,7 @@
                 });
             });
     
-            $(".submit").click(function () {
-              console.log("submit")
-                return false;
-            })
+            
         }; 
         
         //* Add Phone no select

@@ -363,14 +363,24 @@
 
       <!-- Start Multiform HTML -->
   <section class="multi_step_form">  
-  <form id="msform" action="/register" method="POST"> 
+  <form id="msform" action="{% url 'Register_save' %}" method="POST"> 
     {% csrf_token %}
 
-    {% if error%}
-    <div class="alert alert-danger" role="alert">
-        {{error}}
+    <div class="row">
+      <div class="col-lg-12">
+          <div class="form-group">
+              {% if messages %}
+                      {% for message in messages %}
+                          {% if message.tags == 'success' %}
+                              <div class="alert alert-success">{{ message }}</div>
+                          {% elif message.tags == 'error' %}
+                              <div class="alert alert-danger">{{ message }}</div>
+                          {% endif %}
+                      {% endfor %}
+              {% endif %}
+          </div>
+      </div>
     </div>
-    {% endif %}
 
     <!-- Tittle -->
     <div class="tittle">
@@ -389,11 +399,11 @@
       
       <div class="form-row"> 
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="c1" id="ck1">
+              <input class="form-check-input" type="checkbox" value="c1" id="ck1" name="p">
               <label class="form-check-label" for="ck1">Je représente au moins une personne morale</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="c2" id="ck2">
+              <input class="form-check-input" type="checkbox" value="c2" id="ck2" name="p">
               <label class="form-check-label" for="ck2">J'exerce des activités professionnelles en tant qu'individu</label>
             </div>
       </div>
@@ -407,70 +417,73 @@
       <div class="form-row"> 
         <div class="row mb-3">
             <div class="col">
-              <input type="text" class="form-control" placeholder="Nom ou raison sociale" value="{{values.name}}">
+              <input id= "name" name="name" type="text" class="form-control" placeholder="Nom ou raison sociale" value="{{values.name}}">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Nom commercial" value="{{values.commercial_name}}">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Adresse siège" value="{{values.address}}">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Téléphone Siège" value="{{values.phone_siege}}">
+              <input id= "commercial_name" name="commercial_name" type="text" class="form-control" placeholder="Nom commercial" value="{{values.commercial_name}}">
             </div>
         </div>
 
         <div class="row mb-3">
             <div class="col">
-              <input type="text" class="form-control" placeholder="Email professionnelles" value="{{values.email}}">
+              <input id="address" name = "address" type="text" class="form-control" placeholder="Adresse siège" value="{{values.address}}">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="N° d'identité fiscale" value="{{values.num_fiscal}}">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="N° Statistique" value="{{values.num_stat}}">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="N° CIN" value="{{values.num_cin}}">
+              <input id = "tel" name="phone_siege" type="text" class="form-control" placeholder="Téléphone Siège" value="{{values.phone_siege}}">
             </div>
         </div>
 
         <div class="row mb-3">
             <div class="col">
-              <input type="text" class="form-control" placeholder="Nom représentant" value="{{values.name_pers}}">
+              <input id = "email" name="email" type="text" class="form-control" placeholder="Email professionnelles" value="{{values.email}}">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Télephone direct ou portable du responsable" value="{{values.phone_pers}}">
+              <input id="num_fiscal" name="num_fiscal" type="text" class="form-control" placeholder="N° d'identité fiscale" value="{{values.num_fiscal}}">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+              <input id="num_stat" name="num_stat" type="text" class="form-control" placeholder="N° Statistique" value="{{values.num_stat}}">
+            </div>
+            <div class="col">
+              <input id="num_cin" name="num_cin" type="text" class="form-control" placeholder="N° CIN" value="{{values.num_cin}}">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+              <input id="representant" name="nom_pers" type="text" class="form-control" placeholder="Nom représentant" value="{{values.name_pers}}">
+            </div>
+            <div class="col">
+              <input id="tel_pers" name="phone_pers" type="text" class="form-control" placeholder="Télephone direct ou portable du responsable" value="{{values.phone_pers}}">
             </div>
         </div>
 
         <div class="row mb-3">
             <div class="col-lg-6">
-              <input type="text" class="form-control" placeholder="Email du représentant" value="{{values.email_pers}}">
+              <input id="email_pers" name="email_pers" type="text" class="form-control" placeholder="Email du représentant" value="{{values.email_pers}}">
             </div>
 
             <div class="col-lg-6">
               <select id="selection" class="form-control">
                 <option value="">Service d'activité</option>
-                  <option value="">Vente au détail</option>
-                  <option value="">Vente en semi-gros/Gros</option>
-                  <option value="">Production Indust/Manufacure</option>
-                  <option value="">Production Agricole</option>
-                  <option value="">Production Artisanale</option>
-                  <option value="">Production en service</option>
-                  <option value="">Autres</option>
+                  <option value="detail">Vente au détail</option>
+                  <option value="gros">Vente en semi-gros/Gros</option>
+                  <option value="manufacture">Production Indust/Manufacure</option>
+                  <option value="agricole">Production Agricole</option>
+                  <option value="artisanale">Production Artisanale</option>
+                  <option value="service">Production en service</option>
+                  <option value="autre">Autres</option>
               </select>
           </div>
         </div>
 
         <div col-lg-6>
-          <input type="password" class="form-control" placeholder="Mot de passe">
+          <input type="password" name="password" class="form-control" placeholder="Mot de passe">
+        </div>
+        <div col-lg-6>
+          <input type="password" name="cpass" class="form-control" placeholder="Mot de passe confirm">
         </div>
       </div>
       <button type="button" class="action-button previous previous_button">Back</button>
@@ -488,14 +501,14 @@
       </div>
       <h6>Après avoir coché la case correspondante, j'affirme avoir pris connaissance, compris et accepté les dispositions de la présente charte de qualité. Je m'engage à cet effet, par l'intemédiaire de la strucure queje représente, à en faire respecter les dispositions</h6>
       <button type="button" class="action-button previous previous_button">Back</button> 
-      <button type="submit" class="action-button"><a href="" class="action-button">Finish</a> </button>
+      <input  type="submit" class="action-button submit submit_button" value="submit">
     </fieldset>  
   </form>  
 </section> 
       <!-- END Multiform HTML -->
   </article>
  </main>
-  
+ 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
@@ -505,6 +518,27 @@
     <script >
     (function($) {
         "use strict";  
+        // $(document).ready(function(){
+        //      $("#get").click(function () {
+        //               console.log(
+        //             $("input:checkbox[name=p]:checked").val() + "<br/>"+
+        //             $("#name").val() + "<br/>" +
+        //             $("#commercial_name").val() + "<br/>" +
+        //             $("#marque_deposer").val() + "<br/>" +
+        //             $("#marque_representer").val() + "<br/>" +
+        //             $("#address").val() + "<br/>" +
+        //             $("#tel").val() + "<br/>" +
+        //             $("#email").val() + "<br/>" +
+        //             $("#num_fiscal").val() + "<br/>" +  
+        //             $("#num_stat").val() + "<br/>" +      
+        //             $("#num_cin").val() + "<br/>" +   
+        //             $("#representant").val() + "<br/>" + 
+        //             $("#tel_pers").val() + "<br/>" +    
+        //             $("#email_pers").val() + "<br/>" +   
+        //             $("#selection").val()
+        //         );
+        //     });
+        //  });
         
         //* Form js
         function verificationForm(){
@@ -598,9 +632,6 @@
                 });
             });
     
-            $(".submit").click(function () {
-                return false;
-            })
         }; 
         
         //* Add Phone no select

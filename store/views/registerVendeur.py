@@ -1,118 +1,50 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
+from store.models.vendeur import Vendeur
 from django.views import View
+from django.urls import reverse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.contrib import messages
 
 from store.models.vendeur import Vendeur
 
+def RegisterVendeur(request):
+    return render(request, 'registerVendeur.html')
 
-class RegisterVendeur(View):
-    def get(self, request):
-        return render(request, "registerVendeur.html")
+def RegisterVendeur_save(request):
+     if request.method!="POST":
+        return HttpResponseRedirect(reverse("RegisterVendeur"))
+     else:
+        name=request.POST.get("name")
+        commercial_name=request.POST.get("commercial_name")
+        marque_deposer=request.POST.get("marque_deposer")
+        marque_representer=request.POST.get("marque_representer")
+        address=request.POST.get("address")
+        phone_siege=request.POST.get("phone_siege")
+        email=request.POST.get("email")
+        num_fiscal=request.POST.get("num_fiscal")
+        num_stat=request.POST.get("num_stat")
+        num_cin=request.POST.get("num_cin")
+        nom_pers=request.POST.get("nom_pers")
+        phone_pers=request.POST.get("phone_pers")
+        email_pers=request.POST.get("email_pers")
+        liste_pays=request.POST.get("liste_pays")
+        liste_fournisseur=request.POST.get("liste_fournisseur")
+        article_phare=request.POST.get("article_phare")
+        secteur_activite=request.POST.get("secteur_activite")
+        password=request.POST.get("password")
+        cpass=request.POST.get("cpass")
+        if password!=cpass:
+            messages.error(request,"Confirm Password Doesn't Match")
+            return HttpResponseRedirect(reverse('RegisterVendeur'))
+        try:
+            vendeur=Vendeur(name=name,commercial_name=commercial_name, marque_deposer=marque_deposer, marque_representer=marque_representer, address=address,phone_siege=phone_siege,num_fiscal=num_fiscal,email=email,num_stat=num_stat, num_cin=num_cin, nom_pers=nom_pers, email_pers=email_pers, phone_pers=phone_pers, liste_pays=liste_pays, liste_fournisseur=liste_fournisseur, article_phare=article_phare, secteur_activite=secteur_activite ,password=password)
+            vendeur.save() 
+            messages.success(request,"Data Save Successfully")
+            return HttpResponseRedirect(reverse('RegisterVendeur'))
+        except:
+            messages.error(request,"Error in Saving Data")
+            return HttpResponseRedirect(reverse('RegisterVendeur'))
 
-    def post(self, request):
-        postData = request.POST
-        name = postData.get("name")
-        commercial_name = postData.get("commercial_name")
-        address = postData.get("address")
-        phone_siege = postData.get("phone_siege")
-        email = postData.get("email")
-        num_fiscal = postData.get("num_fiscal")
-        num_stat = postData.get("num_stat")
-        num_cin = postData.get("num_cin")
-        nom_pers = postData.get("nom_pers")
-        phone_pers = postData.get("phone_pers")
-        email_pers = postData.get("email_pers")
-        password = postData.get("password")
-        # validation
-        value = {
-            "name": name,
-            "commercial_name": commercial_name,
-            "address": address,
-            "phone_siege": phone_siege,
-            "email": email,
-            "num_fiscal": num_fiscal,
-            "num_stat": num_stat,
-            "num_cin": num_cin,
-            "nom_pers": nom_pers,
-            "phone_pers": phone_pers,
-            "email_pers": email_pers,
-            "liste_pays": liste_pays,
-            "liste_fournisseur": liste_fournisseur,
-            "article_phare": article_phare,
-            "secteur_activite": secteur_activite,
-        }
-        error_message = None
 
-        vendeur = Vendeur(
-            name=name,
-            commercial_name=commercial_name,
-            address=address,
-            phone_siege=phone_siege,
-            email=email,
-            num_fiscal=num_fiscal,
-            num_stat=num_stat,
-            num_cin=num_cin,
-            nom_pers=nom_pers,
-            phone_pers=phone_pers,
-            email_pers=email_pers,
-            liste_pays=liste_pays,
-            liste_fournisseur=liste_fournisseur,
-            article_phare=article_phare,
-            secteur_activite=secteur_activite,
-            password=password,
-        )
-        error_message = self.validateVendeur(vendeur)
-
-        if not error_message:
-            print(
-                name,
-                commercial_name,
-                address,
-                phone_siege,
-                email,
-                num_fiscal,
-                num_stat,
-                num_cin,
-                nom_pers,
-                phone_pers,
-                email_pers,
-                liste_pays,
-                liste_fournissseur,
-                article_phare,
-                secteur_activite,
-                password,
-            )
-            vendeur.password = make_password(vendeur.password)
-            vendeur.register()
-            return redirect("acceuil.html")
-        else:
-            data = {"error": error_message, "values": value}
-            return render(request, "register.html", data)
-
-    def validateVendeur(self, vendeur):
-        error_message = None
-        if not vendeur.name:
-            error_message = "Please Enter your Name !!"
-        elif len(vendeur.name) < 3:
-            error_message = "Name must be 3 char long or more"
-        elif not vendeur.commercial_name:
-            error_message = "Please Enter your Commercial Name"
-        elif len(vendeur.commercial_name) < 3:
-            error_message = "Commercial Name must be 3 char long or more"
-        elif not vendeur.address:
-            error_message = "Enter your Address"
-        elif len(vendeur.address) < 10:
-            error_message = "Address must be 10 char Long"
-        elif not vendeur.phone_siege:
-            error_message = "Enter your Phone siege"
-        elif len(vendeur.phone_siege) < 10:
-            error_message = "Phone siege must be 10 char Long"
-        elif len(vendeur.password) < 5:
-            error_message = "Password must be 5 char long"
-        elif len(vendeur.email) < 5:
-            error_message = "Email must be 5 char long"
-        elif Vendeur.isExists():
-            error_message = "Email Address Already Registered.."
-        # saving
-
-        error_message = None
+    

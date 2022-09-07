@@ -13,7 +13,12 @@ class AdminProduct(admin.ModelAdmin):
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ["name"]
-
+    
+class PersonAdmin(admin.ModelAdmin):
+    list_display = ['name', 'commercial_name']
+    
+class VedeurAdmin(admin.ModelAdmin):
+    list_display = ['name', 'commercial_name']
 
 # Register your models here.
 admin.site.register(Order)

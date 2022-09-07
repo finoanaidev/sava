@@ -14,3 +14,6 @@ class Person(models.Model):
     phone_pers = models.CharField(max_length=10)
     email_pers = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
+    objects=models.Manager()
+
+   
