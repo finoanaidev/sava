@@ -17,9 +17,9 @@
       <div class="row mx-auto">
         {% for p in product %}
         <div class="card mx-auto mb-3" id={{p.id}} style="width: 18rem;">
-            <img class="card-img-top" src="{{p.image.url}}" alt="Card image cap">
+          <a href="{% url 'Detail' p.id %}"><img class="card-img-top" src="{{p.image.url}}" alt="Card image cap"></a>
             <div class="card-body">
-                <p class="card-title">{{p.name}}</p>
+                <p class="card-title"><a href="{% url 'Detail' p.id %}">{{p.name}}</a></p>
                 <p style="font-size: 68%"><a href="http://localhost:8000/register">Cliquez ici pour acheter les produits en prix de gros ou en prix d'usine</a> </p>
                 <p class="card-text">Prix en détail: <b>Ar {{p.price}}</b></p>
             </div>
@@ -65,7 +65,7 @@
               <p class="card-text">😱 Nous n'avons pas pu trouver le produit correspondant à votre recherche 🥺 
               </br> 🤔 Mais nous vous invitons à voir nos autres produits! ☺️ 
               </p>
-              <a href="/" class="btn btn-primary">Retour à la page d'accueil</a>
+              <a href="/" class="btn btn-primary">Voir tous les produits</a>
             </div>
           </div>
         </div>

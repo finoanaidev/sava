@@ -7,7 +7,11 @@ class Products(models.Model):
     price = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     description = models.CharField(max_length=250, default="", blank=True, null=True)
-    image = models.ImageField(upload_to="uploads/products/")
+    image = models.ImageField(upload_to="uploads/products/",null=True)
+    image2 = models.ImageField(upload_to="uploads/products/",null=True)
+    image3 = models.ImageField(upload_to="uploads/products/",null=True)
+    image4 = models.ImageField(upload_to="uploads/products/",null=True)
+    image5 = models.ImageField(upload_to="uploads/products/",null=True)
     deleted = models.BooleanField(default=False)
 
     @staticmethod

@@ -7,6 +7,7 @@ from .views.cart import Cart
 from .views.checkout import CheckOut
 from .views.orders import OrderView
 from .views.accueil import Accueil
+from .views.detail import Detail
 from .views.faq import Faq
 from .views.register import Register
 from .views.register import Register_save
@@ -33,4 +34,5 @@ urlpatterns = [
     path('registerVendeur', RegisterVendeur , name='RegisterVendeur'),
     path('registerVendeur_save', RegisterVendeur_save, name='RegisterVendeur_save'),
     path('search', SearchPage, name='SearchPage'),
+    path('product/<int:id>', Detail, name='Detail'),
 ]

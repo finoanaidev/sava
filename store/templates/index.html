@@ -30,9 +30,9 @@
 			<div class="row mx-auto">
 				{% for product in products %}
 				<div class="card mx-auto mb-3" id={{product.id}} style="width: 18rem;">
-					<img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
+					<a href="{% url 'Detail' product.id %}"><img class="card-img-top" src="{{product.image.url}}" alt="Card image cap"></a>
 					<div class="card-body">
-						<p class="card-title">{{product.name}}</p>
+						<p class="card-title"><a href="{% url 'Detail' product.id %}">{{product.name}}</a></p>
 						<p style="font-size: 68%"><a href="http://localhost:8000/register">Cliquez ici pour acheter les produits en prix de gros ou en prix d'usine</a> </p>
 						<p class="card-text">Prix en détail : <b>{{product.price|currency}}</b></p>
 						<!-- {{product | is_in_cart:request.session.cart }} -->
@@ -66,6 +66,22 @@
 
 					</div>
 
+				</div>
+
+				{% empty %}
+
+				<div class="col d-flex justify-content-center">
+				<div class="card text-center ">
+					<div class="card-header">
+					OUPS! 😱
+					</div>
+					<div class="card-body">
+					<h5 class="card-title">Voilà qui n'était pas prévu ! </h5>
+					<p class="card-text">😱 Nous n'avons pas encore de produits dans cette catégorie! ☺️ 
+					</p>
+					<a href="/" class="btn btn-primary">Voir tous les produits</a>
+					</div>
+				</div>
 				</div>
 				{% endfor %}
 			</div>
