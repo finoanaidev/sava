@@ -29,15 +29,15 @@ def Register_save(request):
         password=request.POST.get("password")
         cpass=request.POST.get("cpass")
         if password!=cpass:
-            messages.error(request,"Confirm Password Doesn't Match")
+            messages.error(request,"Il y a une erreur dans la confirmation du mot de passe")
             return HttpResponseRedirect(reverse('Register'))
         try:
             person=Person(name=name,commercial_name=commercial_name,address=address,phone_siege=phone_siege,num_fiscal=num_fiscal,email=email,num_stat=num_stat, num_cin=num_cin, nom_pers=nom_pers, email_pers=email_pers, phone_pers=phone_pers ,password=password)
             person.save() 
-            messages.success(request,"Data Save Successfully")
+            messages.success(request,"Donnée enregistrer avec succès")
             return HttpResponseRedirect(reverse('Register'))
         except:
-            messages.error(request,"Error in Saving Data")
+            messages.error(request,"Erreur lors de l'enregistrement des données")
             return HttpResponseRedirect(reverse('Register'))
 
 

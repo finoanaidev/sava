@@ -461,12 +461,14 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-lg-6">
+            <div class="col-12">
               <input id="email_pers" name="email_pers" type="text" class="form-control" placeholder="Email du représentant" value="{{values.email_pers}}">
             </div>
+          </div>
 
-            <div class="col-lg-6">
-              <select id="selection" class="form-control">
+          <div class="row mb-3" style="margin-left:12px;">
+            <div class="col-10">
+              <select id="selection" class="form-control" style="height:46px;"> 
                 <option value="">Service d'activité</option>
                   <option value="detail">Vente au détail</option>
                   <option value="gros">Vente en semi-gros/Gros</option>
@@ -479,12 +481,16 @@
           </div>
         </div>
 
-        <div col-lg-6>
-          <input type="password" name="password" class="form-control" placeholder="Mot de passe">
-        </div>
-        <div col-lg-6>
-          <input type="password" name="cpass" class="form-control" placeholder="Mot de passe confirm">
-        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <input type="password" name="password" class="form-control" placeholder="Mot de passe">
+          </div>
+          <div class="col">
+            <input type="password" name="cpass" class="form-control" placeholder="Mot de passe confirm">
+          </div>
+      </div>
+        
       </div>
       <button type="button" class="action-button previous previous_button">Back</button>
       <button type="submit" class="next action-button">Continue</button>  

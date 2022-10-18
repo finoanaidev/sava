@@ -1,6 +1,7 @@
 from django.shortcuts import render , redirect , HttpResponseRedirect
 from store.models.product import Products
 from store.models.category import Category
+from store.models.person import Person
 from django.views import View
 
 
@@ -58,3 +59,4 @@ def store(request):
     return render(request, 'index.html', data)
 
 
+    
