@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "store",
+    "django_countries",
+    "modeltranslation",
 ]
 
 MIDDLEWARE = [
@@ -48,6 +51,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "store.middlewares.currency_middleware.CurrencyMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "Eshop.urls"
@@ -74,23 +79,23 @@ WSGI_APPLICATION = "Eshop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "ECOMMERCE",
-        "USER": "root",
-        "PASSWORD": "base220501**",
-        "HOST": "hoag-target.com",
-        "PORT": "3306",
-    }
-}
+    'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': BASE_DIR / 'db.sqlite3',
+     }
+ }
+
+#DATABASES = {
+#    "default": {
+#        "ENGINE": "django.db.backends.mysql",
+#        "NAME": "ECOMMERCE",
+#        "USER": "root",
+#        "PASSWORD": "",
+#        "HOST": "localhost",
+#        "PORT": "3306",
+#    }
+#}
 
 
 # Password validation
@@ -116,8 +121,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
+LANGUAGES = [
+    ('en', _('English')),
+    ('fr', _('French')),
+] 
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "fr"
 
 TIME_ZONE = "UTC"
 
@@ -126,6 +135,29 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# settings.py
+
+CURRENCY = {
+    'default': 'ariary',
+    'options': {
+        'ariary': {
+            'code': 'MGA',
+            'symbol': 'Ar',
+            'rate': 1,  # Le taux de change pour la devise par défaut est 1
+        },
+        'euro': {
+            'code': 'EUR',
+            'symbol': '€',
+            'rate': 0.0002065,  # Exemple de taux de change pour l'Euro par rapport à l'Ariary
+        },
+        'usd': {
+            'code': 'USD',
+            'symbol': '$',
+            'rate': 0.0002249,  # Exemple de taux de change pour le Dollar par rapport à l'Ariary
+        },
+    }
+}
 
 
 # Static files (CSS, JavaScript, Images)

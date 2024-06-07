@@ -1,94 +1,134 @@
-{% extends 'base.html' %}
-
-{% block content %}
-
-{% load cart %}
-{% load custom_filter %}
+{% extends 'base.html' %} {% block content %} {% load cart %} {% load custom_filter %}
 <!-- body -->
 <div class="container-fluid mt-3">
-	<div class="row">
+  <div class="row">
+    <!-- filter -->
 
+    <div class="col-lg-3 mx-auto">
+      <div class="list-group">
+        <a
+          href="/"
+          class="list-group-item list-group-item-action btn btn-outline-warning"
+          >Tous les produits</a
+        >
 
-		<!-- filter -->
+      {% for category in categories %}
+        <a
+          href="/?category={{category.id}}"
+          class="list-group-item list-group-item-action btn btn-outline-warning"
+          >{{category.name}}</a>
+      {% endfor %}
+      </div>
+    </div>
 
-		<div class="col-lg-3 mx-auto">
-			<div class="list-group">
+    <!-- all products -->
+    <div id="products" class="col-lg-9 mx-auto">
+      <p style="text-align: center; font-size: 250%">
+        <b>Nos produits</b>
+      </p>
+      <div class="row mx-auto justify-content-center">
+        {% for product in products %}
+        <div class="card mx-auto mb-3 " id="{{product.id}}" style="width: 18rem;">
+          <a href="{% url 'Detail' product.id %}" ><img
+              class="card-img-top"
+              src="{{product.image.url}}"
+              alt="Card image cap"
+              style="height: 200px; object-fit: cover; margin-top: 5px;"
+          /></a>
+          <div class="card-body">
+            <p class="card-title">
+              <a href="{% url 'Detail' product.id %}" >{{product.name}}</a>
+            </p>
+           <!--  <p style="font-size: 68%">
+              <a href="http://localhost:8000/register"
+                >Cliquez ici pour acheter les produits en prix de gros ou en
+                prix d'usine</a
+              >
+            </p>-->
+            <p class="card-text">
+              Prix : <b>{{product.price|currency:request}}</b>
+            </p>
+            <!-- {{product | is_in_cart:request.session.cart }} -->
+            <div class="card-footer p-0 no-gutters">
+              {% if product|is_in_cart:request.session.cart %}
+              <div class="row no-gutters">
+                <form action="/#{{product.id}}" class="col-2" method="post">
+                  {% csrf_token %}
+                  <input
+                    hidden
+                    type="text"
+                    name="product"
+                    value="{{product.id}}"
+                  />
+                  <input hidden type="text" name="remove" value="True" />
+                  <input
+                    type="submit"
+                    value=" - "
+                    class="btn btn-block btn-warning border-right"
+                  />
+                </form>
+                <div class="text-center col btn btn-warning">
+                  {{product|cart_quantity:request.session.cart}} dans le chariot
+                </div>
+                <form action="/#{{product.id}}" class="col-2" method="post">
+                  {% csrf_token %}
+                  <input
+                    hidden
+                    type="text"
+                    name="product"
+                    value="{{product.id}}"
+                  />
+                  <input
+                    type="submit"
+                    value=" + "
+                    class="btn btn-block btn-warning border-left"
+                  />
+                </form>
+              </div>
+              {% else %}
+              <form action="/#{{product.id}}" method="POST" class="btn-block">
+                {% csrf_token %}
+                <input hidden type="text" name="product" value="{{product.id}}" />
+                <input
+                  type="submit"
+                  class="float-right btn btn-warning form-control"
+                  value="Ajouter au chariot"
+                />
+              </form>
+              {% endif %}
+            </div>
+          </div>
 
-				<a href="/" class="list-group-item list-group-item-action btn btn-outline-warning">Tous les produits</a>
+          
+        </div>
 
-				{% for category in categories %}
-				<a href="/?category={{category.id}}"
-					class="list-group-item list-group-item-action btn btn-outline-warning ">{{category.name}}</a>
-				{% endfor %}
-			</div>
-		</div>
+        {% empty %}
 
-		<!-- all products -->
-		<div id='products' class="col-lg-9 mx-auto">
-
-			<p style = "text-align: center; font-size: 150%;"><b>Site e-commerce de HOAG Target</b></p>
-			<div class="row mx-auto">
-				{% for product in products %}
-				<div class="card mx-auto mb-3" id={{product.id}} style="width: 18rem;">
-					<a href="{% url 'Detail' product.id %}"><img class="card-img-top" src="{{product.image.url}}" alt="Card image cap"></a>
-					<div class="card-body">
-						<p class="card-title"><a href="{% url 'Detail' product.id %}">{{product.name}}</a></p>
-						<p style="font-size: 68%"><a href="http://localhost:8000/register">Cliquez ici pour acheter les produits en prix de gros ou en prix d'usine</a> </p>
-						<p class="card-text">Prix en détail : <b>{{product.price|currency}}</b></p>
-						<!-- {{product | is_in_cart:request.session.cart }} -->
-					</div>
-
-					<div class="card-footer p-0 no-gutters">
-
-						{% if product|is_in_cart:request.session.cart %}
-						<div class="row no-gutters">
-							<form action="/#{{product.id}}" class="col-2 " method="post">
-								{% csrf_token %}
-								<input hidden type="text" name='product' value='{{product.id}}'>
-								<input hidden type="text" name='remove' value='True'>
-								<input type="submit" value=" - " class="btn btn-block btn-warning border-right">
-							</form>
-							<div class="text-center col btn btn-warning">{{product|cart_quantity:request.session.cart}} dans le chariot</div>
-							<form action="/#{{product.id}}" class="col-2 " method="post">
-								{% csrf_token %}
-								<input hidden type="text" name='product' value='{{product.id}}'>
-								<input type="submit" value=" + " class="btn btn-block btn-warning border-left">
-							</form>
-						</div>
-						{% else %}
-						<form action="/#{{product.id}}" method="POST" class="btn-block">
-							{% csrf_token %}
-							<input hidden type="text" name='product' value='{{product.id}}'>
-							<input type="submit" class="float-right btn btn-warning form-control"
-								value="Ajouter au chariot">
-						</form>
-						{% endif %}
-
-					</div>
-
-				</div>
-
-				{% empty %}
-
-				<div class="col d-flex justify-content-center">
-				<div class="card text-center ">
-					<div class="card-header">
-					OUPS! 😱
-					</div>
-					<div class="card-body">
-					<h5 class="card-title">Voilà qui n'était pas prévu ! </h5>
-					<p class="card-text">😱 Nous n'avons pas encore de produits dans cette catégorie! ☺️ 
-					</p>
-					<a href="/" class="btn btn-primary">Voir tous les produits</a>
-					</div>
-				</div>
-				</div>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
+        <div class="col d-flex justify-content-center">
+          <div class="card text-center" style=" margin-bottom: 58px;">
+            <div class="card-header">OUPS! 😱</div>
+            <div class="card-body">
+              <h5 class="card-title">Voilà qui n'était pas prévu !</h5>
+              <p class="card-text">
+                😱 Nous n'avons pas encore de produits dans cette catégorie! ☺️
+              </p>
+              <a href="/" class="btn btn-primary">Voir tous les produits</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 </div>
 
-
-
 {% endblock %}
+
+<!-- CSS pour spécifier la hauteur fixe pour les images -->
+<style>
+  .card-img-top {
+    height: 200px; /* Ajustez cette valeur selon vos besoins */
+    object-fit: cover; /* Pour ajuster la taille de l'image à la div parente */
+  }
+  
+</style>

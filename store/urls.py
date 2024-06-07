@@ -14,6 +14,7 @@ from .views.register import Register_save
 from .views.registerVendeur import RegisterVendeur
 from .views.registerVendeur import RegisterVendeur_save
 from .views.searchPage import SearchPage
+from .views.change_language import change_language
 from .middlewares.auth import auth_middleware
 
 
@@ -35,4 +36,6 @@ urlpatterns = [
     path('registerVendeur_save', RegisterVendeur_save, name='RegisterVendeur_save'),
     path('search', SearchPage, name='SearchPage'),
     path('product/<int:id>', Detail, name='Detail'),
+    path('change-language/<str:language_code>/', change_language, name='change_language'),
+    
 ]
