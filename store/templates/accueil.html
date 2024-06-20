@@ -1,278 +1,303 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
+{% load cart %} {% load custom_filter %}
 {% load i18n %}
 
-    <style>
-        .hero-section {
-            background-image: url('../static/image/chocolat.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white; /* Si vous voulez que le texte soit blanc pour le contraste */
-            height: 89vh;
-        }
-        .headline {
-            color: #B26806; /* Couleur du texte */
-            text-shadow: -1px -1px 0 #F5E846, 1px -1px 0 #F5E846, -1px 1px 0 #F5E846, 1px 1px 0 #F5E846; /* Bordure du texte */
-            text-align: left; /* Aligner le texte à gauche */
-            font-size: 450%;
-        }
+<!-- Inclure les bibliothèques CSS pour les animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css">
 
-        .headline2 {
-            color: #B26806; /* Couleur du texte */
-            text-shadow: -1px -1px 0 #F5E846, 1px -1px 0 #F5E846, -1px 1px 0 #F5E846, 1px 1px 0 #F5E846; /* Bordure du texte */
-            text-align: left; /* Aligner le texte à gauche */
-            font-size: 250%;
-            margin-top: 19%;
-        }
-        .btn-voir-produits {
-            background-color: white;
-            border: 2px solid white; /* Bordure du bouton */
-            border-radius: 40px; /* Bordures arrondies */
-            color: #834D06; /* Couleur du texte du bouton */
-            padding: 20px 30px; /* Espacement du texte à l'intérieur du bouton */
-            text-transform: uppercase; /* Transformer le texte en majuscules */
-            font-weight: bold; /* Gras */
-            text-decoration: none; /* Supprimer le soulignement du lien */
-            display: inline-block; /* Afficher en ligne */
-            margin-top: 60px; /* Espacement par rapport au texte précédent */
-            transition: background-color 0.3s; /* Transition pour le changement de couleur de fond au survol */
-        }
-        .btn-voir-produits:hover {
-            background-color: #834D06; /* Couleur de fond au survol */
-            color: white; /* Couleur du texte au survol */
-            text-decoration: none;
-        }
-
-        .btn-en-savoir-plus {
-            background-color: white;
-            border: 2px solid #B9A51B; /* Bordure du bouton */
-            color: #B9A51B; /* Couleur du texte du bouton */
-            padding: 15px 25px; /* Espacement du texte à l'intérieur du bouton */
-            text-transform: uppercase; /* Transformer le texte en majuscules */
-            font-weight: bold; /* Gras */
-            text-decoration: none; /* Supprimer le soulignement du lien */
-            display: inline-block; /* Afficher en ligne */
-            margin-top: 20px; /* Espacement par rapport au texte précédent */
-            margin-left: 30%;
-            transition: background-color 0.3s; /* Transition pour le changement de couleur de fond au survol */
-        }
-        .btn-en-savoir-plus:hover {
-            background-color: #B9A51B; /* Couleur de fond au survol */
-            color: white; /* Couleur du texte au survol */
-            text-decoration: none;
-        }
-        .product-section {
-            background-color: #FCCA67; /* Couleur de fond de la section */
-            padding: 40px; /* Espacement interne */
-        }
-        .product-card {
-            border-radius: 20px; /* Bord arrondi de la carte */
-            overflow: hidden; /* Pour cacher tout contenu qui dépasse de la carte */
-            height: 350px;
-            transition: transform 0.3s ease;
-        }
-        .product-image {
-            width: 100%; /* Largeur de l'image à l'intérieur de la carte */
-            border-radius: 20px 20px 0 0; /* Bord arrondi uniquement sur le dessus de l'image */
-        }
-         /* Nouvelle section avec la couleur de fond #A56F04 */
-         .types-product-section {
-            background-color: #C5860A;
-            padding: 40px;
-        }
-        .btn-voir-plus-sans-conservateur,
-        .btn-voir-plus-avec-conservateur {
-            background-color: white;
-            border: 2px solid #E4E955;
-            color: #834D06;
-            font-weight: bold;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        .btn-voir-plus-sans-conservateur:hover,
-        .btn-voir-plus-avec-conservateur:hover {
-            background-color: #E4E955;
-            color: #834D06;
-            text-decoration: none;
-        }
-
-        .product_section {
-            background-color:  #FCCA67;
-            padding: 40px;
-        }
-        .custom-card {
-        height: 400px; /* Définir la hauteur souhaitée */
+<style>
+    .hero-section {
+        background-image: url('../static/image/chocolat.jpg');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        height: 89vh;
+        perspective: 1000px;
+    }
+    .headline2 {
+        color: #B26806;
+        text-shadow: -1px -1px 0 #F5E846, 1px -1px 0 #F5E846, -1px 1px 0 #F5E846, 1px 1px 0 #F5E846;
+        text-align: left;
+        font-size: 250%;
+        margin-top: 19%;
+        animation: fadeInDown 2s;
+    }
+    .btn-voir-produits {
+        background-color: white;
+        border: 2px solid white;
+        border-radius: 40px;
+        color: #834D06;
+        padding: 20px 30px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 60px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn-voir-produits:hover {
+        background-color: #834D06;
+        color: white;
+        text-decoration: none;
+        transform: scale(1.1);
+    }
+    .btn-en-savoir-plus {
+        background-color: white;
+        border: 2px solid #B9A51B;
+        color: #B9A51B;
+        padding: 15px 25px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+        margin-left: 30%;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn-en-savoir-plus:hover {
+        background-color: #B9A51B;
+        color: white;
+        text-decoration: none;
+        transform: scale(1.1);
+    }
+    .product-section {
+        background-color: #FCCA67;
+        padding: 40px;
+        perspective: 1000px;
+    }
+    .product-card {
+        border-radius: 20px;
+        overflow: hidden;
+        height: 350px;
+        transition: transform 0.3s ease;
+        transform-style: preserve-3d;
+    }
+    .product-card:hover {
+        transform: rotateY(15deg);
+    }
+    .product-image {
+        width: 100%;
+        border-radius: 20px 20px 0 0;
+        height: auto;
+    }
+    .types-product-section {
+        background-color: #C5860A;
+        padding: 40px;
+    }
+    .btn-voir-plus-sans-conservateur,
+    .btn-voir-plus-avec-conservateur {
+        background-color: white;
+        border: 2px solid #E4E955;
+        color: #834D06;
+        font-weight: bold;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 10px;
+        transition: transform 0.3s;
+    }
+    .btn-voir-plus-sans-conservateur:hover,
+    .btn-voir-plus-avec-conservateur:hover {
+        background-color: #E4E955;
+        color: #834D06;
+        text-decoration: none;
+        transform: scale(1.1);
+    }
+    .product_section {
+        background-color: #FCCA67;
+        padding: 40px;
+    }
+    .custom-card {
+        height: 400px;
         border-radius: 30px;
+        transition: transform 0.3s ease;
+        transform-style: preserve-3d;
     }
-        .custom-card img {
-            height: 300px; /* Définir la hauteur souhaitée pour l'image */
-            object-fit: cover; /* Pour que l'image conserve ses proportions */
-            border-radius: 20px;
-        }
-
-        .floating-btn {
+    .custom-card:hover {
+        transform: rotateY(15deg);
+    }
+    .custom-card img {
+        height: 300px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+    .floating-btn {
         position: fixed;
-        bottom: 80px; /* Position verticale du bouton par rapport au bas */
-        right: 20px; /* Position horizontale du bouton par rapport à la droite */
-        background-color: #834D06; /* Couleur de fond du bouton */
-        color: white; /* Couleur du texte */
-        padding: 15px 25px; /* Espacement du texte à l'intérieur du bouton */
-        border-radius: 50px; /* Bordures arrondies */
-        font-weight: bold; /* Gras */
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Ombre */
-        z-index: 999; /* Pour placer le bouton au-dessus du contenu */
-        cursor: pointer; /* Curseur de souris au survol */
+        bottom: 80px;
+        right: 20px;
+        background-color: #834D06;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 50px;
+        font-weight: bold;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s infinite;
     }
 
-    /* Style pour l'icône du bouton */
     .floating-btn i {
-        margin-right: 5px; /* Espacement entre l'icône et le texte */
+        margin-right: 10px;
     }
 
-    .text:hover{
+    .floating-btn:hover {
+        background-color: #A65B08;
+        transform: scale(1.1);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .floating-btn-link {
+        text-decoration: none;
+        color: white;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    .text:hover {
         text-decoration: none;
     }
+</style>
 
-    </style>
-
-    <section class="hero-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-7 pt-5 mb-5 align-self-center">
-                    <div class="promo pe-md-3 pe-lg-5">
-
-                        <h1 class="headline2">
-                            Chocolat fin et artisanal de Madagascar
-                        </h1><!--//headline-->
-                        <a href="/store" class="btn-voir-produits">Voir nos produits</a>
-                    </div><!--//promo-->
-                </div><!--col-->
-                
-            </div><!--//row-->
-        </div><!--//container-->
-    </section><!--//hero-section-->
-
-    <section class="product-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p style="color: #834D06; font-size: 200%; font-weight: bold; text-align: center; margin-top: 10%;">Nos produits sont faits avec du cacao pur de Madagascar</p>
-                    <a href="/store"  class="btn-en-savoir-plus">En savoir plus</a>
-                </div>
-                <div class="col-md-6">
-                    <div class="card product-card">
-                        <img src="../static/image/cacao.jpg" class="card-img-top product-image" alt="Image du produit">
-                        <div class="card-body">
-                            <!-- Contenu supplémentaire de la carte si nécessaire -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Nouvelle section avec la couleur de fond #A56F04 -->
-    <section class="types-product-section">
-        <div class="container">
-            <h2 style="text-align: center; color: #FCCA67; margin-bottom: 8%;">Nos types de produits</h2>
-            <div class="row">
-                <!-- Première carte -->
-                <div class="col-md-4">
-                    <div class="card product-card" style="position: relative;">
-                        <img src="../static/image/choco1.jpg" class="card-img-top product-image" alt="Image du produit 1" style="filter: blur(3px); ">
-                        <div class="card-body" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                            <p style="font-size: 120% ; color: white; text-shadow: -1px -1px 0 #834D06, 1px -1px 0 #834D06, -1px 1px 0 #834D06, 1px 1px 0 #834D06;">Chocolat Sans Conservateur</p>
-                            <a href="/store?category=3" class="btn-voir-plus-sans-conservateur">Voir plus</a>
-                        </div>
-                    </div>
-                    
-                </div>
-                <!-- Deuxième carte -->
-                <div class="col-md-4">
-                    <div class="card product-card" style="position: relative;">
-                        <img src="../static/image/choco2.jpg" class="card-img-top product-image" alt="Image du produit 2" style="filter: blur(3px); ">
-                        <div class="card-body" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                            <p style="font-size: 120% ; color: white; text-shadow: -1px -1px 0 #834D06, 1px -1px 0 #834D06, -1px 1px 0 #834D06, 1px 1px 0 #834D06;">Chocolat sans sucre</p>
-                            <a href="/store?category=5" class="btn-voir-plus-sans-conservateur">Voir plus</a>
-                        </div>
-                    </div>
-                </div>
-
-                 <!-- Troisième carte -->
-                 <div class="col-md-4">
-                    <div class="card product-card" style="position: relative;">
-                        <img src="../static/image/choco3.jpg" class="card-img-top product-image" alt="Image du produit 2" style="filter: blur(3px); ">
-                        <div class="card-body" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                            <p style="font-size: 120% ; color: white; text-shadow: -1px -1px 0 #834D06, 1px -1px 0 #834D06, -1px 1px 0 #834D06, 1px 1px 0 #834D06;">Chocolat naturel avec fibre</p>
-                            <a href="/store?category=6" class="btn-voir-plus-sans-conservateur">Voir plus</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="product_section">
-        <h2 style="color: #834D06; text-align: center; margin-bottom: 3%;">Nos Produits</h2>
+<section class="hero-section">
+    <div class="container">
         <div class="row">
-            <!-- Première carte -->
-            <div class="col-md-4">
-                <div class="card custom-card">
-                    <img src="../static/image/choco1.jpg" class="card-img-top" alt="Image du produit 1" >
+            <div class="col-12 col-md-7 pt-5 mb-5 align-self-center">
+                <div class="promo pe-md-3 pe-lg-5">
+                    <h1 class="headline2">
+                        {% trans "Chocolat fin et artisanal de Madagascar" %}
+                    </h1>
+                    <a href="/store" class="btn-voir-produits animate__animated animate__bounce">{% trans "Voir nos produits" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p style="color: #834D06; font-size: 200%; font-weight: bold; text-align: center; margin-top: 10%;">{% trans "Nos produits sont faits avec du cacao pur de Madagascar" %}</p>
+                <a href="/store" class="btn-en-savoir-plus">{% trans "En savoir plus" %}</a>
+            </div>
+            <div class="col-md-6">
+                <div class="card product-card" data-aos="flip-left">
+                    <img src="../static/image/cacao.jpg" class="card-img-top product-image" alt="Image du produit">
                     <div class="card-body">
-                        <!-- Contenu de la carte -->
-                        <h5 class="card-title"> <a href="/product/10" class=" text">Chocolat Artisanale</a></h5>
+                        <!-- Contenu supplémentaire de la carte si nécessaire -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="types-product-section">
+    <div class="container">
+        <h2 style="text-align: center; color: #FCCA67; margin-bottom: 8%;">{% trans "Nos types de produits" %}</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card product-card" style="position: relative;" data-aos="flip-right">
+                    <img src="../static/image/choco1.jpg" class="card-img-top product-image" alt="Image du produit 1" style="filter: blur(3px);">
+                    <div class="card-body" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                        <p style="font-size: 120%; color: white; text-shadow: -1px -1px 0 #834D06, 1px -1px 0 #834D06, -1px 1px 0 #834D06, 1px 1px 0 #834D06;">{% trans "Chocolat Sans Conservateur" %}</p>
+                        <a href="/store?category=3" class="btn-voir-plus-sans-conservateur">{% trans "Voir plus" %}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card product-card" style="position: relative;" data-aos="flip-right">
+                    <img src="../static/image/choco2.jpg" class="card-img-top product-image" alt="Image du produit 2" style="filter: blur(3px);">
+                    <div class="card-body" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                        <p style="font-size: 120%; color: white; text-shadow: -1px -1px 0 #834D06, 1px -1px 0 #834D06, -1px 1px 0 #834D06, 1px 1px 0 #834D06;">{% trans "Chocolat sans sucre" %}</p>
+                        <a href="/store?category=5" class="btn-voir-plus-sans-conservateur">{% trans "Voir plus" %}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card product-card" style="position: relative;" data-aos="flip-right">
+                    <img src="../static/image/choco3.jpg" class="card-img-top product-image" alt="Image du produit 2" style="filter: blur(3px);">
+                    <div class="card-body" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                        <p style="font-size: 120%; color: white; text-shadow: -1px -1px 0 #834D06, 1px -1px 0 #834D06, -1px 1px 0 #834D06, 1px 1px 0 #834D06;">{% trans "Chocolat naturel avec fibre" %}</p>
+                        <a href="/store?category=6" class="btn-voir-plus-sans-conservateur">{% trans "Voir plus" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product_section">
+    <h2 style="color: #834D06; text-align: center; margin-bottom: 3%;">{% trans "Nos Produits" %}</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card custom-card" data-aos="flip-left">
+                    <img src="../static/image/choco1.jpg" class="card-img-top" alt="Image du produit 1">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="/product/10" class="text">{% trans "Chocolat Artisanale" %}</a></h5>
                         <p class="card-text">15 000 Ar</p>
                     </div>
                 </div>
             </div>
-            <!-- Deuxième carte -->
             <div class="col-md-4">
-                <div class="card custom-card">
+                <div class="card custom-card" data-aos="flip-left">
                     <img src="../static/image/choco2.jpg" class="card-img-top" alt="Image du produit 2">
                     <div class="card-body">
-                        <!-- Contenu de la carte -->
-                        <h5 class="card-title"><a href="/product/9" class=" text">Chocolat SAVA</a></h5>
+                        <h5 class="card-title"><a href="/product/9" class="text">{% trans "Chocolat SAVA" %}</a></h5>
                         <p class="card-text">10 000 Ar</p>
                     </div>
                 </div>
             </div>
-            <!-- Troisième carte -->
             <div class="col-md-4">
-                <div class="card custom-card">
+                <div class="card custom-card" data-aos="flip-left">
                     <img src="../static/image/choco1.jpg" class="card-img-top" alt="Image du produit 3">
                     <div class="card-body">
-                        <!-- Contenu de la carte -->
-                        <h5 class="card-title"><a href="/product/11" class=" text">Chocolat avec fibre</a></h5>
-                        <p class="card-text"> 18 000 Ar</p>
+                        <h5 class="card-title"><a href="/product/11" class="text">{% trans "Chocolat avec fibre" %}</a></h5>
+                        <p class="card-text">18 000 Ar</p>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-    </section>
-
-            
-    <section class="testimonial-section" style="background-color: #C5860A; padding: 50px 0; position: relative;">
-        <div class="container">
-            <h2 style="color: #E4E955; text-align: center;">Témoignages</h2>
-            <!-- Contenu des témoignages -->
-            <div class="testimonial-frame" style="background-color: white; padding: 20px; margin-top: 30px;">
-                <p style="color: #03122E; font-weight: bold; padding: 10px; text-align: center; margin-bottom: 0; font-size: 200%; text-shadow: -1px -1px 0 #E4E955, 1px -1px 0 #E4E955, -1px 1px 0 #E4E955, 1px 1px 0 #E4E955;">"Super chocolat, je suis vraiment satisfait."</p>
-                <p style="color: #03122E; font-weight: bold; padding: 10px; text-align: center; margin-bottom: 0; font-size: 200%; text-shadow: -1px -1px 0 #E4E955, 1px -1px 0 #E4E955, -1px 1px 0 #E4E955, 1px 1px 0 #E4E955; ">Marie Ange</p>
-            </div>
-        </div>
-        
-    </section>
-    
-    
-
-    <div class="floating-btn">
-        <i class="fas fa-plus"></i><a href="/store" style="text-decoration: none; color:white;">Voir plus</a>
     </div>
-    
+</section>
+
+<section class="testimonial-section" style="background-color: #C5860A; padding: 50px 0; position: relative;">
+    <div class="container">
+        <h2 style="color: #E4E955; text-align: center;">{% trans "Témoignages" %}</h2>
+        <div class="testimonial-frame" style="background-color: white; padding: 20px; margin-top: 30px;" data-aos="fade-up">
+            <p style="color: #03122E; font-weight: bold; padding: 10px; text-align: center; margin-bottom: 0; font-size: 200%; text-shadow: -1px -1px 0 #E4E955, 1px -1px 0 #E4E955, -1px 1px 0 #E4E955, 1px 1px 0 #E4E955;">{% trans "Super chocolat, je suis vraiment satisfait." %}</p>
+            <p style="color: #03122E; font-weight: bold; padding: 10px; text-align: center; margin-bottom: 0; font-size: 200%; text-shadow: -1px -1px 0 #E4E955, 1px -1px 0 #E4E955, -1px 1px 0 #E4E955, 1px 1px 0 #E4E955;">Marie Ange</p>
+        </div>
+    </div>
+</section>
+
+<div class="floating-btn">
+    <i class="fas fa-plus"></i><a href="/store" style="text-decoration: none; color:white;">{% trans "Voir plus" %}</a>
+</div>
+
+<!-- Inclure les fichiers JS pour AOS -->
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1200,
+    });
+</script>
 
 {% endblock %}

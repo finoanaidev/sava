@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <!doctype html>
 <html lang="en">
 
@@ -9,10 +11,12 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
   
     <link rel="icon" href="https://scontent.ftnr2-2.fna.fbcdn.net/v/t39.30808-6/443819528_10229008348132143_6518709464621460423_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGLe_Kup4pYWd0gvEWyOA7Osrk3x-X0iPGyuTfH5fSI8aA6UT7C6bmV7vMP4xId5Jm_F9uRt7rxPtOu_AQsECQe&_nc_ohc=ycly973Oh1kQ7kNvgE0DGBy&_nc_ht=scontent.ftnr2-2.fna&oh=00_AYD9S8e1aTa2ABSa7-XBevEyfuw3mIOsvv3ug2FaQUnwqg&oe=66675C67"/>
   
-  <title>SAVA - Chocolat fine et artisanal de Madagascar</title>
+  <title>{% trans 'Chocolat fin et artisanal de Madagascar'%}</title>
 
   <style>
     nav{
@@ -138,11 +142,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto ">
         <li class="nav-item active">
-          <a class="nav-link text-white" href="/accueil"> <i class="fas fa-home"></i> Accueil <span class="sr-only">(current)</span></a>
+          <a class="nav-link text-white" href="/accueil"> <i class="fas fa-home"></i> {% trans 'Accueil'%} <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link text-white" href="/store"><i class="fas fa-store-alt"></i> Boutique<span class="sr-only">(current)</span></a>
+          <a class="nav-link text-white" href="/store"><i class="fas fa-store-alt"></i> {% trans 'Boutique'%}<span class="sr-only">(current)</span></a>
         </li>
 
           </ul>
@@ -153,13 +157,13 @@
           <button class="searchbutton" type="submit" id="searchbox" name="query">
               <i class="fa fa-search"></i>
           </button>
-          <input class="searchfield" id="searchbox" name="query" type="text" placeholder="Rechercher">
+          <input class="searchfield" id="searchbox" name="query" type="text" placeholder="{% trans 'Rechercher'%}">
         </form>
 
       <ul class=" navbar-nav my-2 my-lg-0">
 
         <li class="nav-item active">
-          <a class="nav-link text-white" href="/cart"><i class="fas fa-shopping-cart"></i> Chariot 
+          <a class="nav-link text-white" href="/cart"><i class="fas fa-shopping-cart"></i> {% trans 'Chariot'%}
             <span class="badge badge-warning">{{request.session.cart.keys|length}}</span>
             <span class="sr-only">(current)</span></a>
         </li>
@@ -167,18 +171,18 @@
         {% if request.session.customer %}
         
         <li class="nav-item active ">
-          <a class="nav-link text-white" href="/orders"><i class="fas fa-file-alt"></i> Commandes<span class="sr-only">(current)</span></a>
+          <a class="nav-link text-white" href="/orders"><i class="fas fa-file-alt"></i>  {% trans 'Commandes'%}<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active ">
-          <a class="nav-link text-white" href="/logout"> <i class="fas fa-sign-out-alt"></i> Déconnexion<span class="sr-only">(current)</span></a>
+          <a class="nav-link text-white" href="/logout"> <i class="fas fa-sign-out-alt"></i> {% trans 'Déconnexion'%}<span class="sr-only">(current)</span></a>
         </li>
         {% else %}
        
         <li class="nav-item active">
-          <a class="nav-link text-white" href="/signup">Créer un compte<span class="sr-only">(current)</span></a>
+          <a class="nav-link text-white" href="/signup">{% trans 'Créer un compte'%}<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link text-white" href="/login"><i class="fas fa-sign-in-alt"></i> Se connecter<span class="sr-only">(current)</span></a>
+          <a class="nav-link text-white" href="/login"><i class="fas fa-sign-in-alt"></i> {% trans 'Se connecter'%}<span class="sr-only">(current)</span></a>
         </li>
         {% endif %}
 
@@ -208,23 +212,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-3 item">
-                    <h3>Services</h3>
+                    <h3>{% trans 'Services'%}</h3>
                     <ul>
-                        <li><a href="#">Création de chocolat à base de produit naturel venant de Madagascar</a></li>
+                        <li><a href="#">{% trans 'Création de chocolat à base de produit naturel venant de Madagascar'%}</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-6 col-md-3 item">
-                    <h3>A propos</h3>
+                    <h3>{% trans 'A propos'%}</h3>
                     <ul>
                         <li><a href="#" target="blank">SAVA</a></li>
                         <li><a href="#">Ankerana, Antananarivo, Madagascar</a></li>
-                        <li><a href="#">emma-yolande@hotmail.fr</a></li>
+                        <li><a href="#">emma.chocolat@gmail.com</a></li>
                         <li><a href="#">+261 34 60 498 41</a></li>
                     </ul>
                 </div>
                 <div class="col-md-6 item text">
                     <h3>SAVA</h3>
-                    <p> Chocolat fine et artisanal de Madagascar.</p>
+                    <p>{% trans 'Chocolat fin et artisanal de Madagascar'%}</p>
                 </div>
                 <div class="col item social">
                   <a href="https://www.facebook.com/p/SAVA-Chocolaterie-100087273279998/?_rdr" target="blank"><i class="fab fa-facebook-f"></i></a>
@@ -233,7 +237,7 @@
                   <a href="#"><i class="fab fa-instagram"></i></a> -->
                 </div>
             </div>
-            <p class="copyright">Powered by HOAG Target ©  <span id="currentYear"></span></p>
+            <p class="copyright">{% trans 'Powered by'%} HOAG Target ©  <span id="currentYear"></span></p>
         </div>
     </footer>
 

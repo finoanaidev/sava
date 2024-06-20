@@ -16,6 +16,9 @@ from django.utils.translation import gettext_lazy as _
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Ajoutez ces configurations
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -53,6 +56,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "store.middlewares.currency_middleware.CurrencyMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+
 ]
 
 ROOT_URLCONF = "Eshop.urls"
@@ -136,6 +140,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Activer la sélection de langue automatique en fonction de la requête du visiteur
+LANGUAGE_COOKIE_NAME = 'django_language'
+
 # settings.py
 
 CURRENCY = {
@@ -166,3 +173,15 @@ CURRENCY = {
 STATIC_URL = "/static/"
 MEDIA_URL = "/image/download/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads/products")
+# Définir les dossiers où Django cherchera les fichiers de traduction
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Remplacez par votre serveur SMTP
+EMAIL_PORT = 587  # Port SMTP (587 est généralement utilisé pour TLS)
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'darcia.anona@gmail.com'  # Votre adresse email
+EMAIL_HOST_PASSWORD = 'Darcia,2125'

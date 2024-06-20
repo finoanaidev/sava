@@ -3,6 +3,8 @@ from store.models.product import Products
 from store.models.category import Category
 from store.models.person import Person
 from django.views import View
+from django.utils.translation import gettext as _
+from django.utils.translation import activate
 
 
 # Create your views here.
@@ -40,6 +42,9 @@ class Index(View):
         return HttpResponseRedirect(f'/store{request.get_full_path()[1:]}')
 
 def store(request):
+    # Activer la langue sélectionnée (si stockée en session par exemple)
+    if 'django_language' in request.session:
+        activate(request.session['django_language'])
     cart = request.session.get('cart')
     if not cart:
         request.session['cart'] = {}

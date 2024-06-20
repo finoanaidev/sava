@@ -1,0 +1,111 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/your_template.html:13
+msgid "Chocolat fin et artisanal de Madagascar"
+msgstr "Fin artisanal chocolate from Madagascar"
+
+#: templates/your_template.html:16
+msgid "Voir nos produits"
+msgstr "See our products"
+
+#: templates/your_template.html:28
+msgid "Nos produits sont faits avec du cacao pur de Madagascar"
+msgstr "Our products are made with pure Madagascar cocoa"
+
+#: templates/your_template.html:31
+msgid "En savoir plus"
+msgstr "Learn more"
+
+#: templates/your_template.html:56
+msgid "Nos types de produits"
+msgstr "Our product types"
+
+#: templates/your_template.html:87
+msgid "Chocolat Sans Conservateur"
+msgstr "Preservative-free chocolate"
+
+#: templates/your_template.html:93
+msgid "Voir plus"
+msgstr "View more"
+
+#: templates/your_template.html:100
+msgid "Chocolat sans sucre"
+msgstr "Sugar-free chocolate"
+
+#: templates/your_template.html:106
+msgid "Chocolat naturel avec fibre"
+msgstr "Natural chocolate with fiber"
+
+#: templates/your_template.html:123
+msgid "Nos Produits"
+msgstr "Our Products"
+
+#: templates/your_template.html:145
+msgid "Témoignages"
+msgstr "Testimonials"
+
+#: templates/your_template.html:154
+msgid "Super chocolat, je suis vraiment satisfait."
+msgstr "Great chocolate, I'm really satisfied."
+
+msgid "Accueil"
+msgstr "Home"
+
+msgid "Boutique"
+msgstr "Store"
+
+msgid "Rechercher"
+msgstr "Search"
+
+msgid "Chariot"
+msgstr "Cart"
+
+msgid "Commandes"
+msgstr "Orders"
+
+msgid "Déconnexion"
+msgstr "Sign out"
+
+msgid "Se connecter"
+msgstr "Sign in"
+
+msgid "Créer un compte"
+msgstr "Create an account"
+
+msgid "Tous les produits"
+msgstr "All products"
+
+msgid "Nos produits"
+msgstr "Our products"
+
+msgid "Prix"
+msgstr "Price"
+
+msgid "Ajouter au chariot"
+msgstr "Add to cart"
+
+msgid "dans le chariot"
+msgstr "in the cart"
+
+msgid "Voilà qui n'était pas prévu !"
+msgstr "Now that's unexpected!"
+
+msgid "Nous n'avons pas encore de produits dans cette catégorie!"
+msgstr "We have no products in this category yet!"
+
+msgid "Voir tous les produits"
+msgstr "See all products"
+
+msgid "Services"
+msgstr "Services"
+
+msgid "A propos"
+msgstr "About us"
+
+msgid "Création de chocolat à base de produit naturel venant de Madagascar"
+msgstr "Creation of chocolate using natural products from Madagascar"
+

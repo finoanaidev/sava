@@ -1,0 +1,81 @@
+msgid ""
+msgstr ""
+"Language: fr\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: templates/your_template.html:13
+msgid "Chocolat fin et artisanal de Madagascar"
+msgstr "Fin chocolat artisanal de Madagascar"
+
+#: templates/your_template.html:16
+msgid "Voir nos produits"
+msgstr "Voir nos produits"
+
+#: templates/your_template.html:28
+msgid "Nos produits sont faits avec du cacao pur de Madagascar"
+msgstr "Nos produits sont faits avec du cacao pur de Madagascar"
+
+#: templates/your_template.html:31
+msgid "En savoir plus"
+msgstr "En savoir plus"
+
+#: templates/your_template.html:56
+msgid "Nos types de produits"
+msgstr "Nos types de produits"
+
+#: templates/your_template.html:87
+msgid "Chocolat Sans Conservateur"
+msgstr "Chocolat Sans Conservateur"
+
+#: templates/your_template.html:93
+msgid "Voir plus"
+msgstr "Voir plus"
+
+#: templates/your_template.html:100
+msgid "Chocolat sans sucre"
+msgstr "Chocolat sans sucre"
+
+#: templates/your_template.html:106
+msgid "Chocolat naturel avec fibre"
+msgstr "Chocolat naturel avec fibre"
+
+#: templates/your_template.html:123
+msgid "Nos Produits"
+msgstr "Nos Produits"
+
+#: templates/your_template.html:145
+msgid "Témoignages"
+msgstr "Témoignages"
+
+#: templates/your_template.html:154
+msgid "Super chocolat, je suis vraiment satisfait."
+msgstr "Super chocolat, je suis vraiment satisfait."
+
+#: templates/your_template.html:155
+msgid "Marie Ange"
+msgstr "Marie Ange"
+
+msgid "Accueil"
+msgstr "Accueil"
+
+msgid "Boutique"
+msgstr "Boutique"
+
+msgid "Rechercher"
+msgstr "Rechercher"
+
+msgid "Chariot"
+msgstr "Chariot"
+
+msgid "Commandes"
+msgstr "Commandes"
+
+msgid "Déconnexion"
+msgstr "Déconnexion"
+
+msgid "Se connecter"
+msgstr "Se connecter"
+
+msgid "Créer un compte"
+msgstr "Créer un compte"
