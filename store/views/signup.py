@@ -2,13 +2,21 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from store.models.customer import Customer
 from django.views import View
-
+from django.utils.translation import gettext as _
+from django.utils.translation import activate
 
 class Signup (View):
     def get(self, request):
+        # Activer la langue sélectionnée (si stockée en session par exemple)
+        if 'django_language' in request.session:
+            activate(request.session['django_language'])
         return render (request, 'signup.html')
 
     def post(self, request):
+        # Activer la langue sélectionnée (si stockée en session par exemple)
+        if 'django_language' in request.session:
+            activate(request.session['django_language'])
+            
         postData = request.POST
         first_name = postData.get ('firstname')
         last_name = postData.get ('lastname')

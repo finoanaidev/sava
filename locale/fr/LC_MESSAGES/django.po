@@ -5,8 +5,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: templates/your_template.html:13
-msgid "Chocolat fin et artisanal de Madagascar"
-msgstr "Fin chocolat artisanal de Madagascar"
+msgid "Chocolat fine et artisanal de Madagascar"
+msgstr "Chocolat fine et artisanal de Madagascar"
 
 #: templates/your_template.html:16
 msgid "Voir nos produits"
@@ -79,3 +79,6 @@ msgstr "Se connecter"
 
 msgid "Créer un compte"
 msgstr "Créer un compte"
+
+msgid "Powered by"
+msgstr "Fait par"

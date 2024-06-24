@@ -5,7 +5,7 @@ from .models.vendeur import Vendeur
 from .models.product import Products
 from .models.category import Category
 from .models.customer import Customer
-
+from .models.seller import Seller
 
 class AdminProduct(admin.ModelAdmin):
     list_display = ["name", "price", "category"]
@@ -26,4 +26,5 @@ admin.site.register(Person)
 admin.site.register(Vendeur)
 admin.site.register(Category)
 admin.site.register(Customer)
+admin.site.register(Seller)
 admin.site.register(Products, AdminProduct)

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Update Order Status</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select id="status" name="status" class="form-control">
+                        <option value="Pending" {% if not order.status %}selected{% endif %}>Pending</option>
+                        <option value="Completed" {% if order.status %}selected{% endif %}>Completed</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

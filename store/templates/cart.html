@@ -1,65 +1,62 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 {% load cart %}
 {% load custom_filter %}
+{% load i18n %}
+
 <div class="container">
    <div class="border rounded p-4 m-4">
-        <p class="display-4 pl-4 ml-4 btn btn-warning rounded-pill">Votre chariot</p>
+        <p class="display-4 pl-4 ml-4 btn btn-warning rounded-pill">{% trans "Votre chariot" %}</p>
         <hr>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Sno.</th>
-                    <th>Image</th>
-                    <th>Produit</th>
-                    <th>Prix</th>
-                    <th>Quantité</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                {% for product in products %}
-                <tr>
-                    <td>{{forloop.counter}}</td>
-                    <td><img style="height: 80px;" class="rounded-circle" src="{{product.image.url}}" alt=""></td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.price|currency:request}}</td>
-                    <td>{{product|cart_quantity:request.session.cart}}</td>
-                    <td>{{product|price_total:request.session.cart|currency:request}}</td>
-                </tr>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{% trans "Sno." %}</th>
+                        <th>{% trans "Image" %}</th>
+                        <th>{% trans "Produit" %}</th>
+                        <th>{% trans "Prix" %}</th>
+                        <th>{% trans "Quantité" %}</th>
+                        <th>{% trans "Total" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><img style="max-height: 80px;" class="img-fluid rounded-circle" src="{{product.image.url}}" alt=""></td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.price|currency:request}}</td>
+                        <td>{{product|cart_quantity:request.session.cart}}</td>
+                        <td>{{product|price_total:request.session.cart|currency:request}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
 
-                {% endfor %}
-               
-            </tbody>
-
-            <tfoot>
-                <tr>
-                    <th colspan="4"></th>
-                    <th class="" colspan="">Total</th>
-                    <th>{{products|total_cart_price:request.session.cart|currency:request}}</th>
-                </tr>
-            </tfoot>
-        </table>
+                <tfoot>
+                    <tr>
+                        <th colspan="4"></th>
+                        <th class="text-right">{% trans "Total" %}</th>
+                        <th>{{products|total_cart_price:request.session.cart|currency:request}}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
         <hr>
         <div class="m-3 p-3">
-            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-warning border rounded  col-lg-3 float-right">Commander</a>
+            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-warning col-lg-6 float-right">{% trans "Commander" %}</a>
         </div>
    </div>
 </div>
 
-
 <!-- modal -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-            Formulaire d'enregistrement
+            {% trans "Formulaire d'enregistrement" %}
           </h5>
           <hr>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -71,24 +68,18 @@
             <form action="/check-out" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
-                  <label for="">Adresse</label>
+                  <label for="">{% trans "Adresse" %}</label>
                   <input type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                  
                 </div>
                 <div class="form-group">
-                    <label for="">Phone</label>
+                    <label for="">{% trans "Phone" %}</label>
                     <input type="text" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                  </div>
-
-                  <input type="submit" class="btn float-right btn-outline-warning col-lg-6" value="Enregistrer">
+                </div>
+                <input type="submit" class="btn btn-outline-warning col-lg-6 float-right" value="{% trans 'Enregistrer' %}">
             </form>
           </div>
         </div>
-        
       </div>
     </div>
-  </div>
-
-
-
+</div>
 {% endblock %}

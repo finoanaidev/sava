@@ -3,6 +3,7 @@
 
 {% load cart %}
 {% load custom_filter %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -229,7 +230,7 @@
 							<span class="review-no">41 reviews</span>
 						</div>-->
 						<p class="product-description">{{product.description}}</p>
-						<h4 class="price">Prix: <span>{{product.price|currency:request}}</span></h4>
+						<h4 class="price">{% trans "Prix" %}: <span>{{product.price|currency:request}}</span></h4>
 						
 						<div class="action">
                             {% if product|is_in_cart:request.session.cart %}
@@ -240,7 +241,7 @@
                                 <input hidden type="text" name='remove' value='True'>
                                 <input type="submit" value=" - " class="btn btn-block btn-warning border-right">
                               </form>
-                                <div class="text-center col btn btn-warning">{{product|cart_quantity:request.session.cart}} dans le chariot</div>
+                                <div class="text-center col btn btn-warning">{{product|cart_quantity:request.session.cart}} {% trans "dans le chariot" %}</div>
                               <form action="/#{{product.id}}" class="col-2 " method="post">
                                 {% csrf_token %}
                                 <input hidden type="text" name='product' value='{{product.id}}'>
@@ -252,7 +253,7 @@
                                 {% csrf_token %}
                                 <input hidden type="text" name='product' value='{{product.id}}'>
                                 <input type="submit" class="float-right btn btn-warning form-control"
-                                  value="Ajouter au chariot">
+                                  value="{% trans 'Ajouter au chariot' %}">
                               </form>
                               
                             {% endif %}
@@ -262,7 +263,7 @@
 				</div>
                     {% if product.other_description %}
                     <div class="card" style="width: 100%;">
-                        <h1>Autres caractéristiques</h1>
+                        <h1>{% trans 'Autres caractéristiques' %}</h1>
                         <p>{{ product.other_description }}</p>
                     </div>
                     {% endif %}
@@ -271,7 +272,7 @@
                     <div class="card" style="width: 60%; margin-left: 20%;">
                         <video src="{{ product.video.url }}" controls></video>
                         <div class="card-body">
-                            <h5 class="card-title">Vidéo de présentation du produit : {{ product.name }}</h5>
+                            <h5 class="card-title">{% trans 'Vidéo de présentation du produit' %} : {{ product.name }}</h5>
                         </div>
                     </div>
                     {% endif %}

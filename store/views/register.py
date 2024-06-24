@@ -5,13 +5,20 @@ from django.views import View
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib import messages
+from django.utils.translation import gettext as _
+from django.utils.translation import activate
 
 from store.models.person import Person
 
 def Register(request):
+    # Activer la langue sélectionnée (si stockée en session par exemple)
+    if 'django_language' in request.session:
+        activate(request.session['django_language'])
+        
     return render(request, 'register.html')
 
 def Register_save(request):
+    
      if request.method!="POST":
         return HttpResponseRedirect(reverse("Register"))
      else:
@@ -39,6 +46,8 @@ def Register_save(request):
         except:
             messages.error(request,"Erreur lors de l'enregistrement des données")
             return HttpResponseRedirect(reverse('Register'))
+        
+        
 
 
     

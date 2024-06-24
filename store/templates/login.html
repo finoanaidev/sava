@@ -2,6 +2,7 @@
 
 
 {% block content %}
+{% load i18n %}
 
 <div class="container">
     <div class="p-3 m-3">
@@ -13,7 +14,7 @@
                 class="" style="height: 150px;">
             <hr>
             </div>
-            <h3 class="alert alert-light rounded-pill" style="text-align:center" >Se connecter</h3>
+            <h3 class="alert alert-light rounded-pill" style="text-align:center" >{% trans "Se connecter" %}</h3>
             <form action="/login" method="POST">
                 
                 {% csrf_token %}
@@ -25,7 +26,7 @@
                 {% endif %}
                 <!-- email -->
                 <div class="form-group">
-                    <label for="">Email</label>
+                    <label for="">{% trans "Email" %}</label>
                     <input required type="email" name="email" id=""
                     value="{{values.email}}" 
                     class=" form-control-sm form-control" placeholder="abc@gmail.com">
@@ -34,7 +35,7 @@
 
                 <!-- password -->
                 <div class="form-group">
-                    <label for="">Mot de passe</label>
+                    <label for="">{% trans "Mot de passe" %}</label>
                     <input type="password" 
                     name="password" 
                     id=""
@@ -44,12 +45,12 @@
                 <!--Checkme button-->
             <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
-                    <label class="form-check-label d-grid gap-2" for="exampleCheck1">Cochez ici </label>
+                    <label class="form-check-label d-grid gap-2" for="exampleCheck1">{% trans "Cochez ici" %} </label>
                 </div>
                 <hr>
-                <button type="submit" class="btn btn-sm btn-warning col-lg-12">Connexion</button>
+                <button type="submit" class="btn btn-sm btn-warning col-lg-12">{% trans "Connexion" %}</button>
                 
-                    <a class="nav-link text-warning" href="/signup">Créer un compte<span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-warning" href="/signup">{% trans "Créer un compte" %}<span class="sr-only">(current)</span></a>
                   
             </form>
         </div>

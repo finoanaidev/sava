@@ -109,3 +109,83 @@ msgstr "About us"
 msgid "Création de chocolat à base de produit naturel venant de Madagascar"
 msgstr "Creation of chocolate using natural products from Madagascar"
 
+msgid "Autres caractéristiques"
+msgstr "Other characteristics"
+
+msgid "Vidéo de présentation du produit"
+msgstr "Video of product presentation"
+
+msgid "Votre chariot"
+msgstr "Your cart"
+
+msgid "Sno."
+msgstr "Sno."
+
+msgid "Image"
+msgstr "Image"
+
+msgid "Produit"
+msgstr "Products"
+
+msgid "Quantité"
+msgstr "Quantity"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Commander"
+msgstr "Order"
+
+msgid "Adresse"
+msgstr "Address"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "Enregistrer"
+msgstr "Save"
+
+msgid "Formulaire d'enregistrement"
+msgstr "Record Form"
+
+msgid "Vos commandes"
+msgstr "Your order"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Completer"
+msgstr "Complete"
+
+msgid "En attente"
+msgstr "Pending"
+
+msgid "Mais nous vous invitons à voir nos autres produits!"
+msgstr "But we invite you to see the other products in the store!"
+
+msgid "Nous n'avons pas pu trouver le produit correspondant à votre recherche"
+msgstr "We didn't find the product that you research"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Mot de passe"
+msgstr "Password"
+
+msgid "Cochez ici"
+msgstr "Check here"
+
+msgid "Connexion"
+msgstr "Sign in"
+
+msgid "Nom"
+msgstr "Name"
+
+msgid "Prénom"
+msgstr "First Name"
+
+
+

@@ -6,9 +6,14 @@ from django.views import View
 from store.models.product import Products
 from store.models.category import Category
 from django.http import HttpResponse
+from django.utils.translation import gettext as _
+from django.utils.translation import activate
 
 
 def SearchPage(request):
+    # Activer la langue sélectionnée (si stockée en session par exemple)
+    if 'django_language' in request.session:
+        activate(request.session['django_language'])
     srh = request.GET["query"]
     product = Products.objects.filter(name__icontains=srh)
     params = {"product": product, "search": srh}
@@ -16,6 +21,9 @@ def SearchPage(request):
 
 
 def SearchCategory(request):
+    # Activer la langue sélectionnée (si stockée en session par exemple)
+    if 'django_language' in request.session:
+        activate(request.session['django_language'])
     srh = request.GET["query"]
     category = Category.objects.filter(name__icontains=srh)
     params = {"category": category, "search": srh}

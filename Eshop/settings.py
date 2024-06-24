@@ -30,6 +30,7 @@ SECRET_KEY = "-95t%=#4o3@l-(-%ok9*h%n3!0(sdchjn%+_$5#umaj-!3bg*7"
 DEBUG = True
 
 ALLOWED_HOSTS = []
+APPEND_SLASH = False
 
 
 # Application definition
@@ -177,6 +178,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "uploads/products")
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
+DATETIME_FORMAT = 'd/m/Y H:i:s'  # Customize this format according to your preference
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
