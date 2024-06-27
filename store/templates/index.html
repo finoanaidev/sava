@@ -1,5 +1,6 @@
-{% extends 'base.html' %} {% block content %} {% load cart %} {% load custom_filter %}
+{% extends 'base.html' %} {% block content %} {% load cart %}
 {% load i18n %}
+{% load custom_filter %}
 <!-- body -->
 <div class="container-fluid mt-3">
   <div class="row">
@@ -47,7 +48,7 @@
               >
             </p>-->
             <p class="card-text">
-              {%trans 'Prix'%} : <b>{{product.price|currency:request}}</b>
+              {% trans 'Prix' %} : <b>{{ product.price|currency:request }}</b>            
             </p>
             <!-- {{product | is_in_cart:request.session.cart }} -->
             <div class="card-footer p-0 no-gutters">

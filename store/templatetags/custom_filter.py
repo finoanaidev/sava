@@ -2,26 +2,33 @@ from django import template
 
 register = template.Library()
 
-
 @register.filter(name="currency")
-def currency(price, request):
-    if hasattr(request, 'currency'):
-        currency = request.currency
-    else:
-        currency = 'Ar'
+def currency(price, request=None):
+    try:
+        if request is None:
+            request = template.Variable('request').resolve({})
 
-    if currency == 'EUR':
-        # Convertir le prix en Euro
-        converted_price = price * 0.0002065 
-        return "€ {:.2f}".format(converted_price)  # Affichage avec 2 décimales
-    elif currency == 'USD':
-        # Convertir le prix en Dollar
-        converted_price = price * 0.0002249 
-        return "$ {:.2f}".format(converted_price)  # Affichage avec 2 décimales
-    elif currency == 'Ar':
-        return "Ar {:.2f}".format(price)  # Affichage avec 2 décimales
-    else:
-        return "{:.2f} {}".format(price, currency)  # Affichage avec 2 décimales
+        if hasattr(request, 'currency'):
+            currency = request.currency
+        else:
+            currency = settings.CURRENCY['options']['ariary']  # Définir une devise par défaut si non définie
+
+        symbol = currency.get('symbol', '')  # Récupérer le symbole de la devise
+
+        if currency['code'] == 'EUR':
+            # Convertir le prix en Euro
+            converted_price = price * currency['rate']
+            return "€ {:.2f}".format(converted_price)  # Affichage avec 2 décimales et symbole Euro
+        elif currency['code'] == 'USD':
+            # Convertir le prix en Dollar
+            converted_price = price * currency['rate']
+            return "{} {:.2f}".format(symbol, converted_price)  # Affichage avec 2 décimales et symbole Dollar
+        elif currency['code'] == 'MGA':
+            return "{} {:.2f}".format(symbol, price)  # Affichage avec 2 décimales et symbole Ariary
+        else:
+            return "{:.2f} {}".format(price, symbol)  # Affichage avec 2 décimales et symbole par défaut
+    except Exception as e:
+        return price
 
 
 @register.filter(name="multiply")
