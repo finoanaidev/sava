@@ -7,6 +7,7 @@ from .views.cart import Cart
 from .views.checkout import CheckOut
 from .views.orders import OrderView
 from .views.accueil import Accueil
+from .views.simulation import simulation_menu
 from .views.detail import Detail
 from .views.faq import Faq
 from .views.register import Register, Register_save
@@ -16,6 +17,7 @@ from .views.change_language import change_language
 from .views.csv import ExportOrdersCSV
 from .views.order_list import order_list, update_order_status, delete_order
 from .middlewares.auth import auth_middleware
+
 
 urlpatterns = [
     path('', Index.as_view(), name='homepage'),
@@ -39,5 +41,5 @@ urlpatterns = [
     path('seller/update/<int:order_id>/', update_order_status, name='update_order_status'),    # Vendeur
     path('seller/delete/<int:order_id>/', delete_order, name='delete_order'),  # Vue pour supprimer une commande
     path('export-csv', ExportOrdersCSV.as_view(), name='export_orders_csv'),
-
+    path('simulation', simulation_menu, name='simulation_menu'),
 ]
