@@ -82,3 +82,7 @@ msgstr "Créer un compte"
 
 msgid "Powered by"
 msgstr "Fait par"
+
+
+msgid "Complété"
+msgstr "Complete"

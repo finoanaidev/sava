@@ -186,4 +186,4 @@ EMAIL_HOST = 'smtp.gmail.com'  # Remplacez par votre serveur SMTP
 EMAIL_PORT = 587  # Port SMTP (587 est généralement utilisé pour TLS)
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'darcia.anona@gmail.com'  # Votre adresse email
-EMAIL_HOST_PASSWORD = 'Darcia,2125'
+EMAIL_HOST_PASSWORD = 'rdrt inii ttdk zuuv'

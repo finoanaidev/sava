@@ -13,6 +13,7 @@ from .views.register import Register, Register_save
 from .views.registerVendeur import RegisterVendeur, RegisterVendeur_save
 from .views.searchPage import SearchPage
 from .views.change_language import change_language
+from .views.csv import ExportOrdersCSV
 from .views.order_list import order_list, update_order_status, delete_order
 from .middlewares.auth import auth_middleware
 
@@ -37,5 +38,6 @@ urlpatterns = [
     path('seller', order_list, name='order_list'),  # URL pour la liste des commandes des vendeurs
     path('seller/update/<int:order_id>/', update_order_status, name='update_order_status'),    # Vendeur
     path('seller/delete/<int:order_id>/', delete_order, name='delete_order'),  # Vue pour supprimer une commande
+    path('export-csv', ExportOrdersCSV.as_view(), name='export_orders_csv'),
 
 ]

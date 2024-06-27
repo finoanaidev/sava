@@ -157,7 +157,7 @@ msgstr "Date"
 msgid "Status"
 msgstr "Status"
 
-msgid "Completer"
+msgid "Complété"
 msgstr "Complete"
 
 msgid "En attente"

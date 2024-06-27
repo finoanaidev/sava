@@ -1,26 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% load cart %}
 {% load custom_filter %}
 {% load i18n %}
 
 {% block content %}
     <div class="container mt-4">
-        <h4 class="mb-4 text-center text-primary ">Order List</h2>  {# Mise en forme du titre #}
+        <h4 class="mb-4 text-center text-primary">Liste de commande</h4>
+        <div class="mb-3">
+            <a href="{% url 'export_orders_csv' %}" class="btn btn-primary">Export CSV</a>
+        </div>
         <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover">  {# Ajout de table-hover pour un effet interactif #}
+            <table class="table table-striped table-bordered table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th style="min-width: 80px;">Order ID</th>  {# Définir une largeur minimale pour Order ID #}
-                        <th style="min-width: 120px;">Date</th>  {# Définir une largeur minimale pour Date #}
-                        <th>Customer</th>
-                        <th>Address</th>
+                        <th style="min-width: 100px;">Commande ID</th>
+                        <th style="min-width: 150px;">Date</th>
+                        <th>Client</th>
+                        <th>Adresse de livraison</th>
                         <th>Phone</th>
-                        <th>Product</th>
-                        <th>Product unit price</th>
-                        <th>Quantity</th>
-                        <th>Total Price</th>
+                        <th>Email</th>
+                        <th>Produit</th>
+                        <th>Prix unitaire</th>
+                        <th>Quantité</th>
+                        <th>Prix total</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -33,6 +36,7 @@
                         <td>{{ order.customer.first_name }} {{ order.customer.last_name }}</td>
                         <td>{{ order.address }}</td>
                         <td>{{ order.phone }}</td>
+                        <td>{{ order.customer.email }}</td>
                         <td>{{ order.product.name }}</td>
                         <td>{{ order.product.price }}</td>
                         <td>{{ order.quantity }}</td>
