@@ -1,168 +1,414 @@
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boîte à chocolats 3D avec cartes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+{% block content %}
+{% load static %}
+{% load custom_filter %}
 
-        .container {
-            width: 600px;
-            margin-top: 20px;
-            perspective: 800px;
-        }
-
-        .box {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            transform-style: preserve-3d;
-            transform: rotateY(-20deg) rotateX(15deg);
-            transition: transform 0.5s ease;
-            margin-top: 20px;
-        }
-
-        .cell {
-            position: absolute;
-            width: calc(100% / 3);
-            height: calc(100% / 3);
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .cell:nth-child(odd) {
-            background-color: #e0e0e0;
-        }
-
-        .cell:nth-child(even) {
-            background-color: #d0d0d0;
-        }
-
-        .cell:hover {
-            background-color: #ffcccb;
-        }
-
-        .cell:nth-child(1),
-        .cell:nth-child(2),
-        .cell:nth-child(3) {
-            top: 0;
-        }
-
-        .cell:nth-child(4),
-        .cell:nth-child(5),
-        .cell:nth-child(6) {
-            top: calc(100% / 3);
-        }
-
-        .cell:nth-child(7),
-        .cell:nth-child(8),
-        .cell:nth-child(9) {
-            top: calc(100% / 3 * 2);
-        }
-
-        .cell:nth-child(1),
-        .cell:nth-child(4),
-        .cell:nth-child(7) {
-            left: 0;
-        }
-
-        .cell:nth-child(2),
-        .cell:nth-child(5),
-        .cell:nth-child(8) {
-            left: calc(100% / 3);
-        }
-
-        .cell:nth-child(3),
-        .cell:nth-child(6),
-        .cell:nth-child(9) {
-            left: calc(100% / 3 * 2);
-        }
-
-        .cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-top: -55px;
-        }
-
-        .card {
-            width: calc(100% / 9 - 20px); /* Largeur des cartes avec espacement */
-            height: 60px;
-            background-color: #8fb5e1;
-            border: 1px solid #387fc2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 16px;
-            font-weight: bold;
-            color: #ffffff;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-bottom: 10px; /* Espacement entre les cartes */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center; /* Centrer le texte horizontalement */
-            padding: 0 10px; /* Ajouter un peu de padding à l'intérieur des cartes */
-        }
-
-        .card:hover {
-            background-color: #387fc2;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="cards">
-            <div class="card">Chocolat 1</div>
-            <div class="card">Chocolat 2</div>
-            <div class="card">Chocolat 3</div>
-            <div class="card">Chocolat 4</div>
-            <div class="card">Chocolat 5</div>
-            <div class="card">Chocolat 6</div>
-            <div class="card">Chocolat 7</div>
-            <div class="card">Chocolat 8</div>
-            <div class="card">Chocolat 9</div>
-            <div class="card">Chocolat 10</div>
-            <div class="card">Chocolat 11</div>
-            <div class="card">Chocolat 12</div>
-            <div class="card">Chocolat 13</div>
-            <div class="card">Chocolat 14</div>
-            <div class="card">Chocolat 15</div>
-            <div class="card">Chocolat 16</div>
-            <div class="card">Chocolat 17</div>
-            <div class="card">Chocolat 18</div>
-            <div class="card">Chocolat 19</div>
-            <div class="card">Chocolat 20</div>
-            <div class="card">Chocolat 21</div>
-            <div class="card">Chocolat 22</div>
-            <div class="card">Chocolat 23</div>
-            <div class="card">Chocolat 24</div>
+<div class="container">
+    <h2 class="title">Choisissez vos chocolats</h2>
+    <div class="row">
+        {% for chocolat in chocolats %}
+        <div class="col-lg-1 col-md-2 col-sm-3 col-4">
+            <button class="chocolat-btn btn btn-outline" data-chocolat-id="{{ chocolat.id }}" data-chocolat-nom="{{ chocolat.nom }}" data-image-url="{{ chocolat.image.url }}">
+                <div class="zoom-effect">
+                    <img class="chocolat-img" src="{{ chocolat.image.url }}" alt="{{ chocolat.nom }}">
+                </div>
+            </button>
         </div>
-        <div class="box">
-            <div class="cell">Cellule 1</div>
-            <div class="cell">Cellule 2</div>
-            <div class="cell">Cellule 3</div>
-            <div class="cell">Cellule 4</div>
-            <div class="cell">Cellule 5</div>
-            <div class="cell">Cellule 6</div>
-            <div class="cell">Cellule 7</div>
-            <div class="cell">Cellule 8</div>
-            <div class="cell">Cellule 9</div>
-        </div>
+        {% endfor %}
     </div>
-</body>
-</html>
+    
+    <h3 class="title">Votre boîte</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box-selection">
+                <label for="box-size">Sélectionnez la taille de votre boîte :</label>
+                <select id="box-size">
+                    {% for boite in boites %}
+                    <option value="{{ boite.type }}" data-prix="{{ boite.prix }}">{{ boite.nom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box-price">
+                Prix :  <span id="box-price-display"> </span>
+            </div>
+            <div class="col-md-6">
+                <button id="add-to-cart-btn" class="float-right btn btn-warning form-control">Ajouter au chariot</button>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+    <div class="box-container" id="box-container">
+        
+        <!-- Placeholder for box cells dynamically added -->
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const chocolatButtons = document.querySelectorAll(".chocolat-btn");
+    const boxSelection = document.getElementById("box-size");
+    const boxContainer = document.getElementById("box-container");
+    const boxPriceDisplay = document.getElementById("box-price-display");
+    const addToCartBtn = document.getElementById("add-to-cart-btn");
+
+    // Initialize box based on default selection
+    createBox();
+
+    // Listen for changes in box size selection
+    boxSelection.addEventListener("change", function() {
+        // Clear existing boxes
+        boxContainer.innerHTML = "";
+        // Recreate box based on new selection
+        createBox();
+        // Update price display
+        updatePrice();
+    });
+
+    function createBox() {
+        const selectedOption = boxSelection.value;
+        const boxSize = selectedOption === "150g" ? 9 : 16;
+        const columns = selectedOption === "150g" ? 3 : 4; // Nombre de colonnes
+
+        // Calcul du nombre de lignes nécessaires
+        const rows = Math.ceil(boxSize / columns);
+
+        for (let i = 1; i <= boxSize; i++) {
+            const boxCell = document.createElement("div");
+            boxCell.classList.add(`col-lg-${12/columns}`, `col-md-${12/columns}`, `col-sm-${12/columns}`);
+
+            const boxContent = document.createElement("div");
+            boxContent.classList.add("box-cell");
+
+            const boxChocolat = document.createElement("div");
+            boxChocolat.classList.add("box-chocolat");
+            boxChocolat.id = `box-chocolat-${i}`;
+
+            const boxInnerContent = document.createElement("div");
+            boxInnerContent.classList.add("box-content");
+
+            const boxFront = document.createElement("div");
+            boxFront.classList.add("box-front");
+
+            const boxImage = document.createElement("div");
+            boxImage.classList.add("box-image");
+
+            const boxName = document.createElement("div");
+            boxName.classList.add("box-name");
+
+            const boxBack = document.createElement("div");
+            boxBack.classList.add("box-back");
+
+            const boxBackContent = document.createElement("div");
+            boxBackContent.classList.add("box-back-content");
+
+            boxFront.appendChild(boxImage);
+            boxFront.appendChild(boxName);
+            boxBack.appendChild(boxBackContent);
+            boxInnerContent.appendChild(boxFront);
+            boxInnerContent.appendChild(boxBack);
+            boxChocolat.appendChild(boxInnerContent);
+            boxContent.appendChild(boxChocolat);
+            boxCell.appendChild(boxContent);
+            boxContainer.appendChild(boxCell);
+
+            // Ajouter un écouteur de clic pour chaque cellule de la boîte
+            boxCell.addEventListener("click", function() {
+                const boxChocolat = this.querySelector(".box-chocolat");
+                const boxName = this.querySelector(".box-name");
+                const boxImage = this.querySelector(".box-image");
+
+                // Vérifier si la cellule contient déjà un chocolat
+                if (boxName.textContent !== '') {
+                    // Réinitialiser la cellule
+                    boxName.textContent = '';
+                    boxImage.style.backgroundImage = '';
+                    boxChocolat.parentElement.classList.remove('flipped');
+                    boxChocolat.querySelector('.box-back-content').textContent = '';
+                }
+            });
+        }
+
+        // Ajouter des colonnes vides pour aligner en grille
+        const emptyCellsNeeded = columns - (boxSize % columns);
+        if (emptyCellsNeeded !== columns) {
+            for (let i = 0; i < emptyCellsNeeded; i++) {
+                const emptyCell = document.createElement("div");
+                emptyCell.classList.add(`col-lg-${12/columns}`, `col-md-${12/columns}`, `col-sm-${12/columns}`);
+                boxContainer.appendChild(emptyCell);
+            }
+        }
+        // Mettre à jour le prix initial
+        updatePrice();
+    }
+
+    function updatePrice() {
+        const selectedOption = boxSelection.value;
+        const selectedBoxOption = boxSelection.options[boxSelection.selectedIndex];
+        const boxPrice = selectedBoxOption.getAttribute('data-prix');
+        boxPriceDisplay.textContent = `${boxPrice} Ar`;
+    }
+
+    addToCartBtn.addEventListener("click", function() {
+        const selectedChocolats = [];
+        const selectedChocolatIds = [];
+        const boxSize = boxSelection.value;
+
+        // Gather selected chocolates in the box
+        for (let i = 1; i <= boxSize; i++) {
+            const boxCell = document.getElementById(`box-chocolat-${i}`);
+            const boxName = boxCell.querySelector('.box-name').textContent;
+            if (boxName !== '') {
+                selectedChocolats.push(boxName);
+                selectedChocolatIds.push(boxCell.querySelector('.box-chocolat').id.split('-')[2]); // Récupère l'ID du chocolat
+            }
+        }
+
+        // Prepare data to send to server
+        const formData = new FormData();
+        formData.append('selected-chocolats', JSON.stringify(selectedChocolatIds));
+        formData.append('box-size', boxSize);
+
+        // Send POST request to server
+        fetch(window.location.href, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erreur lors de la requête HTTP: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                alert('Les chocolats ont été ajoutés au panier avec succès !');
+                window.location.href = data.redirect_url; // Rediriger vers la vue du panier
+            } else {
+                alert('Une erreur s\'est produite lors de l\'ajout des chocolats au panier.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Une erreur s\'est produite lors de la communication avec le serveur.');
+        });
+    });
+
+    chocolatButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const chocolatId = button.getAttribute('data-chocolat-id');
+            const selectedChocolat = button.getAttribute('data-chocolat-nom'); // Récupère le nom du chocolat
+            const selectedChocolatImage = button.getAttribute('data-image-url'); // Récupère l'URL de l'image du chocolat
+
+            let emptyBox = null;
+
+            // Find the first empty cell in the box
+            for (let i = 1; i <= boxContainer.children.length; i++) {
+                const boxCell = document.getElementById(`box-chocolat-${i}`);
+                if (boxCell && boxCell.querySelector('.box-name').textContent === '') {
+                    emptyBox = boxCell;
+                    break;
+                }
+            }
+
+            if (emptyBox) {
+                const boxImage = emptyBox.querySelector('.box-image');
+                const boxBackContent = emptyBox.querySelector('.box-back-content');
+
+                // Add selected chocolate to the box
+                boxImage.style.backgroundImage = `url(${selectedChocolatImage})`; // Met à jour l'image de fond avec l'URL du chocolat
+                emptyBox.querySelector('.box-name').textContent = selectedChocolat;
+                emptyBox.parentElement.classList.add('flipped');
+                boxBackContent.textContent = selectedChocolat;
+
+                // Check if box is full
+                checkBoxFull();
+            }
+        });
+    });
+
+    function checkBoxFull() {
+        const selectedOption = boxSelection.value;
+        const boxSize = selectedOption === "150g" ? 9 : 16;
+
+        let chocolatesSelected = 0;
+        for (let i = 1; i <= boxSize; i++) {
+            const boxCell = document.getElementById(`box-chocolat-${i}`);
+            if (boxCell && boxCell.querySelector('.box-name').textContent !== '') {
+                chocolatesSelected++;
+            }
+        }
+
+        if (chocolatesSelected === boxSize) {
+            alert(`La boîte est maintenant pleine avec ${chocolatesSelected} chocolats !`);
+            // You can optionally disable further selection or take other actions here
+        }
+    }
+
+ 
+    // Effet de zoom sur l'image au survol
+    const zoomEffectDivs = document.querySelectorAll('.zoom-effect');
+    zoomEffectDivs.forEach(zoomDiv => {
+        zoomDiv.addEventListener('mouseenter', function() {
+            const img = this.querySelector('img');
+            img.style.transform = 'scale(1.1)';
+            img.style.transition = 'transform 0.3s ease';
+        });
+
+        zoomDiv.addEventListener('mouseleave', function() {
+            const img = this.querySelector('img');
+            img.style.transform = 'scale(1)';
+        });
+    });
+});
+
+
+</script>
+
+<style>
+    .box-container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #8B4513; /* Couleur rouge chocolat */
+        perspective: 1000px;
+        transition: transform 0.5s; /* Animation de transition pour l'effet 3D */
+    }
+    .box-cell {
+        margin: 10px;
+        perspective: 1000px; /* Effet de perspective */
+    }
+    .box-chocolat {
+        width: 100%;
+        height: 100px; /* Taille réduite pour tenir dans la grande boîte */
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
+        cursor: pointer;
+    }
+    .box-content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.5s;
+        transform-style: preserve-3d;
+    }
+    .box-front, .box-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+    .box-front {
+        background-color: #f9f9f9; /* Couleur de fond pour l'avant de la boîte */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .box-back {
+        background-color: #f9f9f9; /* Couleur de fond pour l'arrière de la boîte */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transform: rotateY(180deg);
+    }
+    .box-image {
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 10px;
+    }
+    .box-name {
+        font-size: 11px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
+    .box-back-content {
+        font-size: 12px;
+        color: #555;
+    }
+    .chocolat-btn {
+        overflow: hidden;
+        position: relative;
+        transition: all 0.3s ease;
+        width: 150%;
+        height: 50%;
+    }
+    .chocolat-img {
+        width: 100%;
+        height: 50%;
+        transition: transform 0.3s ease;
+    }
+    .zoom-effect {
+        overflow: hidden;
+    }
+    .chocolat-btn:hover {
+        transform: translateY(-5px);
+        border-color: #ccc;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .big-box {
+        background-color: #8B4513; /* Couleur rouge chocolat */
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .bg-chocolate {
+        background-color: #8B4513; /* Couleur rouge chocolat */
+    }
+    .title {
+        text-align: center;
+        color: #8B4513; /* Couleur rouge chocolat */
+        margin-bottom: 20px;
+        margin-top: 20px;
+        font-size: 30px;
+    }
+
+    @media (max-width: 992px) {
+        .col-lg-1 {
+            flex: 0 0 20%;
+            max-width: 50%;
+        }
+        .box-cell {
+            margin: 5px;
+        }
+        .box-chocolat {
+            height: 80px;
+        }
+        .box-image {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+        }
+        .box-name {
+            font-size: 10px;
+            margin-bottom: 3px;
+        }
+        .box-back-content {
+            font-size: 10px;
+        }
+        .big-box {
+            padding: 10px;
+        }
+        .chocolat-btn {
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+            width: 110%;
+            margin-left: 25%;
+        }
+    }
+</style>
+
+{% endblock %}

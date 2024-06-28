@@ -6,6 +6,9 @@ from .models.product import Products
 from .models.category import Category
 from .models.customer import Customer
 from .models.seller import Seller
+from .models.chocolat import Chocolat
+from .models.chocolat import Boite
+from .models.chocolat import BoiteChocolat
 
 class AdminProduct(admin.ModelAdmin):
     list_display = ["name", "price", "category"]
@@ -27,4 +30,7 @@ admin.site.register(Vendeur)
 admin.site.register(Category)
 admin.site.register(Customer)
 admin.site.register(Seller)
+admin.site.register(Chocolat)
+admin.site.register(Boite)
+admin.site.register(BoiteChocolat)
 admin.site.register(Products, AdminProduct)

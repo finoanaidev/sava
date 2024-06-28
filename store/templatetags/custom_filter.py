@@ -34,3 +34,7 @@ def currency(price, request=None):
 @register.filter(name="multiply")
 def multiply(number, number1):
     return number * number1
+
+@register.filter
+def to_range(value):
+    return range(1, value)
