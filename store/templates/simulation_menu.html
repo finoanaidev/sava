@@ -2,10 +2,6 @@
 
 {% block content %}
 {% load static %}
-{% load custom_filter %}
-
-<!-- Ajoutez l'élément input hidden pour le client ID ici -->
-<input type="hidden" id="client-id" value="{{ request.user.id }}">
 
 <div class="container">
     <h2 class="title">Choisissez vos chocolats</h2>
@@ -37,15 +33,18 @@
             <div class="box-price">
                 Prix : <span id="box-price-display"></span>
             </div>
-            <div class="col-md-6">
-                <button id="add-to-cart-btn" class="float-right btn btn-warning form-control">Ajouter au chariot</button>
-            </div>
         </div>
     </div>
 
     <div class="box-container" id="box-container">
         <!-- Placeholder for box cells dynamically added -->
     </div>
+
+     <!-- Bouton Enregistrer -->
+    <div class="text-center">
+        <button id="btn-enregistrer" class="btn btn-success">Enregistrer la boîte</button>
+    </div>
+
 </div>
 
 <script>
@@ -54,30 +53,26 @@
         const boxSelection = document.getElementById("box-size");
         const boxContainer = document.getElementById("box-container");
         const boxPriceDisplay = document.getElementById("box-price-display");
-        const addToCartBtn = document.getElementById("add-to-cart-btn");
+        const btnEnregistrer = document.getElementById("btn-enregistrer");
+
+        let selectedChocolats = [];
+        let selectedChocolatsCount = {}; // Nouveau objet pour suivre la quantité
 
         // Initialize box based on default selection
         createBox();
 
         // Listen for changes in box size selection
         boxSelection.addEventListener("change", function() {
-            // Clear existing boxes
             boxContainer.innerHTML = "";
-            // Recreate box based on new selection
             createBox();
-            // Update price display
             updatePrice();
         });
-
-        let selectedChocolats = []; // Déclare selectedChocolats ici
-        let selectedChocolatIds = []; 
 
         function createBox() {
             const selectedOption = boxSelection.value;
             const boxSize = selectedOption === "150g" ? 9 : 16;
-            const columns = selectedOption === "150g" ? 3 : 4; // Nombre de colonnes
+            const columns = selectedOption === "150g" ? 3 : 4;
 
-            // Calcul du nombre de lignes nécessaires
             const rows = Math.ceil(boxSize / columns);
 
             for (let i = 1; i <= boxSize; i++) {
@@ -119,15 +114,12 @@
                 boxCell.appendChild(boxContent);
                 boxContainer.appendChild(boxCell);
 
-                // Ajouter un écouteur de clic pour chaque cellule de la boîte
                 boxCell.addEventListener("click", function() {
                     const boxChocolat = this.querySelector(".box-chocolat");
                     const boxName = this.querySelector(".box-name");
                     const boxImage = this.querySelector(".box-image");
 
-                    // Vérifier si la cellule contient déjà un chocolat
                     if (boxName.textContent !== '') {
-                        // Réinitialiser la cellule
                         boxName.textContent = '';
                         boxImage.style.backgroundImage = '';
                         boxChocolat.parentElement.classList.remove('flipped');
@@ -136,7 +128,6 @@
                 });
             }
 
-            // Ajouter des colonnes vides pour aligner en grille
             const emptyCellsNeeded = columns - (boxSize % columns);
             if (emptyCellsNeeded !== columns) {
                 for (let i = 0; i < emptyCellsNeeded; i++) {
@@ -145,7 +136,7 @@
                     boxContainer.appendChild(emptyCell);
                 }
             }
-            // Mettre à jour le prix initial
+
             updatePrice();
         }
 
@@ -156,92 +147,23 @@
             boxPriceDisplay.textContent = `${boxPrice} Ar`;
         }
 
-        addToCartBtn.addEventListener("click", function() {
-            const selectedOption = boxSelection.value;
-            const boxSize = selectedOption === "150g" ? 9 : 16;
-
-            let isBoxEmpty = true;
-            for (let i = 1; i <= boxSize; i++) {
-                const boxCell = document.getElementById(`box-chocolat-${i}`);
-                if (boxCell && boxCell.querySelector('.box-name').textContent !== '') {
-                    isBoxEmpty = false;
-                    break;
-                }
-            }
-
-            if (isBoxEmpty) {
-                alert("Sélectionnez vos chocolats avant d'ajouter au panier.");
-                return; // Arrêter l'exécution si la boîte est vide
-            }
-
-
-            // Préparer les données à envoyer au serveur
-            const selectedChocolats = {};
-            for (let i = 1; i <= boxSize; i++) {
-                const boxCell = document.getElementById(`box-chocolat-${i}`);
-                if (boxCell) {
-                    const boxName = boxCell.querySelector('.box-name').textContent;
-                    if (boxName !== '') {
-                        const chocolatId = boxCell.id.split('-')[2];
-                        if (selectedChocolats[chocolatId]) {
-                            // Augmenter la quantité si le chocolat est déjà sélectionné
-                            selectedChocolats[chocolatId].quantity += 1;
-                        } else {
-                            // Ajouter le chocolat avec une quantité initiale de 1 s'il n'est pas déjà dans la sélection
-                            selectedChocolats[chocolatId] = { chocolat_id: chocolatId, quantity: 1 };
-                        }
-                    }
-                }
-            }
-
-            const data = {
-                'selected_chocolats': Object.values(selectedChocolats), // Convertir l'objet en tableau de valeurs
-                'box_size': boxSelection.value,
-                'client_id': document.getElementById('client-id').value
-            };
-
-            console.log('Data:', data); // Vérifiez les données dans la console
-
-            // Envoi de la requête POST au serveur
-            fetch(window.location.href, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                console.log(response); // Vérifiez la réponse du serveur
-                if (!response.ok) {
-                    throw new Error('Erreur lors de la requête HTTP: ' + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    alert('Les chocolats ont été ajoutés au panier avec succès !');
-                    window.location.href = data.redirect_url; // Rediriger vers la vue du panier
-                } else {
-                    alert('Une erreur s\'est produite lors de l\'ajout des chocolats au panier.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Une erreur s\'est produite lors de la communication avec le serveur.');
-            });
-        });
-
         chocolatButtons.forEach(button => {
             button.addEventListener("click", function() {
-                const chocolatId = button.getAttribute('data-chocolat-id');
-                const selectedChocolat = button.getAttribute('data-chocolat-nom'); // Récupère le nom du chocolat
-                const selectedChocolatImage = button.getAttribute('data-image-url'); // Récupère l'URL de l'image du chocolat
+                const selectedChocolat = button.getAttribute('data-chocolat-nom');
+                const selectedChocolatImage = button.getAttribute('data-image-url');
+                const selectedChocolatId = button.getAttribute('data-chocolat-id');
 
-                console.log('ID du chocolat sélectionné:', chocolatId);
+                if (!selectedChocolats.includes(selectedChocolatId)) {
+                    selectedChocolats.push(selectedChocolatId);
+                }
 
+                if (selectedChocolatsCount[selectedChocolatId]) {
+                    selectedChocolatsCount[selectedChocolatId]++;
+                } else {
+                    selectedChocolatsCount[selectedChocolatId] = 1;
+                }
                 let emptyBox = null;
 
-                // Find the first empty cell in the box
                 for (let i = 1; i <= boxContainer.children.length; i++) {
                     const boxCell = document.getElementById(`box-chocolat-${i}`);
                     if (boxCell && boxCell.querySelector('.box-name').textContent === '') {
@@ -254,33 +176,52 @@
                     const boxName = emptyBox.querySelector('.box-name');
                     const boxImage = emptyBox.querySelector('.box-image');
 
-                    // Update the box cell with the selected chocolate
                     boxName.textContent = selectedChocolat;
                     boxImage.style.backgroundImage = `url(${selectedChocolatImage})`;
                     emptyBox.querySelector('.box-back-content').textContent = selectedChocolat;
-                    emptyBox.parentElement.classList.add('flipped'); // Ajouter la classe 'flipped'
-
-                    // Recherche si le chocolat avec chocolatId est déjà dans selectedChocolats
-                    let found = false;
-                    for (let i = 0; i < selectedChocolats.length; i++) {
-                        if (selectedChocolats[i].chocolat_id === chocolatId) {
-                            selectedChocolats[i].quantity += 1;
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if (!found) {
-                        selectedChocolats.push({ chocolat_id: chocolatId, quantity: 1 });
-                    }
-
+                    emptyBox.parentElement.classList.add('flipped');
                 } else {
                     alert('La boîte est pleine. Retirez des chocolats avant d\'en ajouter d\'autres.');
                 }
             });
         });
+
+        btnEnregistrer.addEventListener("click", function() {
+            const selectedBoxType = boxSelection.value;
+
+            const formData = {
+                boite_type: selectedBoxType,
+                chocolats: selectedChocolats
+            };
+
+            console.log('FormData:', formData);
+
+            fetch('/enregistrer-boite', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur lors de l\'enregistrement de la boîte.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Boîte enregistrée avec succès:', data);
+                // Ajoutez ici la logique de redirection ou de message de succès
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                // Gérez l'erreur et informez l'utilisateur si nécessaire
+            });
+        });
     });
 </script>
+
 
 
 <style>
