@@ -8,10 +8,11 @@
     <div class="row">
         {% for chocolat in chocolats %}
         <div class="col-lg-1 col-md-2 col-sm-3 col-4">
-            <button class="chocolat-btn btn btn-outline" data-chocolat-id="{{ chocolat.id }}" data-chocolat-nom="{{ chocolat.nom }}" data-image-url="{{ chocolat.image.url }}">
+            <button class="chocolat-btn btn btn-outline" data-chocolat-id="{{ chocolat.id }}" data-chocolat-nom="{{ chocolat.nom }}" data-chocolat-desc="{{ chocolat.desc }}" data-image-url="{{ chocolat.image.url }}">
                 <div class="zoom-effect">
                     <img class="chocolat-img" src="{{ chocolat.image.url }}" alt="{{ chocolat.nom }}">
                 </div>
+                <span class="chocolat-name">{{ chocolat.nom }}</span>
             </button>
         </div>
         {% endfor %}
@@ -150,6 +151,7 @@
         chocolatButtons.forEach(button => {
             button.addEventListener("click", function() {
                 const selectedChocolat = button.getAttribute('data-chocolat-nom');
+                const selectedChocolatDesc = button.getAttribute('data-chocolat-desc'); // Nouveau : récupère la description
                 const selectedChocolatImage = button.getAttribute('data-image-url');
                 const selectedChocolatId = button.getAttribute('data-chocolat-id');
 
@@ -174,11 +176,13 @@
 
                 if (emptyBox) {
                     const boxName = emptyBox.querySelector('.box-name');
+                    const boxDesc = emptyBox.querySelector('.box-Desc');
                     const boxImage = emptyBox.querySelector('.box-image');
 
                     boxName.textContent = selectedChocolat;
                     boxImage.style.backgroundImage = `url(${selectedChocolatImage})`;
                     emptyBox.querySelector('.box-back-content').textContent = selectedChocolat;
+
                     emptyBox.parentElement.classList.add('flipped');
                 } else {
                     alert('La boîte est pleine. Retirez des chocolats avant d\'en ajouter d\'autres.');
@@ -240,7 +244,7 @@
     }
     .box-chocolat {
         width: 100%;
-        height: 100px; /* Taille réduite pour tenir dans la grande boîte */
+        height: 150px; /* Taille réduite pour tenir dans la grande boîte */
         position: relative;
         transform-style: preserve-3d;
         transition: transform 0.5s;
@@ -299,13 +303,42 @@
         position: relative;
         transition: all 0.3s ease;
         width: 150%;
-        height: 50%;
+        height: 100%;
+        padding: 3px;
     }
     .chocolat-img {
         width: 100%;
-        height: 50%;
+        height: 100px;
+        max-height: 100px; /* Adjust this to fit your design */
+        object-fit: cover;
         transition: transform 0.3s ease;
+        border-radius: 8%;
     }
+    .chocolat-name {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.5rem;
+    font-weight: bold;
+    color: #633b31;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    word-wrap: break-word; /* Pour forcer les mots longs à aller à la ligne */
+    white-space: normal; /* Pour permettre les retours à la ligne */
+    overflow-wrap: break-word; /* Pour les anciens navigateurs */
+    max-height: 4em; /* Limite la hauteur à 3 lignes de texte */
+    overflow: hidden; /* Cache le texte excédentaire */
+}
+
+    .chocolat-btn:hover .chocolat-img {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.chocolat-btn:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: #ccc;
+    transform: translateY(-5px);
+}
+    
     .zoom-effect {
         overflow: hidden;
     }
