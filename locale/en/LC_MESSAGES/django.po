@@ -5,52 +5,98 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: templates/your_template.html:13
-msgid "Chocolat fin et artisanal de Madagascar"
-msgstr "Fin artisanal chocolate from Madagascar"
+msgid "Bienvenue sur notre site de gourmandises raffinées"
+msgstr "Welcome to our gourmet website"
 
 #: templates/your_template.html:16
-msgid "Voir nos produits"
-msgstr "See our products"
+msgid "Découvrez nos délices exclusifs"
+msgstr "Discover our exclusive delights"
 
 #: templates/your_template.html:28
-msgid "Nos produits sont faits avec du cacao pur de Madagascar"
-msgstr "Our products are made with pure Madagascar cocoa"
+msgid "Découvrez notre sélection"
+msgstr "Discover our selection"
+
+#: templates/your_template.html:28
+msgid "Notre boutique en ligne propose une sélection exquise de bonbons, de ballotins et de tablettes de chocolat, conçus pour les amateurs de douceurs sophistiquées."
+msgstr "Our online store offers an exquisite selection of bonbons, ballotins and chocolate bars, designed for lovers of sophisticated sweets."
+
+#: templates/your_template.html:28
+msgid "Nous mettons un point d'honneur à utiliser des ingrédients de la plus haute qualité pour créer des saveurs uniques et mémorables."
+msgstr "We pride ourselves on using the highest quality ingredients to create unique and memorable flavors."
+
+#: templates/your_template.html:28
+msgid "Nos produits sont destinés à ceux qui recherchent l'excellence et apprécient les plaisirs gourmands."
+msgstr "Our products are designed for those who seek excellence and appreciate gourmet pleasures."
+
+#: templates/your_template.html:28
+msgid "Visitez notre boutique"
+msgstr "Visit our store"
 
 #: templates/your_template.html:31
 msgid "En savoir plus"
 msgstr "Learn more"
 
 #: templates/your_template.html:56
-msgid "Nos types de produits"
-msgstr "Our product types"
+msgid "Tarifs de nos produits"
+msgstr "Product pricing"
 
 #: templates/your_template.html:87
-msgid "Chocolat Sans Conservateur"
-msgstr "Preservative-free chocolate"
+msgid "Ballotins de Chocolat"
+msgstr "Chocolate Ballotins"
 
 #: templates/your_template.html:93
-msgid "Voir plus"
-msgstr "View more"
+msgid "Pour vos achats et pour une présentation élégante à vos proches et amis, nous proposons nos produits sous forme de ballotins de chocolat."
+msgstr "For an elegant presentation to friends and family, we offer our products in chocolate ballotins."
 
 #: templates/your_template.html:100
-msgid "Chocolat sans sucre"
-msgstr "Sugar-free chocolate"
+msgid "Ces boîtes spécialement conçues pour contenir et présenter une sélection de bonbons au chocolat sont synonymes de raffinement et d'élégance, idéales pour offrir en cadeau."
+msgstr "These boxes, specially designed to hold and present a selection of chocolate bonbons, are synonymous with refinement and elegance, ideal for gift-giving."
 
 #: templates/your_template.html:106
-msgid "Chocolat naturel avec fibre"
-msgstr "Natural chocolate with fiber"
+msgid "Nos ballotins contiennent une variété de bonbons au chocolat, choisis pour leur complémentarité et la diversité de leurs saveurs."
+msgstr "Our ballotins contain a variety of chocolate bonbons, chosen for their complementarity and diversity of flavours."
+
+#: templates/your_template.html:87
+msgid "Grande boîte (300 g)"
+msgstr "Large box (300 g)"
+
+#: templates/your_template.html:87
+msgid "Petite boîte (150 g)"
+msgstr "Small box (150 g)"
+
+#: templates/your_template.html:87
+msgid "Tablettes de Chocolat"
+msgstr "Chocolate bars"
+
+#: templates/your_template.html:87
+msgid "Tablette à la Vanille, Céréales et Fruits Séchés (70 g)"
+msgstr "Vanilla bar with cereals and dried fruit (70 g)"
+
+#: templates/your_template.html:87
+msgid "Tablette à la Vanille au Chocolat Blanc et Nature (65 g)"
+msgstr "Vanilla bar with white and plain chocolate (65 g)"
 
 #: templates/your_template.html:123
 msgid "Nos Produits"
 msgstr "Our Products"
 
 #: templates/your_template.html:145
-msgid "Témoignages"
-msgstr "Testimonials"
+msgid "Explorez un monde de saveurs exquises"
+msgstr "Explore a world of exquisite flavors"
+
+#: templates/your_template.html:145
+msgid "Découvrez un monde de saveurs exquises"
+msgstr "Discover a world of exquisite flavors"
 
 #: templates/your_template.html:154
-msgid "Super chocolat, je suis vraiment satisfait."
-msgstr "Great chocolate, I'm really satisfied."
+msgid "Découvrez des créations gourmandes qui éveillent tous vos sens. Chaque chocolat est un chef-d'œuvre, soigneusement élaboré pour vous offrir une expérience inoubliable."
+msgstr "Discover gourmet creations that awaken all your senses. Each chocolate is a masterpiece, carefully crafted to offer you an unforgettable experience."
+
+msgid "Laissez-vous emporter par notre passion pour le chocolat, où tradition et innovation se rencontrent pour émerveiller vos papilles."
+msgstr "Let yourself be carried away by our passion for chocolate, where tradition and innovation meet to delight your taste buds."
+
+msgid "Découvrir la boutique"
+msgstr "Discover the store"
 
 msgid "Accueil"
 msgstr "Home"
@@ -100,6 +146,9 @@ msgstr "We have no products in this category yet!"
 msgid "Voir tous les produits"
 msgstr "See all products"
 
+msgid "Voir plus"
+msgstr "See more"
+
 msgid "Services"
 msgstr "Services"
 
@@ -108,6 +157,9 @@ msgstr "About us"
 
 msgid "Création de chocolat à base de produit naturel venant de Madagascar"
 msgstr "Creation of chocolate using natural products from Madagascar"
+
+msgid "Créateur de Gourmandises Raffinées"
+msgstr "Creator of Refined Gourmet Delicacies"
 
 msgid "Autres caractéristiques"
 msgstr "Other characteristics"

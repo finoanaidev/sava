@@ -5,12 +5,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: templates/your_template.html:13
-msgid "Chocolat fine et artisanal de Madagascar"
-msgstr "Chocolat fine et artisanal de Madagascar"
+msgid "Bienvenue sur notre site de gourmandises raffinées"
+msgstr "Bienvenue sur notre site de gourmandises raffinées"
 
 #: templates/your_template.html:16
-msgid "Voir nos produits"
-msgstr "Voir nos produits"
+msgid "Découvrez nos délices exclusifs"
+msgstr "Découvrez nos délices exclusifs"
 
 #: templates/your_template.html:28
 msgid "Nos produits sont faits avec du cacao pur de Madagascar"
