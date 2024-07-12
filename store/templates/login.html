@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 90a45fe9b0da982e183c27100a40501d1e5a1555
 {% block content %}
 {% load i18n %}
 
@@ -7,6 +11,7 @@
     <div class="p-3 m-3">
         <div class="col-lg-5 rounded mx-auto border pt-4">
             <div class="text-center col">
+<<<<<<< HEAD
                 <img
                 src="https://th.bing.com/th/id/Rd51d7c0fde6d96a31538a86cbd57f3c0?rik=%2fTJxRkU2V371QQ&riu=http%3a%2f%2ftechnologyend.com%2fwp-content%2fuploads%2f2015%2f11%2fwhy-shop-online.jpg&ehk=v1KiYT0i5U1ABCRueDSdLqnazh2BdlVD89Z4qXE0Kgs%3d&risl=&pid=ImgRaw" alt=""
                 class="" style="height: 150px;">
@@ -19,22 +24,47 @@
                 {% if error %}
                 <div class="alert alert-danger" role="alert">
                     {{ error }}
+=======
+            
+                <img
+                src="https://th.bing.com/th/id/Rd51d7c0fde6d96a31538a86cbd57f3c0?rik=%2fTJxRkU2V371QQ&riu=http%3a%2f%2ftechnologyend.com%2fwp-content%2fuploads%2f2015%2f11%2fwhy-shop-online.jpg&ehk=v1KiYT0i5U1ABCRueDSdLqnazh2BdlVD89Z4qXE0Kgs%3d&risl=&pid=ImgRaw" alt=""
+                class="" style="height: 150px;">
+            <hr>
+            </div>
+            <h3 class="alert alert-light rounded-pill" style="text-align:center" >{% trans "Se connecter" %}</h3>
+            <form action="/login" method="POST">
+                
+                {% csrf_token %}
+
+                {% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+>>>>>>> 90a45fe9b0da982e183c27100a40501d1e5a1555
                 </div>
                 {% endif %}
                 <!-- email -->
                 <div class="form-group">
                     <label for="">{% trans "Email" %}</label>
                     <input required type="email" name="email" id=""
+<<<<<<< HEAD
                     value="{{ values.email }}" 
                     class=" form-control-sm form-control" placeholder="abc@gmail.com">
                 </div>
 
+=======
+                    value="{{values.email}}" 
+                    class=" form-control-sm form-control" placeholder="abc@gmail.com">
+                </div>
+
+
+>>>>>>> 90a45fe9b0da982e183c27100a40501d1e5a1555
                 <!-- password -->
                 <div class="form-group">
                     <label for="">{% trans "Mot de passe" %}</label>
                     <input type="password" 
                     name="password" 
                     id=""
+<<<<<<< HEAD
                      class="form-control form-control-sm">
                 </div>
 
@@ -42,15 +72,33 @@
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
                     <label class="form-check-label d-grid gap-2" for="exampleCheck1">{% trans "Cochez ici" %}</label>
+=======
+                     class="form-control form-control-sm" >
+                </div>
+
+                <!--Checkme button-->
+            <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                    <label class="form-check-label d-grid gap-2" for="exampleCheck1">{% trans "Cochez ici" %} </label>
+>>>>>>> 90a45fe9b0da982e183c27100a40501d1e5a1555
                 </div>
                 <hr>
                 <button type="submit" class="btn btn-sm btn-warning col-lg-12">{% trans "Connexion" %}</button>
                 
+<<<<<<< HEAD
                 <a class="nav-link text-warning" href="/signup">{% trans "Créer un compte" %}<span class="sr-only">(current)</span></a>
                 <a class="nav-link text-warning" href="/loginseller">{% trans "Se connecter en tant que vendeur" %}<span class="sr-only">(current)</span></a>
+=======
+                    <a class="nav-link text-warning" href="/signup">{% trans "Créer un compte" %}<span class="sr-only">(current)</span></a>
+                  
+>>>>>>> 90a45fe9b0da982e183c27100a40501d1e5a1555
             </form>
         </div>
     </div>
 </div>
 
+<<<<<<< HEAD
 {% endblock %}
+=======
+{% endblock %}
+>>>>>>> 90a45fe9b0da982e183c27100a40501d1e5a1555
