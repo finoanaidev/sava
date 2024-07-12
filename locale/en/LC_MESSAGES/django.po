@@ -239,10 +239,13 @@ msgstr "Name"
 msgid "Prénom"
 msgstr "First Name"
 
+<<<<<<< HEAD
 msgid "Chocolat noir, lait, blanc et fruité"
 msgstr "Dark, milk, white, and fruity chocolate"
 
 
 
+=======
+>>>>>>> e937b6c20a241da78ef2f62f99a6d11f3884eb24
 
 
