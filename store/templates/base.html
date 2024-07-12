@@ -1,0 +1,271 @@
+{% load i18n %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Chocolaterie fine et artisanale de Madagascar.">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  
+    <link rel="icon" href="https://scontent.ftnr2-2.fna.fbcdn.net/v/t39.30808-6/443819528_10229008348132143_6518709464621460423_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGLe_Kup4pYWd0gvEWyOA7Osrk3x-X0iPGyuTfH5fSI8aA6UT7C6bmV7vMP4xId5Jm_F9uRt7rxPtOu_AQsECQe&_nc_ohc=ycly973Oh1kQ7kNvgE0DGBy&_nc_ht=scontent.ftnr2-2.fna&oh=00_AYD9S8e1aTa2ABSa7-XBevEyfuw3mIOsvv3ug2FaQUnwqg&oe=66675C67"/>
+  
+  <title>SAVA - {% trans 'Chocolat fin et artisanal de Madagascar'%}</title>
+
+  <style>
+    nav{
+      background-color: #633b31;
+    }
+    .one-edge-shadow {
+              box-shadow: 0 8px 2px -5px rgb(246, 245, 245);
+}
+
+.display-8{
+  font-weight: 200;
+  font-size: 30px;
+  color: teal-200;
+}
+
+.footer-dark {
+  padding:50px 0;
+  color:#f0f9ff;
+  background-color:#633b31;
+}
+
+.footer-dark h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+  font-size:16px;
+  color: #fff;
+}
+
+.footer-dark ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:0;
+}
+
+.footer-dark ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.6;
+}
+
+.footer-dark ul a:hover {
+  opacity:0.8;
+}
+
+@media (max-width:767px) {
+  .footer-dark .item:not(.social) {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+.footer-dark .item.text {
+  margin-bottom:36px;
+}
+
+@media (max-width:767px) {
+  .footer-dark .item.text {
+    margin-bottom:0;
+  }
+}
+
+.footer-dark .item.text p {
+  opacity:0.6;
+  margin-bottom:0;
+}
+
+.footer-dark .item.social {
+  text-align:center;
+}
+
+@media (max-width:991px) {
+  .footer-dark .item.social {
+    text-align:center;
+    margin-top:20px;
+  }
+}
+
+.footer-dark .item.social > a {
+  font-size:20px;
+  width:36px;
+  height:36px;
+  line-height:36px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.4);
+  margin:0 8px;
+  color:#fff;
+  opacity:0.75;
+}
+
+.footer-dark .item.social > a:hover {
+  opacity:0.9;
+}
+
+.footer-dark .copyright {
+  text-align:center;
+  padding-top:24px;
+  opacity:0.3;
+  font-size:13px;
+  margin-bottom:0;
+}
+  </style>
+</head>
+
+<body>
+  <!-- navbar -->
+
+<nav class="one-edge-shadow navbar navbar-light sticky-top navbar  navbar-expand-lg text-white">
+    <a class="navbar-brand ms-3 text-white " href="/accueil">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    
+    <img src="../static/image/chocolat.jpg" style="width:100px; height:20%; color:text-light;" alt=" SAVA Chocolat"> </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto ">
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="/accueil"> <i class="fas fa-home"></i> {% trans 'Accueil'%} <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="/store"><i class="fas fa-store-alt"></i> {% trans 'Boutique'%}<span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="/simulation"><i class="fas  fa-check-circle"></i> Choisir mes chocolats<span class="sr-only">(current)</span></a>
+        </li>
+
+          </ul>
+
+
+
+        <form id="searchform" action="{% url 'SearchPage' %}" method="GET" >
+          <button class="searchbutton" type="submit" id="searchbox" name="query">
+              <i class="fa fa-search"></i>
+          </button>
+          <input class="searchfield" id="searchbox" name="query" type="text" placeholder="{% trans 'Rechercher'%}">
+        </form>
+
+      <ul class=" navbar-nav my-2 my-lg-0">
+
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="/cart"><i class="fas fa-shopping-cart"></i> {% trans 'Chariot'%}
+            <span class="badge badge-warning">{{request.session.cart.keys|length}}</span>
+            <span class="sr-only">(current)</span></a>
+        </li>
+
+        {% if request.session.customer %}
+        
+        <li class="nav-item active ">
+          <a class="nav-link text-white" href="/orders"><i class="fas fa-file-alt"></i>  {% trans 'Commandes'%}<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active ">
+          <a class="nav-link text-white" href="/logout"> <i class="fas fa-sign-out-alt"></i> {% trans 'Déconnexion'%}<span class="sr-only">(current)</span></a>
+        </li>
+        {% else %}
+       
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="/signup">{% trans 'Créer un compte'%}<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="/login"><i class="fas fa-sign-in-alt"></i> {% trans 'Se connecter'%}<span class="sr-only">(current)</span></a>
+        </li>
+        {% endif %}
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'change_language' 'fr' %}">
+              <img src="../static/image/flag_france.webp" alt="French" style="width: 30px; height: auto; border: 2px solid white;border-radius: 5px;">
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'change_language' 'en' %}">
+              <img src="../static/image/flag_usa.png" alt="English" style="width: 30px; height: auto; border: 2px solid white;border-radius: 5px;">
+          </a>
+      </li>
+
+
+      </ul>
+
+
+    </div>
+  </nav>
+  <!---->
+  {% block content %}{% endblock %}
+
+
+  <div class="footer-dark" id="footer">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>{% trans 'Services'%}</h3>
+                    <ul>
+                        <li><a href="#">{% trans 'Création de chocolat à base de produit naturel venant de Madagascar'%}</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>{% trans 'A propos'%}</h3>
+                    <ul>
+                        <li><a href="#" target="blank">SAVA</a></li>
+                        <li><a href="#">Ankerana, Antananarivo, Madagascar</a></li>
+                        <li><a href="#">emma.chocolat@gmail.com</a></li>
+                        <li><a href="#">+261 34 60 498 41</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 item text">
+                    <h3>SAVA</h3>
+                    <p>{% trans 'Créateur de Gourmandises Raffinées'%}</p>
+                </div>
+                <div class="col item social">
+                  <a href="https://www.facebook.com/p/SAVA-Chocolaterie-100087273279998/?_rdr" target="blank"><i class="fab fa-facebook-f"></i></a>
+                  <!-- <a href="#"><i class="fab fa-twitter"></i></a>
+                  <a href="#"><i class="fab fa-snapchat"></i></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a> -->
+                </div>
+            </div>
+            <p class="copyright">{% trans 'Powered by'%} HOAG Target ©  <span id="currentYear"></span></p>
+        </div>
+    </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Obtenir l'année actuelle
+    const currentYear = new Date().getFullYear();
+    
+    // Mettre à jour le contenu de l'élément span avec l'id "currentYear"
+    document.getElementById('currentYear').textContent = currentYear;
+</script>
+</body>
+
+</html>

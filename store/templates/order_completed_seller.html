@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status Update</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Commande de  {{ order.customer.first_name }} {{ order.customer.last_name }} compléter</h2>
+        <p>Cher SAVA Chocolat,</p>
+        <p>La commande #{{ order.id }} pour le produit {{ order.product.name }} a bien été complétée.</p>
+        <p>Détails de la commande :</p>
+        <ul>
+            <li><strong>Produit :</strong> {{ order.product.name }}</li>
+            <li><strong>Date de commande :</strong> {{ order.date }}</li>
+            <li><strong>Nom du client :</strong> {{ order.customer.first_name }} {{ order.customer.last_name }}</li>
+            <li><strong>Adresse de livraison :</strong> {{ order.address }}</li>
+            <li><strong>Numéro de téléphone :</strong> {{ order.phone }}</li>
+            <li><strong>Quantité :</strong> {{ order.quantity }}</li>
+            <li><strong>Prix unitaire du produit :</strong> {{ order.product.price }}</li>
+            <li><strong>Prix total :</strong> {{ order.price }}</li>
+        </ul>
+        <p>Veuillez préparer l'envoi en conséquence.</p>
+        <p><em>HOAG Target</em></p>
+    </div>
+</body>
+</html>

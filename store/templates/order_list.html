@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart %}
+{% load custom_filter %}
+{% load i18n %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h4 class="mb-4 text-center text-primary">Liste de commande</h4>
+        <div class="mb-3">
+            <a href="{% url 'export_orders_csv' %}" class="btn btn-primary">Export CSV</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="min-width: 100px;">Commande ID</th>
+                        <th style="min-width: 150px;">Date</th>
+                        <th>Client</th>
+                        <th>Adresse de livraison</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Produit</th>
+                        <th>Prix unitaire</th>
+                        <th>Quantité</th>
+                        <th>Prix total</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.date }}</td>  
+                        <td>{{ order.customer.first_name }} {{ order.customer.last_name }}</td>
+                        <td>{{ order.address }}</td>
+                        <td>{{ order.phone }}</td>
+                        <td>{{ order.customer.email }}</td>
+                        <td>{{ order.product.name }}</td>
+                        <td>{{ order.product.price }}</td>
+                        <td>{{ order.quantity }}</td>
+                        <td>{{ order.price }}</td>
+                        <td>
+                            {% if order.status %}
+                            <span class="badge badge-success">Completed</span>
+                            {% else %}
+                            <span class="badge badge-warning">Pending</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm">
+                                <a href="{% url 'update_order_status' order.id %}" style="color: inherit; text-decoration: none;">Update Status</a>
+                            </button>
+                            <form id="deleteForm{{ order.id }}" method="post" action="{% url 'delete_order' order.id %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ order.id }})">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function confirmDelete(orderId) {
+            if (confirm("This action is irreversible. Are you sure you want to delete this order?")) {
+                document.getElementById('deleteForm' + orderId).submit();
+            }
+        }
+    </script>
+{% endblock %}

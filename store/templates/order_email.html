@@ -1,0 +1,35 @@
+<!-- order_email.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Récapitulatif de commande</title>
+</head>
+<body>
+    <h2>Récapitulatif de commande</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Date</th>
+                <th>Prix unitaire</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.product.name }}</td>
+                <td>{{ order.date }}</td>
+                <td>{{ order.price }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.quantity|multiply:order.price }}</td>
+                <td>{% if order.status %}<span style="color: green;">Complété</span>{% else %}<span style="color: orange;">En attente</span>{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
