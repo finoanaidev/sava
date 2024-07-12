@@ -86,3 +86,7 @@ msgstr "Fait par"
 
 msgid "Complété"
 msgstr "Complete"
+
+msgid "Chocolat noir, lait, blanc et fruité"
+msgstr "Chocolat noir, lait, blanc et fruité"
+

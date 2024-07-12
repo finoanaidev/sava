@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static %}
 
 <!doctype html>
 <html lang="en">
@@ -132,7 +133,7 @@
     <a class="navbar-brand ms-3 text-white " href="/accueil">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     
-    <img src="../static/image/chocolat.jpg" style="width:100px; height:20%; color:text-light;" alt=" SAVA Chocolat"> </a>
+    <img src="{% static 'image/chocolat.jpg' %}" style="width:100px; height:20%; color:text-light;" alt=" SAVA Chocolat"> </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -149,9 +150,9 @@
           <a class="nav-link text-white" href="/store"><i class="fas fa-store-alt"></i> {% trans 'Boutique'%}<span class="sr-only">(current)</span></a>
         </li>
 
-        <li class="nav-item active">
+        <!-- <li class="nav-item active">
           <a class="nav-link text-white" href="/simulation"><i class="fas  fa-check-circle"></i> Choisir mes chocolats<span class="sr-only">(current)</span></a>
-        </li>
+        </li> -->
 
           </ul>
 
@@ -172,32 +173,50 @@
             <span class="sr-only">(current)</span></a>
         </li>
 
-        {% if request.session.customer %}
-        
-        <li class="nav-item active ">
-          <a class="nav-link text-white" href="/orders"><i class="fas fa-file-alt"></i>  {% trans 'Commandes'%}<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active ">
-          <a class="nav-link text-white" href="/logout"> <i class="fas fa-sign-out-alt"></i> {% trans 'Déconnexion'%}<span class="sr-only">(current)</span></a>
-        </li>
+        <!-- {% if user.is_authenticated %}
+
+          <li class="nav-item active">
+              <a class="nav-link text-white" href="/dashboard"><i class="fas fa-user-circle"></i> {% trans 'Mon espace'%}</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link text-white" href="/logout"><i class="fas fa-power-off"></i> {% trans 'Déconnexion'%}</a>
+            </li>
+
         {% else %}
-       
-        <li class="nav-item active">
-          <a class="nav-link text-white" href="/signup">{% trans 'Créer un compte'%}<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link text-white" href="/login"><i class="fas fa-sign-in-alt"></i> {% trans 'Se connecter'%}<span class="sr-only">(current)</span></a>
-        </li>
-        {% endif %}
+            <li class="nav-item active">
+              <a class="nav-link text-white" href="/login"><i class="fas fa-user-circle"></i> {% trans 'Connexion'%}</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link text-white" href="/register"><i class="fas fa-user-plus"></i> {% trans 'Inscription'%}</a>
+            </li>
+        {% endif %} -->
+        {% if user.is_authenticated or request.session.customer %}
+    <!-- Utilisateur authentifié ou session customer active  -->
+    <li class="nav-item active ">
+      <a class="nav-link text-white" href="/orders"><i class="fas fa-file-alt"></i>  {% trans 'Commandes'%}<span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link text-white" href="/logout"><i class="fas fa-power-off"></i> {% trans 'Déconnexion' %}</a>
+    </li>
+{% else %}
+    <!-- Utilisateur non authentifié -->
+    <li class="nav-item active">
+        <a class="nav-link text-white" href="/login"><i class="fas fa-user-circle"></i> {% trans 'Connexion' %}</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link text-white" href="/register"><i class="fas fa-user-plus"></i> {% trans 'Inscription' %}</a>
+    </li>
+{% endif %}
+
 
         <li class="nav-item">
           <a class="nav-link text-white" href="{% url 'change_language' 'fr' %}">
-              <img src="../static/image/flag_france.webp" alt="French" style="width: 30px; height: auto; border: 2px solid white;border-radius: 5px;">
+              <img src="{% static 'image/flag_france.webp' %} " alt="French" style="width: 30px; height: auto; border: 2px solid white;border-radius: 5px;">
           </a>
       </li>
       <li class="nav-item">
           <a class="nav-link text-white" href="{% url 'change_language' 'en' %}">
-              <img src="../static/image/flag_usa.png" alt="English" style="width: 30px; height: auto; border: 2px solid white;border-radius: 5px;">
+              <img src="{% static 'image/flag_usa.png' %}" alt="English" style="width: 30px; height: auto; border: 2px solid white;border-radius: 5px;">
           </a>
       </li>
 
