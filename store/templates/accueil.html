@@ -1,0 +1,471 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% load cart %} {% load custom_filter %}
+{% load i18n %}
+
+<!-- Inclure les bibliothèques CSS pour les animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css">
+
+<style>
+    .hero-section {
+        background-image: url('../static/image/chocolat.jpg');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        height: 89vh;
+        perspective: 1000px;
+    }
+    .headline2 {
+        color: #B26806;
+        text-shadow: -1px -1px 0 #F5E846, 1px -1px 0 #F5E846, -1px 1px 0 #F5E846, 1px 1px 0 #F5E846;
+        text-align: left;
+        font-size: 250%;
+        margin-top: 19%;
+        animation: fadeInDown 2s;
+    }
+    .btn-voir-produits {
+        background-color: white;
+        border: 2px solid white;
+        border-radius: 40px;
+        color: #834D06;
+        padding: 20px 30px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 60px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn-voir-produits:hover {
+        background-color: #834D06;
+        color: white;
+        text-decoration: none;
+        transform: scale(1.1);
+    }
+    .btn-en-savoir-plus {
+        background-color: white;
+        border: 2px solid #B9A51B;
+        color: #B9A51B;
+        padding: 15px 25px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+        margin-left: 30%;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn-en-savoir-plus:hover {
+        background-color: #B9A51B;
+        color: white;
+        text-decoration: none;
+        transform: scale(1.1);
+    }
+    .product-section {
+        background-color: #FCCA67;
+        padding: 40px;
+        perspective: 1000px;
+    }
+    .pricing-section {
+        margin-top: 5%;
+    }
+    .product-card {
+        border-radius: 20px;
+        overflow: hidden;
+        height: 350px;
+        transition: transform 0.3s ease;
+        transform-style: preserve-3d;
+    }
+    .product-card-1 {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+    }
+    .product-card:hover {
+        transform: rotateY(15deg);
+    }
+    .product-card-1:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .product-section h2, .product-section h3 {
+        color: #834D06;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .product-section p {
+        color: #834D06;
+        font-size: 1.1em;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .pricing-section h3 {
+        color: #FCCA67;
+        margin-bottom: 20px;
+    }
+
+    .card-link {
+        display: block;
+        text-decoration: none;
+    }
+
+    .card-link:hover .product-card {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-image {
+        width: 100%;
+        border-radius: 20px 20px 0 0;
+        height: auto;
+    }
+    .types-product-section {
+        background-color: #C5860A;
+        padding: 40px;
+    }
+    .btn-voir-plus-sans-conservateur,
+    .btn-voir-plus-avec-conservateur {
+        background-color: white;
+        border: 2px solid #E4E955;
+        color: #834D06;
+        font-weight: bold;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 10px;
+        transition: transform 0.3s;
+    }
+    .btn-voir-plus-sans-conservateur:hover,
+    .btn-voir-plus-avec-conservateur:hover {
+        background-color: #E4E955;
+        color: #834D06;
+        text-decoration: none;
+        transform: scale(1.1);
+    }
+    .product_section {
+        background-color: #FCCA67;
+        padding: 40px;
+    }
+    .custom-card {
+        height: 400px;
+        border-radius: 30px;
+        transition: transform 0.3s ease;
+        transform-style: preserve-3d;
+    }
+    .custom-card:hover {
+        transform: rotateY(15deg);
+    }
+    .custom-card img {
+        height: 300px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+    .floating-btn {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        background-color: #834D06;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 50px;
+        font-weight: bold;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s infinite;
+    }
+
+    .floating-btn i {
+        margin-right: 10px;
+    }
+
+    .floating-btn:hover {
+        background-color: #A65B08;
+        transform: scale(1.1);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .floating-btn-link {
+        text-decoration: none;
+        color: white;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    .text:hover {
+        text-decoration: none;
+    }
+    .custom-btn {
+        background-color: #ff6f61; /* Couleur vive pour attirer l'attention */
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.1em;
+        font-weight: bold;
+        border-radius: 5px;
+        text-transform: uppercase;
+        color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease, transform 0.3s ease; /* Ajout de la transition de mouvement */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .custom-btn:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: rgba(255, 255, 255, 0.15);
+        transform: translate(-50%, -50%) rotate(45deg);
+        transition: width 0.3s ease, height 0.3s ease;
+    }
+
+    .custom-btn:hover:before {
+        width: 400%;
+        height: 400%;
+    }
+
+    .custom-btn:hover {
+        background-color: #ff856e; /* Couleur légèrement différente au survol */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px); /* Mouvement vers le haut au survol */
+    }
+
+    .custom-btn:active {
+        background-color: #e66454; /* Couleur pour l'état actif */
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        transform: translateY(0); /* Réinitialise le mouvement lors du clic */
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .custom-btn {
+        animation: pulse 1.5s infinite;
+    }
+
+    .btn-voir-produits {
+        animation: pulse 1.5s infinite;
+    }
+
+</style>
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-7 pt-5 mb-5 align-self-center">
+                <div class="promo pe-md-3 pe-lg-5">
+                    <h1 class="headline2">
+                        {% trans "Bienvenue sur notre site de gourmandises raffinées" %}
+                    </h1>
+                    <p style="color: #8a7f02; font-size: 1.2rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">{% trans "Découvrez un monde de saveurs exquises" %}</p>
+                    <a href="/store" class="btn-voir-produits animate__animated animate__bounce">{% trans "Découvrez nos délices exclusifs" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-section" style="background-color: #FCCA67; padding: 50px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="content-wrapper" style="padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h2 style="color: #834D06; font-size: 1.5em; font-weight: bold; text-align: left; margin-bottom: 20px;">{% trans "Découvrez notre sélection" %}</h2>
+                    <p style="color: #834D06; font-size: 1.1em; font-weight: bold; text-align: left; margin-bottom: 10px;">{% trans "Notre boutique en ligne propose une sélection exquise de bonbons, de ballotins et de tablettes de chocolat, conçus pour les amateurs de douceurs sophistiquées." %}</p>
+                    <p style="color: #834D06; font-size: 1.1em; font-weight: bold; text-align: left; margin-bottom: 10px;">{% trans "Nous mettons un point d'honneur à utiliser des ingrédients de la plus haute qualité pour créer des saveurs uniques et mémorables." %}</p>
+                    <p style="color: #834D06; font-size: 1.1em; font-weight: bold; text-align: left;">{% trans "Nos produits sont destinés à ceux qui recherchent l'excellence et apprécient les plaisirs gourmands." %}</p>
+                    <a href="{% url 'store' %}" class="btn btn-primary custom-btn" style="background-color: #834D06; border: none; padding: 10px 20px; font-size: 1.1em; font-weight: bold; border-radius: 5px; margin-top: 20px;">{% trans "Visitez notre boutique" %}</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card product-card" style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-top: 2%;" data-aos="flip-left">
+                    <img src="../static/image/cacao.jpg" class="card-img-top product-image" alt="Image du produit" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;">
+                    <div class="card-body" style="padding: 20px;">
+                        <!-- Contenu supplémentaire de la carte si nécessaire -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="product-section" style="background-color: #f7f3e9; padding: 50px 0;">
+    <div class="container">
+        <h2 style="text-align: center; color: #834D06; margin-bottom: 5%;">{% trans "Tarifs de nos produits" %}</h2>
+
+        <div class="pricing-section">
+            <h3 style="color: #FCCA67; text-align: center; margin-bottom: 20px;">{% trans "Ballotins de Chocolat" %}</h3>
+            <p style="text-align: center; color: #834D06; font-size: 1.1em; margin-bottom: 10px;">{% trans "Pour vos achats et pour une présentation élégante à vos proches et amis, nous proposons nos produits sous forme de ballotins de chocolat." %}</p>
+            <p style="text-align: center; color: #834D06; font-size: 1.1em; margin-bottom: 10px;">{% trans "Ces boîtes spécialement conçues pour contenir et présenter une sélection de bonbons au chocolat sont synonymes de raffinement et d'élégance, idéales pour offrir en cadeau." %}</p>
+            <p style="text-align: center; color: #834D06; font-size: 1.1em; margin-bottom: 10px;">{% trans "Nos ballotins contiennent une variété de bonbons au chocolat, choisis pour leur complémentarité et la diversité de leurs saveurs." %}</p>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <a href="/store?category=7" class="card-link">
+                        <div class="card product-card-1" style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                            <p style="color: #834D06; font-size: 1.2em; font-weight: bold; text-align: center;">{% trans "Grande boîte (300 g)" %}</p>
+                            <p style="color: #834D06; font-size: 1.5em; font-weight: bold; text-align: center;">60 000 Ar</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/store?category=8" class="card-link">
+                        <div class="card product-card-1" style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                            <p style="color: #834D06; font-size: 1.2em; font-weight: bold; text-align: center;">{% trans "Petite boîte (150 g)" %}</p>
+                            <p style="color: #834D06; font-size: 1.5em; font-weight: bold; text-align: center;">30 000 Ar</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pricing-section" style="margin-top: 5%;">
+            <h3 style="color: #FCCA67; text-align: center; margin-bottom: 20px;">{% trans "Tablettes de Chocolat" %}</h3>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <a href="/store?category=9" class="card-link">
+                        <div class="card product-card-1" style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                            <p style="color: #834D06; font-size: 1.2em; font-weight: bold; text-align: center;">{% trans "Tablette à la Vanille, Céréales et Fruits Séchés (70 g)" %}</p>
+                            <p style="color: #834D06; font-size: 1.5em; font-weight: bold; text-align: center;">12 000 Ar</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/store?category=9" class="card-link">
+                        <div class="card product-card-1" style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                            <p style="color: #834D06; font-size: 1.2em; font-weight: bold; text-align: center;">{% trans "Tablette à la Vanille au Chocolat Blanc et Nature (65 g)" %}</p>
+                            <p style="color: #834D06; font-size: 1.5em; font-weight: bold; text-align: center;">10 000 Ar</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- <section class="product_section"> -->
+    <!-- Titre de la section -->
+    <!-- <h2 style="color: #834D06; text-align: center; margin-bottom: 3%;">{% trans "Nos Produits" %}</h2> -->
+    
+    <!-- Conteneur principal -->
+    <!-- <div class="container"> -->
+        <!-- Ligne pour les produits -->
+        <!-- <div class="row"> -->
+            <!-- Première colonne pour le premier produit -->
+            <!-- <div class="col-md-4"> -->
+                <!-- Carte du produit avec animation flip-left -->
+                <!-- <div class="card custom-card" data-aos="flip-left"> -->
+                    <!-- Image du produit -->
+                    <!-- <img src="../static/image/choco1.jpg" class="card-img-top" alt="Image du produit 1"> -->
+                    <!-- <div class="card-body"> -->
+                        <!-- Titre du produit avec lien vers la page du produit -->
+                        <!-- <h5 class="card-title"><a href="/product/10" class="text">{% trans "Chocolat Artisanale" %}</a></h5> -->
+                        <!-- Prix du produit -->
+                        <!-- <p class="card-text">15 000 Ar</p> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+            <!-- </div> -->
+            
+            <!-- Deuxième colonne pour le deuxième produit -->
+            <!-- <div class="col-md-4"> -->
+                <!-- Carte du produit avec animation flip-left -->
+                <!-- <div class="card custom-card" data-aos="flip-left"> -->
+                    <!-- Image du produit -->
+                    <!-- <img src="../static/image/choco2.jpg" class="card-img-top" alt="Image du produit 2"> -->
+                    <!-- <div class="card-body"> -->
+                        <!-- Titre du produit avec lien vers la page du produit -->
+                        <!-- <h5 class="card-title"><a href="/product/9" class="text">{% trans "Chocolat SAVA" %}</a></h5> -->
+                        <!-- Prix du produit -->
+                        <!-- <p class="card-text">10 000 Ar</p> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+            <!-- </div> -->
+            
+            <!-- Troisième colonne pour le troisième produit -->
+            <!-- <div class="col-md-4"> -->
+                <!-- Carte du produit avec animation flip-left -->
+                <!-- <div class="card custom-card" data-aos="flip-left"> -->
+                    <!-- Image du produit -->
+                    <!-- <img src="../static/image/choco1.jpg" class="card-img-top" alt="Image du produit 3"> -->
+                    <!-- <div class="card-body"> -->
+                        <!-- Titre du produit avec lien vers la page du produit -->
+                        <!-- <h5 class="card-title"><a href="/product/11" class="text">{% trans "Chocolat avec fibre" %}</a></h5> -->
+                        <!-- Prix du produit -->
+                        <!-- <p class="card-text">18 000 Ar</p> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+            <!-- </div> -->
+        <!-- </div> -->
+    <!-- </div> -->
+<!-- </section> -->
+
+
+<section class="testimonial-section" style="background-color: #FCCA67; padding: 50px 0; position: relative;">
+    <div class="container">
+        <h2 style="color: #834D06; text-align: center; margin-bottom: 30px; font-size: 2rem; text-transform: uppercase;">{% trans "Explorez un monde de saveurs exquises" %}</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="testimonial-frame" style="background-color: rgba(255, 255, 255, 0.95); padding: 40px; margin-top: 30px; text-align: center; border-radius: 20px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);" data-aos="fade-up">
+                    <p style="color: #03122E; font-weight: bold; padding: 10px; margin-bottom: 30px; font-size: 1.2rem; line-height: 1.6; text-shadow: -1px -1px 0 #E4E955, 1px -1px 0 #E4E955, -1px 1px 0 #E4E955, 1px 1px 0 #E4E955;">
+                        {% trans "Découvrez des créations gourmandes qui éveillent tous vos sens. Chaque chocolat est un chef-d'œuvre, soigneusement élaboré pour vous offrir une expérience inoubliable." %}
+                    </p>
+                    <p style="color: #03122E; font-weight: bold; padding: 10px; margin-bottom: 0; font-size: 1.2rem; line-height: 1.6; text-shadow: -1px -1px 0 #E4E955, 1px -1px 0 #E4E955, -1px 1px 0 #E4E955, 1px 1px 0 #E4E955;">
+                        {% trans "Laissez-vous emporter par notre passion pour le chocolat, où tradition et innovation se rencontrent pour émerveiller vos papilles." %}
+                    </p>
+                    <a href="/store" class="btn btn-primary custom-btn" style="margin-top: 30px; background-color: #834D06; border-color: #834D06;">{% trans "Découvrir la boutique" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<div class="floating-btn">
+    <i class="fas fa-plus"></i><a href="/store" style="text-decoration: none; color:white;">{% trans "Voir plus" %}</a>
+</div>
+
+<!-- Inclure les fichiers JS pour AOS -->
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1200,
+    });
+</script>
+
+{% endblock %}

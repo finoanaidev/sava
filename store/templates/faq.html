@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <style>
+       @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+
+body{
+   background: #f6f6f6;
+}
+
+.box{
+   width: 75%;
+   margin: 5% auto;
+   background: #fff;
+   border-radius: 7px;
+   box-shadow: 1px 2px 4px rgba(0,0,0,.3);
+}
+
+.box .heading{
+   background: #0a3055;
+   border-radius: 7px 7px 0px 0px;
+   padding: 10px;
+   color: #fff;
+   text-align: center;
+   font-family: "Rubik";
+}
+
+.faqs{
+   padding: 0px 20px 20px;
+}
+
+::-webkit-details-marker{
+   float: right;
+   margin-top: 3px;
+}
+
+details{
+   background: #f6f6f6;
+   padding: 10px 20px;
+   border-radius: 7px;
+   margin-top: 20px;
+   font-family: "Rubik";
+   font-size: 14px;
+   letter-spacing: 1px;
+   cursor: pointer;
+}
+
+details summary{
+   outline: none;
+   font-weight: bold;
+}
+
+details p{
+  font-weight: lighter;
+  margin-top: 2%;
+}
+
+</style>
+
+</head>
+
+    <body>
+      <div class="box">
+        <p class="heading">FAQs</p>
+        <div class="faqs">
+           <details>
+              <summary>Quelle est la durée de livraison ?</summary>
+              <p class="text">La durée de livraison est un des nombreux aspects de la négociation discutée directement entre
+                vendeur et acheteur. La plateforme, en sa qualité de facilitateur, ne peut imposer ou définir de
+                durée standard de livraison. Ce sujet étant en outre tributaire de nombreux facteurs
+                (éloignement, niveau d’accès de la zone de livraison, nature des produits transportés, délai
+                convenu entre les parties, etc.).</p>
+           </details>
+           <details>
+              <summary>Les livraisons se font-elles uniquement dans la capitale et les grandes villes?</summary>
+              <p class="text">Cet aspect dépend de l’organisation logistique de chaque annonceur. Vous pouvez néanmoins
+                demander la possibilité de livraisons en dehors des grandes villes et vous organiser avec votre
+                vendeur si celui-ci est d’accord.</p>
+           </details>
+           <details>
+              <summary>Quelle garantie pour les produits ?</summary>
+              <p class="text">La plateforme ne peut se porter garante de toutes les transactions effectuées sur le site.
+                Néanmoins, nous avons établi une Charte de qualité à laquelle s’est engagé chaque annonceur
+                du site. A côté de cela, un travail de vérification et d’encadrement est effectué en back-up pour
+                veiller à ce que chaque aspect de la charte soit correctement appliqué par les annonceurs. Et
+                cela inclut le respect du service après-vente.</p>
+           </details>
+           <details>
+              <summary>Quels sont les recours en cas de défaut de produits, de malfaçons, de casse ou de défaut de
+                livraison ?</summary>
+              <p class="text">
+                La plateforme ne peut se porter garante de toutes les transactions effectuées sur le site. Néanmoins, nous avons établi une Charte de qualité à laquelle s’est engagé chaque annonceur du site. Chaque produit ou article présenté sur la  plateforme devrait être complètement assuré par une compagnie d’assurance sinon l’annonceur sera engagé à mettre en place une politique rigoureuse de retour de leur marchandise ou de leur produit, en cas de non conformité ou de tout autre défaut de livraison.
+              </p>
+          </details>
+
+         <details>
+            <summary>Mon payement en ligne est refusé ou impossible, comment faire ?</summary>
+            <p class="text">
+              En cas de problème, nous vous mettrons en lien avec nos partenaires responsables de ces transferts financiers. 
+            </p>
+        </details>
+
+            <details>
+              <summary>Les frais de transports sont-ils inclus ou hors coûts d’achat ?</summary>
+              <p class="text">
+                Normalement, l’inclusion ou l’exclusion des frais de transport dépend des conditions de vente des annonceurs, toutefois des nombreux aspects  de vente  peuvent être négociés et discutés directement entre vendeur et acheteur en cas de vente en gros ou à l’usine. 
+              </p>
+          </details>
+
+          <details>
+              <summary>J’ai contacté l’annonceur qui ne donne pas de retour depuis plusieurs jours, comment faire ?</summary>
+              <p class="text">
+                Au sein de la plateforme, nous avons établi un système permettant à chaque client de donner son avis sur la performance pour chacun  de ses fournisseurs. Ainsi, un indicateur de performance est affiché à chaque page de vendeur et libre à chaque acheteur de choisir avant leur achat les meilleurs fournisseurs qui lui conviennent le plus.  
+              </p>
+          </details>
+
+          <details>
+              <summary>Quel est le rôle de la plateforme en cas de différends entre acheteur et annonceur ?</summary>
+              <p class="text">
+                Pour un cas de différends,  nous suggérons fortement une négociation à l’amiable entre les deux parties acheteur et annonceur, avant que l’arbitrage soit réalisé par un organisme de médiation.   
+              </p>
+          </details>
+
+          <details>
+            <summary>Comment m’assurer de l’origine et de la qualité des produits et services proposés sur la plateforme ?</summary>
+            <p class="text">
+              La plateforme ne peut se porter garante de toutes les transactions effectuées sur le site. Néanmoins, nous avons établi un système permettant de retrouver l’origine et la traçabilité des produits et services proposés par chaque annonceur. Envoyez- nous un message pour demander beaucoup plus d’informations.    
+            </p>
+          </details>
+
+          <details>
+            <summary>Comment m’assurer de la crédibilité de l’annonceur ?</summary>
+            <p class="text">
+              Au sein de la plateforme, nous avons établi un système permettant à chaque client de donner son avis sur la performance pour chacun  de ses fournisseurs. Ainsi, un indicateur de performance est affiché à chaque page de vendeur. Cet indicateur, informera à chaque client une partie de la crédibilité de l’annonceur. Envoyez-nous un message  pour avoir des informations plus ou moins approfondies.    
+            </p>
+          </details>
+        </div>
+     </div>
+    </body>
+</html>
+{% endblock %}

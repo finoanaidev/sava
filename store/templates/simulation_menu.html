@@ -1,0 +1,402 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <h2 class="title">Choisissez vos chocolats</h2>
+    <div class="row">
+        {% for chocolat in chocolats %}
+        <div class="col-lg-1 col-md-2 col-sm-3 col-4">
+            <button class="chocolat-btn btn btn-outline" data-chocolat-id="{{ chocolat.id }}" data-chocolat-nom="{{ chocolat.nom }}" data-chocolat-desc="{{ chocolat.desc }}" data-image-url="{{ chocolat.image.url }}">
+                <div class="zoom-effect">
+                    <img class="chocolat-img" src="{{ chocolat.image.url }}" alt="{{ chocolat.nom }}">
+                </div>
+                <span class="chocolat-name">{{ chocolat.nom }}</span>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <h3 class="title">Votre boîte</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box-selection">
+                <label for="box-size">Sélectionnez la taille de votre boîte :</label>
+                <select id="box-size">
+                    {% for boite in boites %}
+                    <option value="{{ boite.type }}" data-prix="{{ boite.prix }}">{{ boite.nom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box-price">
+                Prix : <span id="box-price-display"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-container" id="box-container">
+        <!-- Placeholder for box cells dynamically added -->
+    </div>
+
+     <!-- Bouton Enregistrer -->
+    <div class="text-center">
+        <button id="btn-enregistrer" class="btn btn-success">Enregistrer la boîte</button>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const chocolatButtons = document.querySelectorAll(".chocolat-btn");
+        const boxSelection = document.getElementById("box-size");
+        const boxContainer = document.getElementById("box-container");
+        const boxPriceDisplay = document.getElementById("box-price-display");
+        const btnEnregistrer = document.getElementById("btn-enregistrer");
+
+        let selectedChocolats = [];
+        let selectedChocolatsCount = {}; // Nouveau objet pour suivre la quantité
+
+        // Initialize box based on default selection
+        createBox();
+
+        // Listen for changes in box size selection
+        boxSelection.addEventListener("change", function() {
+            boxContainer.innerHTML = "";
+            createBox();
+            updatePrice();
+        });
+
+        function createBox() {
+            const selectedOption = boxSelection.value;
+            const boxSize = selectedOption === "150g" ? 9 : 16;
+            const columns = selectedOption === "150g" ? 3 : 4;
+
+            const rows = Math.ceil(boxSize / columns);
+
+            for (let i = 1; i <= boxSize; i++) {
+                const boxCell = document.createElement("div");
+                boxCell.classList.add(`col-lg-${12/columns}`, `col-md-${12/columns}`, `col-sm-${12/columns}`);
+
+                const boxContent = document.createElement("div");
+                boxContent.classList.add("box-cell");
+
+                const boxChocolat = document.createElement("div");
+                boxChocolat.classList.add("box-chocolat");
+                boxChocolat.id = `box-chocolat-${i}`;
+
+                const boxInnerContent = document.createElement("div");
+                boxInnerContent.classList.add("box-content");
+
+                const boxFront = document.createElement("div");
+                boxFront.classList.add("box-front");
+
+                const boxImage = document.createElement("div");
+                boxImage.classList.add("box-image");
+
+                const boxName = document.createElement("div");
+                boxName.classList.add("box-name");
+
+                const boxBack = document.createElement("div");
+                boxBack.classList.add("box-back");
+
+                const boxBackContent = document.createElement("div");
+                boxBackContent.classList.add("box-back-content");
+
+                boxFront.appendChild(boxImage);
+                boxFront.appendChild(boxName);
+                boxBack.appendChild(boxBackContent);
+                boxInnerContent.appendChild(boxFront);
+                boxInnerContent.appendChild(boxBack);
+                boxChocolat.appendChild(boxInnerContent);
+                boxContent.appendChild(boxChocolat);
+                boxCell.appendChild(boxContent);
+                boxContainer.appendChild(boxCell);
+
+                boxCell.addEventListener("click", function() {
+                    const boxChocolat = this.querySelector(".box-chocolat");
+                    const boxName = this.querySelector(".box-name");
+                    const boxImage = this.querySelector(".box-image");
+
+                    if (boxName.textContent !== '') {
+                        boxName.textContent = '';
+                        boxImage.style.backgroundImage = '';
+                        boxChocolat.parentElement.classList.remove('flipped');
+                        boxChocolat.querySelector('.box-back-content').textContent = '';
+                    }
+                });
+            }
+
+            const emptyCellsNeeded = columns - (boxSize % columns);
+            if (emptyCellsNeeded !== columns) {
+                for (let i = 0; i < emptyCellsNeeded; i++) {
+                    const emptyCell = document.createElement("div");
+                    emptyCell.classList.add(`col-lg-${12/columns}`, `col-md-${12/columns}`, `col-sm-${12/columns}`);
+                    boxContainer.appendChild(emptyCell);
+                }
+            }
+
+            updatePrice();
+        }
+
+        function updatePrice() {
+            const selectedOption = boxSelection.value;
+            const selectedBoxOption = boxSelection.options[boxSelection.selectedIndex];
+            const boxPrice = selectedBoxOption.getAttribute('data-prix');
+            boxPriceDisplay.textContent = `${boxPrice} Ar`;
+        }
+
+        chocolatButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const selectedChocolat = button.getAttribute('data-chocolat-nom');
+                const selectedChocolatDesc = button.getAttribute('data-chocolat-desc'); // Nouveau : récupère la description
+                const selectedChocolatImage = button.getAttribute('data-image-url');
+                const selectedChocolatId = button.getAttribute('data-chocolat-id');
+
+                if (!selectedChocolats.includes(selectedChocolatId)) {
+                    selectedChocolats.push(selectedChocolatId);
+                }
+
+                if (selectedChocolatsCount[selectedChocolatId]) {
+                    selectedChocolatsCount[selectedChocolatId]++;
+                } else {
+                    selectedChocolatsCount[selectedChocolatId] = 1;
+                }
+                let emptyBox = null;
+
+                for (let i = 1; i <= boxContainer.children.length; i++) {
+                    const boxCell = document.getElementById(`box-chocolat-${i}`);
+                    if (boxCell && boxCell.querySelector('.box-name').textContent === '') {
+                        emptyBox = boxCell;
+                        break;
+                    }
+                }
+
+                if (emptyBox) {
+                    const boxName = emptyBox.querySelector('.box-name');
+                    const boxDesc = emptyBox.querySelector('.box-Desc');
+                    const boxImage = emptyBox.querySelector('.box-image');
+
+                    boxName.textContent = selectedChocolat;
+                    boxImage.style.backgroundImage = `url(${selectedChocolatImage})`;
+                    emptyBox.querySelector('.box-back-content').textContent = selectedChocolat;
+
+                    emptyBox.parentElement.classList.add('flipped');
+                } else {
+                    alert('La boîte est pleine. Retirez des chocolats avant d\'en ajouter d\'autres.');
+                }
+            });
+        });
+
+        btnEnregistrer.addEventListener("click", function() {
+            const selectedBoxType = boxSelection.value;
+
+            const formData = {
+                boite_type: selectedBoxType,
+                chocolats: selectedChocolats
+            };
+
+            console.log('FormData:', formData);
+
+            fetch('/enregistrer-boite', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur lors de l\'enregistrement de la boîte.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Boîte enregistrée avec succès:', data);
+                // Ajoutez ici la logique de redirection ou de message de succès
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                // Gérez l'erreur et informez l'utilisateur si nécessaire
+            });
+        });
+    });
+</script>
+
+
+
+<style>
+    .box-container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #8B4513; /* Couleur rouge chocolat */
+        perspective: 1000px;
+        transition: transform 0.5s; /* Animation de transition pour l'effet 3D */
+    }
+    .box-cell {
+        margin: 10px;
+        perspective: 1000px; /* Effet de perspective */
+    }
+    .box-chocolat {
+        width: 100%;
+        height: 150px; /* Taille réduite pour tenir dans la grande boîte */
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
+        cursor: pointer;
+    }
+    .box-content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.5s;
+        transform-style: preserve-3d;
+    }
+    .box-front, .box-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+    .box-front {
+        background-color: #f9f9f9; /* Couleur de fond pour l'avant de la boîte */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .box-back {
+        background-color: #f9f9f9; /* Couleur de fond pour l'arrière de la boîte */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transform: rotateY(180deg);
+    }
+    .box-image {
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 10px;
+    }
+    .box-name {
+        font-size: 11px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
+    .box-back-content {
+        font-size: 12px;
+        color: #555;
+    }
+    .chocolat-btn {
+        overflow: hidden;
+        position: relative;
+        transition: all 0.3s ease;
+        width: 150%;
+        height: 100%;
+        padding: 3px;
+    }
+    .chocolat-img {
+        width: 100%;
+        height: 100px;
+        max-height: 100px; /* Adjust this to fit your design */
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        border-radius: 8%;
+    }
+    .chocolat-name {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.5rem;
+    font-weight: bold;
+    color: #633b31;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    word-wrap: break-word; /* Pour forcer les mots longs à aller à la ligne */
+    white-space: normal; /* Pour permettre les retours à la ligne */
+    overflow-wrap: break-word; /* Pour les anciens navigateurs */
+    max-height: 4em; /* Limite la hauteur à 3 lignes de texte */
+    overflow: hidden; /* Cache le texte excédentaire */
+}
+
+    .chocolat-btn:hover .chocolat-img {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.chocolat-btn:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: #ccc;
+    transform: translateY(-5px);
+}
+    
+    .zoom-effect {
+        overflow: hidden;
+    }
+    .chocolat-btn:hover {
+        transform: translateY(-5px);
+        border-color: #ccc;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .big-box {
+        background-color: #8B4513; /* Couleur rouge chocolat */
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .bg-chocolate {
+        background-color: #8B4513; /* Couleur rouge chocolat */
+    }
+    .title {
+        text-align: center;
+        color: #8B4513; /* Couleur rouge chocolat */
+        margin-bottom: 20px;
+        margin-top: 20px;
+        font-size: 30px;
+    }
+
+    @media (max-width: 992px) {
+        .col-lg-1 {
+            flex: 0 0 20%;
+            max-width: 50%;
+        }
+        .box-cell {
+            margin: 5px;
+        }
+        .box-chocolat {
+            height: 80px;
+        }
+        .box-image {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+        }
+        .box-name {
+            font-size: 10px;
+            margin-bottom: 3px;
+        }
+        .box-back-content {
+            font-size: 10px;
+        }
+        .big-box {
+            padding: 10px;
+        }
+        .chocolat-btn {
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+            width: 110%;
+            margin-left: 25%;
+        }
+    }
+</style>
+
+{% endblock %}
